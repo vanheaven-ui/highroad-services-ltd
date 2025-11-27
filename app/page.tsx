@@ -1,65 +1,189 @@
-import Image from "next/image";
+"use client";
 
-export default function Home() {
+import Hero from "@/components/Hero";
+import AffiliationsSection from "@/components/AffiliationsSection";
+import ApproachSection from "@/components/ApproachSection";
+import ImpactSection from "@/components/ImpactSection";
+import ServiceCard from "@/components/ServiceCard";
+import CaseStudyCard from "@/components/CasestudyCard";
+import Link from "next/link";
+import { JSX } from "react";
+import { services } from "@/data/services";
+import { FullCaseStudy } from "@/components/case-study/CaseStudyModal";
+import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
+
+// CaseStudy type matches FullCaseStudy
+type CaseStudy = FullCaseStudy;
+
+// ----------------------
+// 3. Case Studies Data (Enhanced)
+// ----------------------
+const caseStudies: CaseStudy[] = [
+  {
+    title: "Agricultural Policy Research and Optimization",
+    context:
+      "Client needed to optimize the coffee export value chain for smallholder farmers in the Western region, facing persistent low prices and market volatility.",
+    summary:
+      "Identified key market access barriers and infrastructure bottlenecks through proprietary field research, econometric modeling, and stakeholder workshops. Recommended a phased intervention strategy focusing on quality control and direct market linkages.",
+    impact:
+      "10,000+ beneficiaries with a 20% average increase in farm-gate income within two seasons.",
+    client: "National Agriculture Board",
+    region: "Western Region, Uganda",
+    date: "Q3 2024",
+    detailedDescription: `
+      **Phase 1: Diagnostic Assessment**
+      Conducted a census of 10,000 smallholder farmers. Found that 40% of post-harvest loss was due to poor drying and storage infrastructure. Mapped the entire value chain from farm to port.
+
+      **Phase 2: Econometric Modeling & Scenario Planning**
+      Used a General Equilibrium Model (GEM) to simulate the impact of various policy interventions (e.g., subsidized drying facilities, cooperative formation). The optimal scenario showed that reducing transport costs by 10% and improving quality could boost farmer revenue by $5 million annually.
+
+      **Phase 3: Implementation & Monitoring**
+      Supported the establishment of 20 farmer cooperatives and trained 50 local extension officers. Developed a digital monitoring system to track price transmission and farmer adoption of new techniques. The final recommendation led to a national policy adjustment in coffee grading standards.
+    `,
+  },
+  {
+    title: "Urban Economic Feasibility Study: Industrial Park",
+    context:
+      "Assessing the potential for a new 500-acre industrial park development near Kampala, focused on light manufacturing, and securing foundational funding from DFIs.",
+    summary:
+      "Provided a comprehensive 15-year economic forecast, detailed financial projections (IRR, NPV), and a tailored risk mitigation strategy covering political, environmental, and infrastructure risks. The study included an Environmental and Social Impact Assessment (ESIA).",
+    impact:
+      "Improved city planning and secured $50 Million in foundational development funding from international partners.",
+    client: "Ministry of Trade and Industry",
+    region: "Greater Kampala Metropolitan Area",
+    date: "Q1 2025",
+    detailedDescription: `
+      **Market Analysis & Demand Projection**
+      We analyzed regional and international demand for goods produced in the proposed park sectors (textiles, agro-processing). Projected a peak employment of 15,000 people within 10 years.
+
+      **Financial Modeling & Funding Strategy**
+      Developed a detailed cash flow model to determine the project's viability. Calculated a projected **Internal Rate of Return (IRR) of 14.5%** over the 15-year period. This model was used directly in successful negotiations with three Development Finance Institutions (DFIs).
+
+      **Infrastructure & Risk Assessment**
+      The risk assessment highlighted dependence on reliable energy supply. We proposed a dedicated sub-station plan and a redundant water supply system, which were integral to the final pitch. The ESIA ensured compliance with international safeguard policies, mitigating community displacement risks.
+    `,
+  },
+];
+
+// ----------------------
+// 4. Custom Case Study Component to use Modal
+// ----------------------
+interface HomeCaseStudyCardProps {
+  study: CaseStudy;
+}
+
+const HomeCaseStudyCard: React.FC<HomeCaseStudyCardProps> = ({ study }) => {
+  const { openModal } = useModal();
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
+    <div
+      className="flex-shrink-0 w-[90vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw]"
+      key={study.title}
+    >
+      <CaseStudyCard
+        title={study.title}
+        summary={study.summary}
+        context={study.context}
+        impact={study.impact}
+        onViewFullStudy={() => openModal(study)}
+      />
     </div>
+  );
+};
+
+// ----------------------
+// 5. Main Component Wrapped in Provider
+// ----------------------
+export default function Home(): JSX.Element {
+  return (
+    <ModalProvider>
+      <Hero />
+
+      <main>
+        {/* Impact Section */}
+        <ImpactSection />
+
+        {/* Affiliations Section */}
+        <AffiliationsSection />
+
+        {/* Approach Section */}
+        <ApproachSection />
+
+        {/* ⭐ NEW: Engaging CTA to the About Page ⭐ */}
+        <section className="bg-primary py-10">
+          <div className="max-w-4xl mx-auto text-center px-6">
+            <h3 className="text-3xl font-heading font-bold text-white mb-4">
+              Why Choose Our Rigor?
+            </h3>
+            <p className="text-white/80 max-w-2xl mx-auto mb-6">
+              Our success is rooted in our founding principles, team expertise,
+              and unique methodology.
+            </p>
+            <Link
+              href="/about"
+              className="px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-lg hover:bg-yellow-500 transition transform hover:scale-[1.05]"
+            >
+              Meet Our Founders & Mission
+            </Link>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section className="max-w-6xl mx-auto px-6 py-16">
+          <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
+            Our Core Services: Expertise in Action
+          </h2>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {services.map((service) => (
+              <ServiceCard
+                key={service.title}
+                title={service.title}
+                description={service.description}
+                icon={service.icon}
+                color={service.color}
+              />
+            ))}
+          </div>
+
+          <div className="text-center mt-12">
+            <Link
+              href="/services"
+              className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition"
+            >
+              View Detailed Capabilities
+            </Link>
+          </div>
+        </section>
+
+        {/* Case Studies Section */}
+        <section className="bg-gray-50 py-16">
+          <div className="max-w-6xl mx-auto px-6">
+            <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
+              Verified Impact & Case Studies
+            </h2>
+          </div>
+
+          {/* Horizontal Scroll */}
+          <div className="overflow-x-auto pb-6">
+            <div className="flex space-x-8 px-6 md:px-10 lg:px-24 w-max">
+              {caseStudies.map((study) => (
+                <HomeCaseStudyCard key={study.title} study={study} />
+              ))}
+            </div>
+          </div>
+
+          {/* CTA */}
+          <div className="max-w-6xl mx-auto text-center mt-12 px-6">
+            <Link
+              href="/case-studies"
+              className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-accent-gold hover:text-primary transition"
+            >
+              Explore More Success Stories
+            </Link>
+          </div>
+        </section>
+      </main>
+    </ModalProvider>
   );
 }
