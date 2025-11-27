@@ -1,127 +1,192 @@
+"use client";
+
+import { FullCaseStudy } from "@/components/case-study/CaseStudyModal";
+import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
 import CaseStudyCard from "@/components/CasestudyCard";
-import { Link } from "lucide-react";
+import Link from "next/link";
 import React, { JSX } from "react";
 
 // --- TYPE DEFINITIONS ---
-interface CaseStudy {
-  title: string;
-  context: string; // Added context field
-  summary: string;
-  impact: string;
-}
+type CaseStudy = FullCaseStudy;
 
-// --- ENHANCED DATA STRUCTURES ---
-
+// --- CASE STUDIES DATA ---
 const caseStudies: CaseStudy[] = [
   {
     title: "Agricultural Policy Research and Optimization",
     context:
-      "Client needed to optimize the coffee export value chain for smallholder farmers in the Western region.",
+      "Client needed to optimize the coffee export value chain for smallholder farmers in the Western region, facing persistent low prices and market volatility.",
     summary:
       "Conducted proprietary field research, combined with advanced econometric modeling (Difference-in-Differences and instrumental variables) to identify key market access barriers and infrastructure bottlenecks.",
     impact:
       "20% average increase in farm-gate income for 10,000+ smallholder beneficiaries.",
+    client: "National Agriculture Board",
+    region: "Western Region, Uganda",
+    date: "Q3 2024",
+    detailedDescription: `
+      **Phase 1: Diagnostic Assessment**
+      Conducted a census of 10,000 smallholder farmers. Found that 40% of post-harvest loss was due to poor drying and storage infrastructure. Mapped the entire value chain from farm to port.
+
+      **Phase 2: Econometric Modeling & Scenario Planning**
+      Used a General Equilibrium Model (GEM) to simulate the impact of various policy interventions (e.g., subsidized drying facilities, cooperative formation). The optimal scenario showed that reducing transport costs by 10% and improving quality could boost farmer revenue by $5 million annually.
+
+      **Phase 3: Implementation & Monitoring**
+      Supported the establishment of 20 farmer cooperatives and trained 50 local extension officers. Developed a digital monitoring system to track price transmission and farmer adoption of new techniques. The final recommendation led to a national policy adjustment in coffee grading standards.
+    `,
   },
   {
     title: "Urban Economic Feasibility Study: Industrial Park",
     context:
-      "Assessing the potential for a new industrial park near Kampala and securing foundational international funding.",
+      "Assessing the potential for a new 500-acre industrial park development near Kampala, focused on light manufacturing, and securing foundational funding from DFIs.",
     summary:
-      "Provided a comprehensive 15-year economic forecast, detailed land-use projections, financial risk models, and a robust investment mitigation strategy.",
+      "Provided a comprehensive 15-year economic forecast, detailed land-use projections, financial risk models, and a robust investment mitigation strategy covering political, environmental, and infrastructure risks.",
     impact:
       "Successfully secured $50 Million in foundational development financing from international partners.",
+    client: "Ministry of Trade and Industry",
+    region: "Greater Kampala Metropolitan Area",
+    date: "Q1 2025",
+    detailedDescription: `
+      **Market Analysis & Demand Projection**
+      We analyzed regional and international demand for goods produced in the proposed park sectors (textiles, agro-processing). Projected a peak employment of 15,000 people within 10 years.
+
+      **Financial Modeling & Funding Strategy**
+      Developed a detailed cash flow model to determine the project's viability. Calculated a projected **Internal Rate of Return (IRR) of 14.5%** over the 15-year period. This model was used directly in successful negotiations with three Development Finance Institutions (DFIs).
+
+      **Infrastructure & Risk Assessment**
+      The risk assessment highlighted dependence on reliable energy supply. We proposed a dedicated sub-station plan and a redundant water supply system, which were integral to the final pitch. The ESIA ensured compliance with international safeguard policies, mitigating community displacement risks.
+    `,
   },
   {
     title: "Microfinance Impact Evaluation in Eastern Uganda",
     context:
-      "Evaluated the causal impact of a digital micro-loan program on women-owned businesses in rural areas.",
+      "Evaluated the causal impact of a digital micro-loan program on women-owned businesses in rural areas, seeking to validate and improve the program's efficiency.",
     summary:
-      "Used Randomized Control Trial (RCT) methodology combined with qualitative field interviews to measure social and economic outcomes, identifying areas for scale-up.",
+      "Used Randomized Control Trial (RCT) methodology combined with qualitative field interviews to measure social and economic outcomes, identifying areas for scale-up and optimization.",
     impact:
       "Program redesign led to a 15% improvement in client business sustainability and reduced default rates by 5%.",
+    client: "International Development NGO",
+    region: "Eastern Uganda",
+    date: "Q4 2023",
+    detailedDescription: `
+      **RCT Design and Implementation**
+      Implemented a cluster-randomized trial across 50 villages, dividing participants into treatment and control groups. The primary outcome was measured by comparing business income and household consumption.
+
+      **Key Findings and Recommendations**
+      The RCT showed a significant positive impact on income, but also revealed a need for integrated business training. The redesign recommendation was to pair the digital loan disbursement with weekly financial literacy modules, which resulted in improved outcomes (the 15% increase in sustainability).
+
+      **Methodological Rigor**
+      The study controlled for seasonal effects and pre-existing socio-economic factors using baseline and endline surveys, ensuring the observed impact was causal.
+    `,
   },
   {
     title: "ESIA for a Large-Scale Infrastructure Project",
     context:
-      "Required an Environmental and Social Impact Assessment (ESIA) for a new mining operation to meet World Bank compliance standards.",
+      "Required an Environmental and Social Impact Assessment (ESIA) for a new large-scale mining operation to meet World Bank Group and IFC compliance standards.",
     summary:
       "Completed a full ESIA report, developed a comprehensive Stakeholder Engagement Plan (SEP), and designed long-term environmental remediation and local benefits programs.",
     impact:
       "Achieved full compliance with international safeguards, enabling project continuity and fostering strong community relations.",
+    client: "Multinational Mining Corporation",
+    region: "Northern Region, DRC Border",
+    date: "Q2 2024",
+    detailedDescription: `
+      **Environmental Baseline & Mitigation**
+      Conducted detailed baseline studies of air, water, and biodiversity. Developed a site-specific biodiversity offset strategy and a waste management plan that exceeded national standards.
+
+      **Social Impact & Stakeholder Engagement**
+      Identified sensitive indigenous populations and cultural heritage sites. The SEP involved over 50 community meetings, leading to a mutually agreed-upon Resettlement Action Plan (RAP) that satisfied all World Bank Performance Standards (PS1-PS8).
+
+      **Regulatory Clearance**
+      The final ESIA document was successfully submitted to the relevant government bodies and the World Bank, securing the necessary environmental permit for operation.
+    `,
   },
 ];
 
-// --- MAIN PAGE COMPONENT ---
+// --- WRAPPER COMPONENT TO USE MODAL CONTEXT ---
+interface CaseStudyCardWithModalProps {
+  study: CaseStudy;
+}
 
+const CaseStudyCardWithModal: React.FC<CaseStudyCardWithModalProps> = ({
+  study,
+}) => {
+  const { openModal } = useModal();
+
+  return (
+    <CaseStudyCard
+      key={study.title}
+      title={study.title}
+      context={study.context}
+      summary={study.summary}
+      impact={study.impact}
+      onViewFullStudy={() => openModal(study)}
+    />
+  );
+};
+
+// --- MAIN PAGE COMPONENT ---
 export default function CaseStudiesPage(): JSX.Element {
   return (
-    <main>
-      {/* Hero Header (Full Width, High Contrast) */}
-      <section className="bg-primary/95 pt-24 pb-16 md:py-32 text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-heading font-black text-white leading-snug">
-            Verified Impact. Causal Results.
-          </h1>
-          <p className="mt-6 text-white/80 text-lg max-w-3xl mx-auto font-body">
-            We don't just deliver data; we deliver evidence of impact. Explore
-            how our rigorous econometric models and policy advice have shaped
-            successful outcomes across East Africa.
-          </p>
+    <ModalProvider>
+      <main>
+        {/* Hero Section */}
+        <section className="bg-primary/95 pt-24 pb-16 md:py-32 text-center">
+          <div className="max-w-4xl mx-auto px-6">
+            <h1 className="text-4xl md:text-6xl font-heading font-black text-white leading-snug">
+              Verified Impact. Causal Results.
+            </h1>
+            <p className="mt-6 text-white/80 text-lg max-w-3xl mx-auto font-body">
+              We don&apos;t just deliver data; we deliver evidence of impact.
+              Explore how our rigorous econometric models and policy advice have
+              shaped successful outcomes across East Africa.
+            </p>
 
-          {/* CTA to talk about their project */}
-          <a
-            href="/contact"
-            className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
-          >
-            Discuss Your Project
-          </a>
-        </div>
-      </section>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
+            >
+              Discuss Your Project
+            </Link>
+          </div>
+        </section>
 
-      {/* Case Study Grid */}
-      <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-        <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
-            Our Portfolio of Excellence
-          </h2>
-          <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
-            Client Success Stories
-          </h3>
-        </div>
+        {/* Case Study Grid */}
+        <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
+          <div className="text-center mb-12">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+              Our Portfolio of Excellence
+            </h2>
+            <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
+              Client Success Stories
+            </h3>
+          </div>
 
-        <div className="grid grid-cols-1 gap-10">
-          {/* Use a single column grid for the new wide card design */}
-          {caseStudies.map((study) => (
-            <CaseStudyCard
-              key={study.title}
-              title={study.title}
-              context={study.context}
-              summary={study.summary}
-              impact={study.impact}
-            />
-          ))}
-        </div>
-      </section>
+          <div className="grid grid-cols-1 gap-10">
+            {caseStudies.map((study) => (
+              <CaseStudyCardWithModal key={study.title} study={study} />
+            ))}
+          </div>
+        </section>
 
-      {/* Final CTA Block (Reassurance) */}
-      <section className="bg-gray-50 py-16 md:py-20 border-t border-gray-200">
-        <div className="max-w-4xl mx-auto text-center px-6">
-          <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
-            Need Quantitative Confidence?
-          </h2>
-          <p className="text-lg text-gray-700 mb-8 font-body">
-            Our methods are peer-reviewed and academically rigorous. If your
-            project demands verifiable results and strategic precision, let's
-            connect.
-          </p>
-          <a
-            href="/contact"
-            className="inline-flex items-center px-10 py-4 bg-primary text-white font-bold rounded-full shadow-lg text-xl hover:bg-accentGold hover:text-primary transition transform hover:scale-105"
-          >
-            Schedule a Free Strategy Session
-          </a>
-        </div>
-      </section>
-    </main>
+        {/* Final CTA Section */}
+        <section className="bg-gray-50 py-16 md:py-20 border-t border-gray-200">
+          <div className="max-w-4xl mx-auto text-center px-6">
+            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
+              Need Quantitative Confidence?
+            </h2>
+            <p className="text-lg text-gray-700 mb-8 font-body">
+              Our methods are peer-reviewed and academically rigorous. If your
+              project demands verifiable results and strategic precision,
+              let&apos;s connect.
+            </p>
+            <Link
+              href="/contact"
+              className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl border-2 border-primary text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
+            >
+              Schedule a Free Strategy Session
+            </Link>
+          </div>
+        </section>
+      </main>
+    </ModalProvider>
   );
 }

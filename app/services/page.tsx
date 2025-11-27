@@ -1,51 +1,5 @@
 import ServiceCard from "@/components/ServiceCard";
-import { Link } from "lucide-react"; // We'll assume a local link component or just use a standard div for the icon list.
-
-// 1. Enhanced Service Data (Added icons for visual identity)
-const services = [
-  {
-    title: "Econometric Modeling & Analysis",
-    description:
-      "Deep-dive data analysis and complex model construction to generate predictive and causal insights for policy and investment decisions.",
-    icon: "database", // Placeholder for icon names (e.g., Lucide or custom)
-    color: "bg-red-500/10 text-red-700",
-  },
-  {
-    title: "Feasibility & Policy Studies",
-    description:
-      "Rigorous pre-intervention assessments to test project viability, economic returns, and alignment with national and regional policy frameworks.",
-    icon: "zap",
-    color: "bg-green-500/10 text-green-700",
-  },
-  {
-    title: "Monitoring, Evaluation & Learning (MEL)",
-    description:
-      "Designing robust M&E systems and conducting final impact evaluations to measure program effectiveness and ensure accountability.",
-    icon: "trending-up",
-    color: "bg-blue-500/10 text-blue-700",
-  },
-  {
-    title: "Baseline & Comprehensive Surveys",
-    description:
-      "Executing large-scale, methodologically sound baseline, midline, and endline surveys with quality assurance from affiliated academic teams.",
-    icon: "clipboard-list",
-    color: "bg-yellow-500/10 text-yellow-700",
-  },
-  {
-    title: "Capacity Development & Training",
-    description:
-      "Tailored training programs for government and NGO teams on data analysis, policy writing, and modern M&E techniques.",
-    icon: "users",
-    color: "bg-indigo-500/10 text-indigo-700",
-  },
-  {
-    title: "ESIA and Sustainability Consulting",
-    description:
-      "Integrating environmental and social risk analysis into project design, ensuring compliance and long-term sustainability.",
-    icon: "leaf",
-    color: "bg-teal-500/10 text-teal-700",
-  },
-];
+import { services } from "@/data/services";
 
 // Data for the 'Our Process' steps
 const processSteps = [
@@ -89,8 +43,6 @@ export default function ServicesPage() {
             investment strategy**. We provide the analytical rigor required for
             sustainable development and measurable success in East Africa.
           </p>
-
-          {/* 📌 Unique CTA 1 */}
           <a
             href="/contact"
             className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
@@ -184,10 +136,9 @@ export default function ServicesPage() {
             Our team is ready to provide the evidence required for your next
             major policy or investment decision.
           </p>
-          {/* 📌 Unique CTA 3 */}
           <a
             href="/contact"
-            className="inline-flex items-center px-10 py-4 bg-accentGold text-primary font-bold rounded-full shadow-2xl text-xl hover:bg-yellow-500 transition transform hover:scale-105"
+            className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-white font-bold rounded-lg shadow-2xl border-2 border-white text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
           >
             Schedule a Discovery Call
           </a>

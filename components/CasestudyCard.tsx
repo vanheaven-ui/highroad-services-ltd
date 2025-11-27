@@ -1,11 +1,13 @@
 import React, { FC, JSX } from "react";
-import { Target, TrendingUp, Briefcase, ChevronRight } from "lucide-react";
+import { TrendingUp, Briefcase, ChevronRight } from "lucide-react";
 
 interface CaseStudyCardProps {
   title: string;
   summary: string; // Solution / Approach
   impact: string; // Quantified Result
   context?: string; // Challenge / Background
+  // Function to open the modal, provided via useModal()
+  onViewFullStudy: () => void;
 }
 
 const CaseStudyCard: FC<CaseStudyCardProps> = ({
@@ -13,6 +15,7 @@ const CaseStudyCard: FC<CaseStudyCardProps> = ({
   summary,
   impact,
   context,
+  onViewFullStudy,
 }): JSX.Element => {
   return (
     <div className="flex flex-col md:flex-row bg-white rounded-xl shadow-2xl transition duration-500 transform hover:-translate-y-1 overflow-hidden border border-gray-100 group">
@@ -38,16 +41,15 @@ const CaseStudyCard: FC<CaseStudyCardProps> = ({
 
         <p className="text-gray-700 text-base leading-relaxed">{summary}</p>
 
-        {/* View Full Study Link */}
-        <a
-          href={`/case-studies/${title
-            .toLowerCase()
-            .replace(/[^a-z0-9]+/g, "-")}`}
+        {/* Modal Trigger Button */}
+        <button
+          onClick={onViewFullStudy}
           className="mt-6 inline-flex items-center text-primary font-semibold hover:text-accent-gold transition duration-300 group-hover:underline"
+          aria-label={`View full study for ${title}`}
         >
           View Full Study
           <ChevronRight className="w-5 h-5 ml-1 group-hover:translate-x-1 transition-transform" />
-        </a>
+        </button>
       </div>
 
       {/* Impact Block */}

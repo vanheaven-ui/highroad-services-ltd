@@ -142,7 +142,7 @@ export default function ApproachPage(): JSX.Element {
               <p className="text-gray-700 font-body">
                 We utilize methods favored by research institutions and central
                 banks, ensuring our insights are robust, peer-review ready, and
-                provide **quantitative confidence**.
+                provide<span className="ml-1 text-accentGold font-bold">quantitative confidence</span>.
               </p>
               <Link
                 href="/experts"

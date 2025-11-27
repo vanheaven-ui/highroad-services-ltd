@@ -77,19 +77,19 @@ export default function ContactPage() {
                 <ContactDetail
                   icon={Mail}
                   label="Email Inquiry"
-                  value="info@highroad.example"
-                  href="mailto:info@highroad.example"
+                  value="highroadservicesltd@gmail.com"
+                  href="mailto:highroadservicesltd@gmail.com"
                 />
                 <ContactDetail
                   icon={Phone}
                   label="Talk to a Consultant"
-                  value="+256 700 000000"
-                  href="tel:+256700000000"
+                  value="+256 772 688 639"
+                  href="tel:+256772688639"
                 />
                 <ContactDetail
                   icon={MapPin}
                   label="Head Office"
-                  value="Kampala, Uganda"
+                  value="P.O Box 21446, Plot 4, Ttula, Kawempe, Kampala, Uganda"
                   href="https://maps.app.goo.gl/..."
                   target="_blank"
                 />

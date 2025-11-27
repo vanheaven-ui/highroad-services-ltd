@@ -12,35 +12,35 @@ import React, { JSX } from "react";
 
 const teamMembers: TeamMember[] = [
   {
-    name: "Dr. Evelyn Katto",
+    name: "Dr. Norman Tumwine",
     title: "Founder & Chief Economist",
     focus: "Applied Econometrics & Policy Analysis",
     qualifications: "Ph.D. Economics, Makerere University",
     bioSummary:
       "A specialist in causal inference for development policy, Dr. Katto leads all quantitative research and strategic advisory services. Her work has been published in several top regional journals.",
-    email: "e.katto@highroad.example",
+    email: "norman-tumwine@highroad.example",
     linkedinUrl: "#",
     // imageSrc: "/images/evelyn.jpg",
   },
   {
-    name: "Dr. Ben Odoi",
-    title: "Director of Monitoring & Evaluation (M&E)",
-    focus: "Impact Evaluation & Data Systems Design",
+    name: "Dr. Enock Nyorekwa",
+    title: "Senior Economist/Consultant",
+    focus: "SDG Impact Evaluation & Data Science",
     qualifications: "Ph.D. Statistics, University of Cape Town",
     bioSummary:
-      "With over 15 years experience, Dr. Odoi focuses on designing robust M&E frameworks for large international development projects, ensuring data quality and accountability.",
-    email: "b.odoi@highroad.example",
+      "With over 15 years experience, Dr. Enock focuses on designing robust SDG assesment for large international development projects, ensuring data quality and accountability.",
+    email: "enyorekwa@highroad.example",
     linkedinUrl: "#",
     // imageSrc: "/images/ben.jpg",
   },
   {
-    name: "Ms. Zara Musa",
+    name: "Dr. Richard Magaala",
     title: "Senior Strategy Consultant",
     focus: "Market Feasibility & Sector Strategy",
     qualifications: "M.Sc. Finance, London School of Economics (LSE)",
     bioSummary:
-      "Zara is the firm's expert in investment viability, guiding clients through complex market entry strategies and financial forecasting for sustainable growth.",
-    email: "z.musa@highroad.example",
+      "Richard is the firm's expert in investment viability, guiding clients through complex market entry strategies and financial forecasting for sustainable growth.",
+    email: "richard-magaala@highroad.example",
     linkedinUrl: "#",
     // imageSrc: "/images/zara.jpg",
   },
@@ -85,7 +85,7 @@ export default function ExpertsPage(): JSX.Element {
             Our Experts & Global Network
           </h1>
           <p className="mt-6 text-gray-700 text-xl max-w-3xl mx-auto font-body">
-            HighRoad is led by **PhD-level economists** and supported by
+            HighRoad is led by <strong>PhD-level economists</strong> and supported by
             strategic partnerships with top academic and development
             institutions across the continent.
           </p>

@@ -5,6 +5,7 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import React, { JSX } from "react";
 import Navbar from "@/components/Narbar";
+import ConsultationCTAButton from "@/components/ConsultationCTAButton";
 
 // Custom Fonts for CSS Variables ---
 const merriweather = Merriweather({
@@ -78,6 +79,8 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+
+        <ConsultationCTAButton />
       </body>
     </html>
   );

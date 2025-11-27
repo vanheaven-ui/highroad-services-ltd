@@ -8,109 +8,95 @@ import ServiceCard from "@/components/ServiceCard";
 import CaseStudyCard from "@/components/CasestudyCard";
 import Link from "next/link";
 import { JSX } from "react";
+import { services } from "@/data/services";
+import { FullCaseStudy } from "@/components/case-study/CaseStudyModal";
+import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
+
+// CaseStudy type matches FullCaseStudy
+type CaseStudy = FullCaseStudy;
 
 // ----------------------
-// 1. Types
-// ----------------------
-interface Service {
-  title: string;
-  description: string;
-  icon: string;
-  color: string;
-}
-
-interface CaseStudy {
-  title: string;
-  context: string;
-  summary: string;
-  impact: string;
-}
-
-// ----------------------
-// 2. Services Data
-// ----------------------
-const services: Service[] = [
-  {
-    title: "Baseline Surveys & Needs Assessment",
-    description:
-      "Establish robust, accurate metrics and situational analyses to measure project success from day one.",
-    icon: "clipboard-list",
-    color: "bg-blue-500/10 text-blue-700",
-  },
-  {
-    title: "Investment Viability & Feasibility Studies",
-    description:
-      "De-risk major capital projects with comprehensive economic forecasting, market demand analysis, and risk models.",
-    icon: "trending-up",
-    color: "bg-green-500/10 text-green-700",
-  },
-  {
-    title: "National & Sector Strategy Development",
-    description:
-      "Craft resilient, long-term strategies aligned with global trends, regional development goals, and local realities.",
-    icon: "flag",
-    color: "bg-purple-500/10 text-purple-700",
-  },
-  {
-    title: "Impact Monitoring & Evaluation (M&E)",
-    description:
-      "Real-time tracking, deep evaluation, and learning systems to ensure maximum efficiency and return on investment.",
-    icon: "zap",
-    color: "bg-red-500/10 text-red-700",
-  },
-  {
-    title: "Evidence-Based Policy Advisory",
-    description:
-      "Shaping progressive, sustainable public policies through rigorous analysis and clear, implementable recommendations.",
-    icon: "scale",
-    color: "bg-yellow-500/10 text-yellow-700",
-  },
-  {
-    title: "Advanced Human Capacity Development",
-    description:
-      "Leveraging our PhD-level academic expertise, we provide specialized training in advanced econometrics (Stata/R) and causal inference techniques.",
-    icon: "users",
-    color: "bg-indigo-500/10 text-indigo-700",
-  },
-  {
-    title: "Environmental & Social Impact (ESIA)",
-    description:
-      "Integrating sustainability and ethical risk mitigation into economic plans for compliant and responsible development.",
-    icon: "leaf",
-    color: "bg-teal-500/10 text-teal-700",
-  },
-];
-
-// ----------------------
-// 3. Case Studies Data
+// 3. Case Studies Data (Enhanced)
 // ----------------------
 const caseStudies: CaseStudy[] = [
   {
     title: "Agricultural Policy Research and Optimization",
     context:
-      "Client needed to optimize the coffee export value chain for smallholder farmers in the Western region.",
+      "Client needed to optimize the coffee export value chain for smallholder farmers in the Western region, facing persistent low prices and market volatility.",
     summary:
-      "Identified key market access barriers and infrastructure bottlenecks through proprietary field research and econometric modeling.",
+      "Identified key market access barriers and infrastructure bottlenecks through proprietary field research, econometric modeling, and stakeholder workshops. Recommended a phased intervention strategy focusing on quality control and direct market linkages.",
     impact:
       "10,000+ beneficiaries with a 20% average increase in farm-gate income within two seasons.",
+    client: "National Agriculture Board",
+    region: "Western Region, Uganda",
+    date: "Q3 2024",
+    detailedDescription: `
+      **Phase 1: Diagnostic Assessment**
+      Conducted a census of 10,000 smallholder farmers. Found that 40% of post-harvest loss was due to poor drying and storage infrastructure. Mapped the entire value chain from farm to port.
+
+      **Phase 2: Econometric Modeling & Scenario Planning**
+      Used a General Equilibrium Model (GEM) to simulate the impact of various policy interventions (e.g., subsidized drying facilities, cooperative formation). The optimal scenario showed that reducing transport costs by 10% and improving quality could boost farmer revenue by $5 million annually.
+
+      **Phase 3: Implementation & Monitoring**
+      Supported the establishment of 20 farmer cooperatives and trained 50 local extension officers. Developed a digital monitoring system to track price transmission and farmer adoption of new techniques. The final recommendation led to a national policy adjustment in coffee grading standards.
+    `,
   },
   {
     title: "Urban Economic Feasibility Study: Industrial Park",
     context:
-      "Assessing the potential for a new industrial park development near Kampala and securing foundational funding.",
+      "Assessing the potential for a new 500-acre industrial park development near Kampala, focused on light manufacturing, and securing foundational funding from DFIs.",
     summary:
-      "Provided a comprehensive 15-year economic forecast, financial projections, and risk mitigation strategy.",
+      "Provided a comprehensive 15-year economic forecast, detailed financial projections (IRR, NPV), and a tailored risk mitigation strategy covering political, environmental, and infrastructure risks. The study included an Environmental and Social Impact Assessment (ESIA).",
     impact:
       "Improved city planning and secured $50 Million in foundational development funding from international partners.",
+    client: "Ministry of Trade and Industry",
+    region: "Greater Kampala Metropolitan Area",
+    date: "Q1 2025",
+    detailedDescription: `
+      **Market Analysis & Demand Projection**
+      We analyzed regional and international demand for goods produced in the proposed park sectors (textiles, agro-processing). Projected a peak employment of 15,000 people within 10 years.
+
+      **Financial Modeling & Funding Strategy**
+      Developed a detailed cash flow model to determine the project's viability. Calculated a projected **Internal Rate of Return (IRR) of 14.5%** over the 15-year period. This model was used directly in successful negotiations with three Development Finance Institutions (DFIs).
+
+      **Infrastructure & Risk Assessment**
+      The risk assessment highlighted dependence on reliable energy supply. We proposed a dedicated sub-station plan and a redundant water supply system, which were integral to the final pitch. The ESIA ensured compliance with international safeguard policies, mitigating community displacement risks.
+    `,
   },
 ];
 
 // ----------------------
-// 4. Main Component
+// 4. Custom Case Study Component to use Modal
+// ----------------------
+interface HomeCaseStudyCardProps {
+  study: CaseStudy;
+}
+
+const HomeCaseStudyCard: React.FC<HomeCaseStudyCardProps> = ({ study }) => {
+  const { openModal } = useModal();
+
+  return (
+    <div
+      className="flex-shrink-0 w-[90vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw]"
+      key={study.title}
+    >
+      <CaseStudyCard
+        title={study.title}
+        summary={study.summary}
+        context={study.context}
+        impact={study.impact}
+        onViewFullStudy={() => openModal(study)}
+      />
+    </div>
+  );
+};
+
+// ----------------------
+// 5. Main Component Wrapped in Provider
 // ----------------------
 export default function Home(): JSX.Element {
   return (
-    <>
+    <ModalProvider>
       <Hero />
 
       <main>
@@ -123,7 +109,26 @@ export default function Home(): JSX.Element {
         {/* Approach Section */}
         <ApproachSection />
 
-        {/* Services */}
+        {/* ⭐ NEW: Engaging CTA to the About Page ⭐ */}
+        <section className="bg-primary py-10">
+          <div className="max-w-4xl mx-auto text-center px-6">
+            <h3 className="text-3xl font-heading font-bold text-white mb-4">
+              Why Choose Our Rigor?
+            </h3>
+            <p className="text-white/80 max-w-2xl mx-auto mb-6">
+              Our success is rooted in our founding principles, team expertise,
+              and unique methodology.
+            </p>
+            <Link
+              href="/about"
+              className="px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-lg hover:bg-yellow-500 transition transform hover:scale-[1.05]"
+            >
+              Meet Our Founders & Mission
+            </Link>
+          </div>
+        </section>
+
+        {/* Services Section */}
         <section className="max-w-6xl mx-auto px-6 py-16">
           <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
             Our Core Services: Expertise in Action
@@ -151,7 +156,7 @@ export default function Home(): JSX.Element {
           </div>
         </section>
 
-        {/* Case Studies */}
+        {/* Case Studies Section */}
         <section className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-6">
             <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
@@ -163,17 +168,7 @@ export default function Home(): JSX.Element {
           <div className="overflow-x-auto pb-6">
             <div className="flex space-x-8 px-6 md:px-10 lg:px-24 w-max">
               {caseStudies.map((study) => (
-                <div
-                  key={study.title}
-                  className="flex-shrink-0 w-[90vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw]"
-                >
-                  <CaseStudyCard
-                    title={study.title}
-                    summary={study.summary}
-                    context={study.context}
-                    impact={study.impact}
-                  />
-                </div>
+                <HomeCaseStudyCard key={study.title} study={study} />
               ))}
             </div>
           </div>
@@ -189,6 +184,6 @@ export default function Home(): JSX.Element {
           </div>
         </section>
       </main>
-    </>
+    </ModalProvider>
   );
 }

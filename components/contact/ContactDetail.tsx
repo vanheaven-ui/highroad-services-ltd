@@ -1,16 +1,20 @@
+import React from "react";
+
+interface ContactDetailProps {
+  icon: React.ComponentType<React.SVGProps<SVGSVGElement>>;
+  label: string;
+  value: string;
+  href: string;
+  target?: string;
+}
+
 const ContactDetail = ({
   icon: Icon,
   label,
   value,
   href,
   target,
-}: {
-  icon: any;
-  label: string;
-  value: string;
-  href: string;
-  target?: string;
-}) => (
+}: ContactDetailProps) => (
   <a
     href={href}
     target={target}

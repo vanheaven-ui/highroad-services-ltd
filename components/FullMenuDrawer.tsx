@@ -1,4 +1,3 @@
-// components/FullMenuDrawer.tsx (New Client Component File)
 "use client";
 
 import Link from "next/link";
@@ -127,7 +126,7 @@ export default function FullMenuDrawer({
           <Link
             href="/contact"
             onClick={() => setIsOpen(false)}
-            className="inline-flex px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition"
+            className="inline-flex px-8 py-3 bg-accentGold text-white font-bold rounded-lg shadow-xl ring-2 ring-accentGold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accentGold/50 transition-all duration-300"
           >
             Request Proposal Now
           </Link>

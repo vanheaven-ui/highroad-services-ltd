@@ -24,10 +24,19 @@ export default function Footer(): JSX.Element {
             </div>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Column 2: Quick Links (UPDATED) */}
           <div>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm opacity-80">
+              {/* NEW ABOUT US LINK ADDED */}
+              <li>
+                <Link
+                  href="/about"
+                  className="hover:text-accentGold transition"
+                >
+                  About Us & Mission
+                </Link>
+              </li>
               <li>
                 <Link
                   href="/services"
@@ -38,7 +47,7 @@ export default function Footer(): JSX.Element {
               </li>
               <li>
                 <Link
-                  href="/studies"
+                  href="/case-studies"
                   className="hover:text-accentGold transition"
                 >
                   Verified Case Studies
@@ -69,18 +78,24 @@ export default function Footer(): JSX.Element {
             <ul className="space-y-3 text-sm opacity-80">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1 text-accentGold flex-shrink-0" />
-                <span>Kampala, Uganda, East Africa</span>
+                <span>
+                  P.O Box 21446, <br /> Plot 4 Ttula, Kawempe, <br />
+                  Kampala, Uganda
+                </span>
               </li>
               <li className="flex items-center">
                 <Mail className="h-5 w-5 mr-3 text-accentGold" />
-                <a href="mailto:info@highroad.com" className="hover:underline">
-                  info@highroad.com
+                <a
+                  href="mailto:highroadservicesltd@gmail.com"
+                  className="hover:underline"
+                >
+                  highroadservicesltd@gmail.com
                 </a>
               </li>
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-accentGold" />
                 <a href="tel:+256000000000" className="hover:underline">
-                  +256 000 000 000
+                  +256 772 688 639
                 </a>
               </li>
             </ul>

@@ -18,11 +18,7 @@ export default function Hero(): JSX.Element {
           preserveAspectRatio="xMidYMid slice"
         >
           {/* Abstract geometric/data pattern using primary color, highly transparent */}
-          <rect
-            width="100%"
-            height="100%"
-            className="fill-primary"
-          />
+          <rect width="100%" height="100%" className="fill-primary" />
           <circle
             cx="200"
             cy="150"
@@ -73,10 +69,11 @@ export default function Hero(): JSX.Element {
         </h1>
 
         <p className="mt-6 max-w-4xl text-lg md:text-xl opacity-90">
-          We leverage <strong>advanced econometric models</strong> and <strong>deep regional
-          expertise</strong> delivered by a core team of <strong>PhD economists</strong> affiliated
-          with top Ugandan institutions (Makerere and Kyambogo). We ensure
-          sustainable, equitable growth across the continent.
+          We leverage <strong>advanced econometric models</strong> and{" "}
+          <strong>deep regional expertise</strong> delivered by a core team of{" "}
+          <strong>PhD economists</strong> affiliated with top Ugandan
+          institutions (Makerere and Kyambogo). We ensure sustainable, equitable
+          growth across the continent.
         </p>
 
         {/* Trust Indicators */}
@@ -90,7 +87,7 @@ export default function Hero(): JSX.Element {
         <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
           <Link
             href="/contact"
-            className="px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-lg hover:bg-yellow-400 transition transform hover:scale-[1.02]"
+            className="inline-flex px-8 py-3 bg-accentGold text-white font-bold rounded-lg shadow-xl ring-2 ring-accentGold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accentGold/50 transition-all duration-300 transform hover:scale-[1.02]"
           >
             Request Proposal Now
           </Link>
