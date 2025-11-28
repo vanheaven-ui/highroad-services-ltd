@@ -1,19 +1,33 @@
 @import "tailwindcss";
 
 :root {
-  /* Generic App Variables */
+  /* Generic App Variables - LIGHT Mode Defaults */
   --background: #ffffff;
   --foreground: #171717;
 
-  /* Custom Brand Colors */
-  --color-primary: #0B2545;      /* Deep Navy Blue */
-  --color-surface: #F8FAFC;      /* Light gray/white background */
-  --color-accent-gold: #CFA83B;  /* Gold accent */
-  --color-accent-green: #0A6B4A; /* Deep green */
+  /* Custom Brand Colors - LIGHT */
+  --color-primary: #0b2545; /* Deep Navy Blue */
+  --color-surface: #f8fafc; /* Light gray/white background */
+  --color-accent-gold: #cfa83b; /* Gold accent */
+  --color-accent-gold-hover: #b89534; /* Darker gold for hover (light mode) */
+  --color-accent-green: #0a6b4a; /* Deep green */
 
   /* Typography */
   --font-heading-stack: "Merriweather", serif;
   --font-body-stack: "Inter", sans-serif;
+}
+
+/* Dark Mode Overrides (Activated by .dark class on <html>) */
+:root.dark {
+  --background: #0d1117; /* Very dark blue-gray */
+  --foreground: #c9d1d9; /* Soft desaturated light text */
+
+  /* Custom Brand Colors - DARK Mode adjustments */
+  --color-primary: #58a6ff; /* Bright sky blue for contrast */
+  --color-surface: #161b22; /* Dark surface */
+  --color-accent-gold: #ffc43a; /* Vibrant gold */
+  --color-accent-gold-hover: #e5ac2e; /* Darker gold for hover (dark mode) */
+  --color-accent-green: #3fb950; /* Accessible bright green */
 }
 
 /* Tailwind v4 THEME MAPPING — inline custom properties */
@@ -24,7 +38,7 @@
   --color-accent-gold: var(--color-accent-gold);
   --color-accent-green: var(--color-accent-green);
 
-  /* Text colors */
+  /* Text Colors */
   --color-background: var(--background);
   --color-foreground: var(--foreground);
 
@@ -33,15 +47,9 @@
   --font-body: var(--font-body-stack);
 }
 
-/* Dark mode */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
+  /* Smooth transition for theme change */
+  transition: background-color 0.3s, color 0.3s;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-body-stack);
