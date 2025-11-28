@@ -43,48 +43,42 @@ const applyTheme = (theme: "light" | "dark") => {
 };
 
 export function ThemeProvider({ children }: { children: ReactNode }) {
-  const [theme, setThemeState] = useState<Theme>("system");
-  const [resolvedTheme, setResolvedTheme] = useState<"light" | "dark">("light");
-
-  // 1. Load initial theme from localStorage on mount
-  useEffect(() => {
+  // Initialize theme from localStorage synchronously
+  const [theme, setThemeState] = useState<Theme>(() => {
+    if (typeof window === "undefined") return "system";
     const storedTheme = localStorage.getItem(THEME_STORAGE_KEY) as Theme;
-    if (storedTheme) {
-      setThemeState(storedTheme);
-    } else {
-      // Default to system if no theme is stored
-      setThemeState("system");
-    }
-  }, []);
+    return storedTheme || "system";
+  });
 
-  // 2. Resolve theme and apply class
+  // Force re-render on system theme changes when using "system"
+  const [update, setUpdate] = useState(0);
+
+  // Derive resolvedTheme synchronously
+  const resolvedTheme = useMemo(() => {
+    return theme === "system" ? getSystemTheme() : theme;
+  }, [theme, update]);
+
+  // Apply theme class whenever resolvedTheme changes
   useEffect(() => {
-    let newResolvedTheme: "light" | "dark";
-    if (theme === "system") {
-      newResolvedTheme = getSystemTheme();
-    } else {
-      newResolvedTheme = theme;
-    }
+    applyTheme(resolvedTheme);
+  }, [resolvedTheme]);
 
-    setResolvedTheme(newResolvedTheme);
-    applyTheme(newResolvedTheme);
-
+  // Save/remove theme to/from localStorage when theme changes
+  useEffect(() => {
     if (theme !== "system") {
       localStorage.setItem(THEME_STORAGE_KEY, theme);
     } else {
-        // If theme is system, remove storage key so we read system default next time
-        localStorage.removeItem(THEME_STORAGE_KEY);
+      // If theme is system, remove storage key so we read system default next time
+      localStorage.removeItem(THEME_STORAGE_KEY);
     }
   }, [theme]);
 
-  // 3. Handle system preference changes
+  // Handle system preference changes
   useEffect(() => {
     if (theme === "system") {
       const mediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
       const handler = (e: MediaQueryListEvent) => {
-        const systemTheme = e.matches ? "dark" : "light";
-        setResolvedTheme(systemTheme);
-        applyTheme(systemTheme);
+        setUpdate((prev) => prev + 1);
       };
 
       mediaQuery.addEventListener("change", handler);
@@ -96,11 +90,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
     setThemeState(newTheme);
   }, []);
 
-  const contextValue = useMemo(() => ({
-    theme,
-    setTheme,
-    resolvedTheme,
-  }), [theme, resolvedTheme, setTheme]);
+  const contextValue = useMemo(
+    () => ({
+      theme,
+      setTheme,
+      resolvedTheme,
+    }),
+    [theme, resolvedTheme, setTheme]
+  );
 
   return (
     <ThemeContext.Provider value={contextValue}>
