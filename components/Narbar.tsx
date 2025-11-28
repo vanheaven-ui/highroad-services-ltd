@@ -114,7 +114,7 @@ const MobileNavDropdown = ({
         className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
       >
         <a
-          href="tel:+256000000000"
+          href="tel:+256772688639"
           onClick={onLinkClick}
           className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           aria-label="Call us"
@@ -122,7 +122,7 @@ const MobileNavDropdown = ({
           <Phone className="h-5 w-5" />
         </a>
         <a
-          href="mailto:info@highroad.com"
+          href="mailto:highroadservicesltd@gmail.com"
           onClick={onLinkClick}
           className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           aria-label="Email us"
@@ -225,8 +225,8 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
     >
       <path
         d="M 80 40 Q 50 10 20 40"
-        stroke="#CFA83B"
-        strokeWidth="2"
+        stroke="#0b2545"
+        strokeWidth="3"
         strokeLinecap="round"
         fill="none"
         opacity="0.8"
