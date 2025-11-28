@@ -198,6 +198,53 @@ const AnimatedGridIcon = ({ isOpen, color }: AnimatedGridIconProps) => {
 };
 
 // --------------------------------------------------------
+// --- Stylistic Logo Component ---
+// --------------------------------------------------------
+interface LogoProps {
+  isActive: boolean;
+  nonActiveColor: string;
+  iconColor: string;
+}
+
+const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
+  <div className="relative flex flex-col items-start">
+    {/* HighRoad Text */}
+    <span
+      className="text-2xl font-heading font-black nav-text relative"
+      style={{ color: isActive ? "#CFA83B" : nonActiveColor }}
+    >
+      HighRoad
+    </span>
+
+    {/* Curved Element (SVG Arc/Swoosh above the text) */}
+    <svg
+      className="absolute -top-1 -right-1 w-20 h-10 pointer-events-none"
+      viewBox="0 0 100 50"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M 80 40 Q 50 10 20 40"
+        stroke="#CFA83B"
+        strokeWidth="2"
+        strokeLinecap="round"
+        fill="none"
+        opacity="0.8"
+        style={{ filter: "drop-shadow(0 1px 2px rgba(207, 168, 59, 0.3))" }}
+      />
+    </svg>
+
+    {/* Services Ltd Subscript */}
+    <span
+      className="text-xs font-semibold uppercase tracking-widest mt-[-4px] ml-1 nav-logo-sub"
+      style={{ color: iconColor, verticalAlign: "sub", fontSize: "0.65em" }}
+    >
+      Services Ltd
+    </span>
+  </div>
+);
+
+// --------------------------------------------------------
 // --- Main Navbar Component ---
 // --------------------------------------------------------
 export default function Navbar(): JSX.Element {
@@ -219,6 +266,7 @@ export default function Navbar(): JSX.Element {
 
   const nonActiveColor = isScrolled ? "#FFFFFF" : "#0B2545";
   const iconColor = isScrolled ? "#CFA83B" : "#0B2545";
+  const isLogoActive = pathname === "/";
 
   return (
     <>
@@ -231,19 +279,12 @@ export default function Navbar(): JSX.Element {
           transition={{ duration: 0.2 }}
         >
           {/* Logo */}
-          <Link href="/" className="flex items-center space-x-2 p-2">
-            <span
-              className="text-2xl font-heading font-black nav-text"
-              style={{ color: pathname === "/" ? "#CFA83B" : nonActiveColor }}
-            >
-              HighRoad
-            </span>
-            <span
-              className="text-xs font-semibold uppercase tracking-widest hidden sm:inline nav-logo-sub"
-              style={{ color: iconColor }}
-            >
-              Services Ltd
-            </span>
+          <Link href="/" className="p-2">
+            <StylisticLogo
+              isActive={isLogoActive}
+              nonActiveColor={nonActiveColor}
+              iconColor={iconColor}
+            />
           </Link>
 
           {/* Desktop Links */}
