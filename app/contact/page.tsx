@@ -176,7 +176,7 @@ export default function ContactPage() {
 
               <button
                 type="submit"
-                className="inline-flex items-center justify-center w-full md:w-auto px-10 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-md text-lg hover:bg-yellow-500 transition transform hover:scale-[1.01]"
+                className="inline-flex items-center justify-center w-full md:w-auto px-10 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-md text-lg hover:bg-yellow-500 transition transform hover:scale-[1.01]"
               >
                 Send Request
               </button>

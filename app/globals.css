@@ -27,7 +27,9 @@
   --color-surface: #111827; /* Deeper slate for surfaces to add depth without overwhelming (improved from #161b22) */
   --color-accent-gold: #fbbf24; /* Warmer, more vibrant gold for pop without harshness (improved from #ffc43a) */
   --color-accent-gold-hover: #f59e0b; /* Adjusted hover for smoother transition in dark (improved from #e5ac2e) */
-  --color-accent-green: #10b981; /* Brighter, more accessible green with emerald tones (improved from #3fb950) */
+  --color-accent-green: #10b981;
+  --color-foreground: #e6edf3; /* Warmer light gray for better readability and reduced eye strain (improved from #c9d1d9) */
+   /* Brighter, more accessible green with emerald tones (improved from #3fb950) */
 }
 
 /* Tailwind v4 THEME MAPPING — inline custom properties */

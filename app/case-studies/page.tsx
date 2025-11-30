@@ -142,7 +142,7 @@ export default function CaseStudiesPage(): JSX.Element {
 
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
+              className="mt-8 inline-flex items-center px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 hover:text-foreground transition transform hover:scale-[1.02]"
             >
               Discuss Your Project
             </Link>
@@ -180,7 +180,7 @@ export default function CaseStudiesPage(): JSX.Element {
             </p>
             <Link
               href="/contact"
-              className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl border-2 border-primary text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
+              className="mt-8 inline-flex items-center px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-2xl border-2 border-primary text-lg hover:bg-yellow-500 hover:text-foreground transition transform hover:scale-[1.02]"
             >
               Schedule a Free Strategy Session
             </Link>
