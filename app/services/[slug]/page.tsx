@@ -57,8 +57,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
               className="group flex items-center space-x-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-full text-white text-sm font-medium hover:bg-white/20 transition-all duration-300 hover:scale-105"
               aria-label="Back to Services"
             >
-              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300" />
-              <span>Back to Services</span>
+              <ArrowLeft className="w-4 h-4 group-hover:-translate-x-1 transition-transform duration-300 flex-shrink-0" />
+              <span className="hidden md:inline">Back to Services</span>
             </Link>
           </div>
 

@@ -188,7 +188,7 @@ export default function ApproachPage(): JSX.Element {
           </p>
           <Link
             href="/contact"
-            className="inline-flex items-center px-10 py-4 bg-accentGold text-primary font-bold rounded-full shadow-2xl text-xl hover:bg-yellow-500 transition transform hover:scale-105"
+            className="inline-flex items-center px-10 py-4 bg-accent-gold text-primary font-bold rounded-full shadow-2xl text-xl hover:bg-yellow-500 hover:text-white transition transform hover:scale-105"
           >
             Define Your Project Scope Today
           </Link>

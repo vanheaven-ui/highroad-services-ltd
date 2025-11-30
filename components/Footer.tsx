@@ -146,7 +146,7 @@ export default function Footer() {
               Stay updated with our latest policy analysis and publications.
             </p>
 
-            <button className="w-full py-2 bg-accentGold text-primary font-bold rounded-md hover:bg-yellow-500 transition">
+            <button className="w-full py-2 bg-accent-gold text-primary font-bold rounded-md hover:bg-yellow-500 hover:text-white transition">
               Subscribe to Research
             </button>
           </div>

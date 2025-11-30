@@ -26,7 +26,7 @@ const teamMembers: TeamMember[] = [
     name: "Dr. Enock Nyorekwa",
     title: "Senior Economist/Consultant",
     focus: "SDG Impact Evaluation & Data Science",
-    qualifications: "Ph.D. Statistics, University of Cape Town",
+    qualifications: "Ph.D. Economics, University of Cape Town",
     bioSummary:
       "With over 15 years experience, Dr. Enock focuses on designing robust SDG assesment for large international development projects, ensuring data quality and accountability.",
     email: "enyorekwa@highroad.example",
@@ -115,7 +115,7 @@ export default function ExpertsPage(): JSX.Element {
         <div className="text-center mt-16">
           <Link
             href="/careers"
-            className="px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-md hover:bg-yellow-500 transition"
+            className="px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-md hover:bg-yellow-500 transition"
           >
             View Full Consultant Team (and Careers)
           </Link>
