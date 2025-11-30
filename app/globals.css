@@ -19,15 +19,15 @@
 
 /* Dark Mode Overrides (Activated by .dark class on <html>) */
 :root.dark {
-  --background: #0d1117; /* Very dark blue-gray */
-  --foreground: #c9d1d9; /* Soft desaturated light text */
+  --background: #0a0e17; /* Slightly warmer very dark blue-gray for less starkness (improved from #0d1117) */
+  --foreground: #e6edf3; /* Warmer light gray for better readability and reduced eye strain (improved from #c9d1d9) */
 
   /* Custom Brand Colors - DARK Mode adjustments */
-  --color-primary: #58a6ff; /* Bright sky blue for contrast */
-  --color-surface: #161b22; /* Dark surface */
-  --color-accent-gold: #ffc43a; /* Vibrant gold */
-  --color-accent-gold-hover: #e5ac2e; /* Darker gold for hover (dark mode) */
-  --color-accent-green: #3fb950; /* Accessible bright green */
+  --color-primary: #3b82f6; /* Softer sky blue with better harmony to navy brand roots, higher contrast (improved from #58a6ff) */
+  --color-surface: #111827; /* Deeper slate for surfaces to add depth without overwhelming (improved from #161b22) */
+  --color-accent-gold: #fbbf24; /* Warmer, more vibrant gold for pop without harshness (improved from #ffc43a) */
+  --color-accent-gold-hover: #f59e0b; /* Adjusted hover for smoother transition in dark (improved from #e5ac2e) */
+  --color-accent-green: #10b981; /* Brighter, more accessible green with emerald tones (improved from #3fb950) */
 }
 
 /* Tailwind v4 THEME MAPPING — inline custom properties */
