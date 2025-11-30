@@ -199,9 +199,15 @@ export default function ConsultationCTAButton(): JSX.Element {
                     <CalendarCheck className="h-4 w-4 mr-2 text-accentGold" />
                     Select Your Slot
                   </motion.h3>
-                  <div className="h-64 bg-gray-100 rounded-lg flex items-center justify-center text-gray-500 italic">
-                    [Embed Calendly or Similar Here – Responsive Calendar
-                    Widget]
+                  <div className="w-full h-96 md:h-[500px] relative">
+                    <iframe
+                      src="https://calendly.com/vanheaven6/30min?embed_domain=yourdomain.com&embed_type=Inline"
+                      width="100%"
+                      height="100%"
+                      style={{ border: "0", borderRadius: "8px" }}
+                      title="Calendly Embed"
+                      className="rounded-lg"
+                    />
                   </div>
                   <motion.p
                     variants={childVariants}
