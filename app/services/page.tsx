@@ -45,7 +45,7 @@ export default function ServicesPage() {
           </p>
           <a
             href="/contact"
-            className="mt-8 inline-flex items-center px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
+            className="mt-8 inline-flex items-center px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-2xl text-lg hover:bg-yellow-500 hover:text-white transition transform hover:scale-[1.02]"
           >
             Start Your Consultation
           </a>

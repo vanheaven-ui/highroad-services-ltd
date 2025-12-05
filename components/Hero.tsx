@@ -1,36 +1,32 @@
 import Link from "next/link";
-import React, { JSX } from "react";
+import { JSX } from "react";
 
 export default function Hero(): JSX.Element {
   return (
-    // 1. Add relative positioning to hold the absolute background
+    // Relative positioning for absolute background
     <section className="bg-primary text-white relative overflow-hidden py-20 md:py-28">
-      {/* 2. ABSOLUTE SVG BACKGROUND PLACEHOLDER */}
+      {/* Absolute SVG background: Modern abstract geometric pattern with subtle opacity */}
       <div className="absolute inset-0 opacity-10">
-        {/* GUIDANCE FOR CLIENT: This SVG pattern should be abstract, geometric, or a subtle map overlay 
-            to symbolize data, global reach, or complex systems. It should be light enough not to distract 
-            from the text, using the primary color tone.
-            */}
         <svg
           className="w-full h-full"
           xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 1200 600"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* Abstract geometric/data pattern using primary color, highly transparent */}
-          <rect width="100%" height="100%" className="fill-primary" />
+          {/* Simplified geometric elements for a clean, contemporary feel */}
           <circle
             cx="200"
             cy="150"
             r="100"
-            className="fill-accentGold opacity-30"
+            fill="currentColor"
+            className="text-white/5"
           />
           <circle
             cx="800"
             cy="450"
             r="150"
             fill="currentColor"
-            className="text-accentGold opacity-20"
+            className="text-white/10"
           />
           <line
             x1="0"
@@ -39,7 +35,7 @@ export default function Hero(): JSX.Element {
             y2="300"
             stroke="currentColor"
             strokeWidth="2"
-            className="text-white opacity-10"
+            className="text-white/10"
           />
           <line
             x1="600"
@@ -48,54 +44,51 @@ export default function Hero(): JSX.Element {
             y2="600"
             stroke="currentColor"
             strokeWidth="2"
-            className="text-white opacity-10"
+            className="text-white/10"
           />
-          {/* The actual SVG should be cleaner and more complex, but this placeholder 
-                guides the use of subtle patterns in brand colors.
-                */}
         </svg>
       </div>
 
-      {/* 3. Content wrapped in z-10 to stay above the background */}
       <div className="max-w-6xl mx-auto px-6 text-center md:text-left relative z-10">
-        <p className="text-sm uppercase tracking-widest text-accentGold mb-2 font-semibold">
-          Economic Policy & Strategy by PhD Scholars
+        {/* Updated subheading: Directly highlights core expertise areas */}
+        <p className="text-sm uppercase tracking-widest text-accent-gold mb-4 font-semibold">
+          Research, Consultancy & Training
         </p>
 
-        <h1 className="text-4xl md:text-6xl font-heading font-bold leading-snug">
-          <span className="mr-1">Academic Rigor. Actionable Insights.</span>
+        {/* Punchy headline: Straightforward, action-oriented */}
+        <h1 className="text-3xl md:text-5xl font-heading font-extrabold leading-tight tracking-tight drop-shadow-lg">
+          Turning Data into <span className="mr-1">Decisions That Drive</span>
           <br className="hidden sm:inline" />
-          Transforming Economic Outcomes in Africa.
+          Real Results.
         </h1>
 
-        <p className="mt-6 max-w-4xl text-lg md:text-xl opacity-90">
-          We leverage <strong>advanced econometric models</strong> and{" "}
-          <strong>deep regional expertise</strong> delivered by a core team of{" "}
-          <strong>PhD economists</strong> affiliated with top Ugandan
-          institutions (Makerere and Kyambogo). We ensure sustainable, equitable
-          growth across the continent.
+        {/* Streamlined description: Ties in expertise areas naturally for client relevance */}
+        <p className="mt-6 max-w-4xl text-base md:text-lg opacity-90">
+          Through expert research, consultancy, and training, we deliver clear,
+          practical strategies powered by deep analysis and hands-on experience.
+          Helping you solve challenges and achieve measurable success.
         </p>
 
-        {/* Trust Indicators */}
+        {/* Simple trust signal: Broad and approachable */}
         <div className="mt-8">
           <p className="text-sm italic opacity-75">
-            Trusted by Ministries, NGOs, and Development Partners across the
-            region.
+            Partnered with governments, NGOs, and businesses worldwide.
           </p>
         </div>
 
+        {/* Clean CTA buttons: Prominent primary, subtle secondary */}
         <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
           <Link
             href="/contact"
-            className="inline-flex px-8 py-3 bg-accentGold text-white font-bold rounded-lg shadow-xl ring-2 ring-accentGold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accentGold/50 transition-all duration-300 transform hover:scale-[1.02]"
+            className="inline-flex px-8 py-3 bg-accent-gold text-white font-bold rounded-lg shadow-xl ring-2 ring-accent-gold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accent-gold/50 transition-all duration-300 transform hover:scale-[1.02]"
           >
-            Request Proposal Now
+            Request a Consultation
           </Link>
           <Link
-            href="/experts" // Link to a dedicated Team/Expert page
+            href="/experts"
             className="px-8 py-3 border border-white rounded-lg hover:bg-white hover:text-primary font-semibold transition"
           >
-            Meet Our Experts
+            Meet the Team
           </Link>
         </div>
       </div>

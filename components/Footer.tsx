@@ -60,54 +60,59 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2: Quick Links */}
+          {/* Column 2: Quick Links - FULL NAVBAR-STYLE HOVER EFFECT APPLIED */}
           <div>
             <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
             <ul className="space-y-2 text-sm opacity-80">
               <li>
                 <Link
                   href="/about"
-                  className="hover:text-accentGold transition"
+                  className="group relative inline-block hover:text-accentGold transition duration-300"
                 >
                   About Us & Mission
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accentGold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/services"
-                  className="hover:text-accentGold transition"
+                  className="group relative inline-block hover:text-accentGold transition duration-300"
                 >
                   Our Expertise
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accentGold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/case-studies"
-                  className="hover:text-accentGold transition"
+                  className="group relative inline-block hover:text-accentGold transition duration-300"
                 >
-                  Verified Case Studies
+                  Projects
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accentGold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/experts"
-                  className="hover:text-accentGold transition"
+                  className="group relative inline-block hover:text-accentGold transition duration-300"
                 >
                   Meet the Team
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accentGold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
                 </Link>
               </li>
               <li>
                 <Link
                   href="/contact"
-                  className="hover:text-accentGold transition"
+                  className="group relative inline-block hover:text-accentGold transition duration-300"
                 >
                   Request a Proposal
+                  <span className="absolute bottom-0 left-0 w-full h-[2px] bg-accentGold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Column 3: Contact Details */}
+          {/* Column 3: Contact Details - SIMPLIFIED HOVER (COLOR ONLY, NO UNDERLINE FOR CLEAN UX) */}
           <div>
             <h4 className="font-semibold text-lg mb-4">Contact</h4>
             <ul className="space-y-3 text-sm opacity-80">
@@ -124,7 +129,7 @@ export default function Footer() {
                 <Mail className="h-5 w-5 mr-3 text-accentGold" />
                 <a
                   href="mailto:highroadservicesltd@gmail.com"
-                  className="hover:underline"
+                  className="hover:text-accentGold transition duration-300"
                 >
                   highroadservicesltd@gmail.com
                 </a>
@@ -132,22 +137,27 @@ export default function Footer() {
 
               <li className="flex items-center">
                 <Phone className="h-5 w-5 mr-3 text-accentGold" />
-                <a href="tel:+256772688639" className="hover:underline">
+                <a
+                  href="tel:+256772688639"
+                  className="hover:text-accentGold transition duration-300"
+                >
                   +256 772 688 639
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Column 4: Research Newsletter */}
+          {/* Column 4: Research Newsletter - BUTTON HOVER ENHANCED WITH NAVBAR-INSPIRED SCALE */}
           <div>
             <h4 className="font-semibold text-lg mb-4">Research & Insights</h4>
             <p className="text-sm opacity-80 mb-4">
               Stay updated with our latest policy analysis and publications.
             </p>
 
-            <button className="w-full py-2 bg-accent-gold text-primary font-bold rounded-md hover:bg-yellow-500 hover:text-white transition">
+            {/* Enhanced: Added underline-like accent on hover, plus scale for polish */}
+            <button className="w-full py-2 bg-accent-gold text-primary font-bold rounded-md hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-xl relative group overflow-hidden">
               Subscribe to Research
+              <span className="absolute bottom-0 left-0 w-full h-[3px] bg-primary transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
             </button>
           </div>
         </div>

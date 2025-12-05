@@ -1,25 +1,24 @@
-// components/ApproachSection.tsx
 import React, { JSX } from "react";
-import { FlaskConical, Code, Zap } from "lucide-react";
+import { Database, TrendingUp, Users } from "lucide-react";
 
 const approachPillars = [
   {
-    icon: FlaskConical,
-    title: "1. Academic Rigor & Field Research",
+    icon: Database, // Represents data integrity and collection
+    title: "1. Data Integrity & Validation",
     description:
-      "Leveraging our university affiliations, we conduct **primary field data collection** and robust analysis to ensure localized, reliable inputs.",
+      "We prioritize **primary field data collection** and rigorous validation processes to ensure all inputs are localized, reliable, and trustworthy.",
   },
   {
-    icon: Code,
-    title: "2. Bespoke Econometric Modeling",
+    icon: TrendingUp, // Represents analysis, modeling, and forecasting
+    title: "2. Advanced Econometric Modeling",
     description:
-      "Our PhD economists utilize **Stata/R and advanced causal inference** to develop predictive models tailored specifically to African market dynamics.",
+      "Our expert consultants utilize **Stata/R and advanced causal inference** to develop predictive and evidence-based models tailored to specific market dynamics.",
   },
   {
-    icon: Zap,
-    title: "3. Policy Translation & Impact",
+    icon: Users, // Represents implementation and capacity building/training
+    title: "3. Strategy Translation & Training",
     description:
-      "We translate complex research into clear, **implementable policy roadmaps** and measurable strategies for immediate, high-level impact.",
+      "We translate complex insights into clear, **implementable policy roadmaps** and deliver custom training to build lasting capacity within your teams.",
   },
 ];
 
@@ -30,8 +29,8 @@ export default function ApproachSection(): JSX.Element {
         The HighRoad Differentiator: Our Unique Methodology
       </h2>
       <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
-        We bridge the gap between rigorous academic research and practical,
-        on-the-ground implementation.
+        We bridge the gap between rigorous data analysis and practical,
+        on-the-ground implementation to guarantee measurable impact.
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -40,7 +39,8 @@ export default function ApproachSection(): JSX.Element {
             key={pillar.title}
             className="p-8 bg-white rounded-xl border-t-4 border-accentGold shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
           >
-            <pillar.icon className="h-10 w-10 text-accentGold mb-4" />
+            {/* The icon is now a component from the pillar object */}
+            <pillar.icon className="h-10 w-10 text-accentGold mb-4" /> 
             <h3 className="text-2xl font-semibold text-primary mb-3">
               {pillar.title}
             </h3>
