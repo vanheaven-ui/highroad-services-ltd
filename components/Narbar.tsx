@@ -14,13 +14,15 @@ import clsx from "clsx";
 import FullMenuDrawer from "./FullMenuDrawer";
 
 // --------------------------------------------------------
-// --- Navigation Links ---
+// --- Navigation Links (MODIFIED) ---
 // --------------------------------------------------------
 const navLinks = [
+  // Added Home link
+  { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Expertise", href: "/services" },
-  { name: "Case Studies", href: "/case-studies" },
-  { name: "Team & Affiliations", href: "/experts" },
+  { name: "Services", href: "/services" }, // Changed from Expertise
+  { name: "Projects", href: "/case-studies" }, // Changed from Case Studies
+  { name: "Our Team", href: "/experts" }, // Changed from Team & Affiliations
   { name: "Our Approach", href: "/approach" },
 ];
 
@@ -87,7 +89,10 @@ const MobileNavDropdown = ({
     <motion.div className="flex flex-col p-4 space-y-2">
       {/* Navigation Links */}
       {links.map((link) => {
-        const isActive = pathname.startsWith(link.href) && link.href !== "/";
+        // MODIFIED: Corrected isActive check for the Home link ("/")
+        const isActive =
+          link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+
         return (
           <motion.div variants={itemVariants} key={link.name}>
             <Link
@@ -135,7 +140,7 @@ const MobileNavDropdown = ({
 );
 
 // --------------------------------------------------------
-// --- Animated Grid Icon Component ---
+// --- Animated Grid Icon Component (No changes) ---
 // --------------------------------------------------------
 interface AnimatedGridIconProps {
   isOpen: boolean;
@@ -198,7 +203,7 @@ const AnimatedGridIcon = ({ isOpen, color }: AnimatedGridIconProps) => {
 };
 
 // --------------------------------------------------------
-// --- Stylistic Logo Component ---
+// --- Stylistic Logo Component (No changes) ---
 // --------------------------------------------------------
 interface LogoProps {
   isActive: boolean;
@@ -290,8 +295,11 @@ export default function Navbar(): JSX.Element {
           {/* Desktop Links */}
           <div className="hidden lg:flex space-x-1 items-center">
             {navLinks.map((link) => {
+              // MODIFIED: Corrected isActive check for the Home link ("/")
               const isActive =
-                pathname.startsWith(link.href) && link.href !== "/";
+                link.href === "/"
+                  ? pathname === "/"
+                  : pathname.startsWith(link.href);
 
               // Conditional classes for base state (no inline color needed)
               const baseClasses = clsx(

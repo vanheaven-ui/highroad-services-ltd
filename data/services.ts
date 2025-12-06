@@ -205,9 +205,9 @@ export const services: Service[] = [
 
   {
     id: "market-research",
-    title: "Market & Feasibility Studies",
+    title: "Feasibility Studies",
     description:
-      "In-depth market assessments and feasibility studies supporting investment, expansion, and strategic decisions.",
+      "In-depth feasibility studies supporting investment, expansion, and strategic decisions.",
     icon: "globe",
     color: "bg-red-600", // Red for market energy & global reach
 
