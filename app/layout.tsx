@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 
-// Import Google Fonts
-import { Merriweather, Inter } from "next/font/google";
+// Import Local Font for Merriweather (Self-Hosted) - REMOVED!
+// Import Google Font for Merriweather (REMOTE)
+import { Merriweather } from "next/font/google"; // <-- Changed import
+// Import Google Font for Inter (Still Remote)
+import { Inter } from "next/font/google";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -17,12 +20,17 @@ import React, { JSX } from "react";
 // -----------------------------
 // Custom Font Variables
 // -----------------------------
+// MERRIWEATHER: REVERTED TO GOOGLE FONT
 const merriweather = Merriweather({
+  // <-- Changed font function name
   variable: "--font-heading",
+  // Request the weights 300, 400, 700, and 900 from Google Fonts
   weight: ["300", "400", "700", "900"],
   subsets: ["latin"],
+  display: "swap",
 });
 
+// INTER: REMAINS AS GOOGLE FONT
 const inter = Inter({
   variable: "--font-body",
   weight: ["300", "400", "600", "700"],
@@ -30,26 +38,29 @@ const inter = Inter({
 });
 
 // -----------------------------
-// Metadata Configuration
+// Metadata Configuration (CLEANED - UNCHANGED from last request)
 // -----------------------------
 export const metadata: Metadata = {
+  // Title: Focused on core services, removed academic mention
   title:
-    "HighRoad Services Ltd | PhD-Led Economic Policy & Research in East Africa",
+    "HighRoad Services Ltd | Economic Consulting, Strategy & Training in East Africa",
 
+  // Description: Concise, emphasizes expertise and delivery, removes specific affiliations
   description:
-    "Evidence-based economic consultancy and policy advisory in Uganda. Our PhD economists, affiliated with Makerere and Kyambogo Universities, deliver rigorous data analysis, feasibility studies, and M&E services across East Africa.",
+    "Delivering **data-driven economic consulting**, policy advisory, and professional training in Uganda. Our experts provide rigorous analysis, feasibility studies, and Monitoring & Evaluation (M&E) services across East Africa.",
 
   keywords: [
     "Economic Consultancy Uganda",
     "Policy Advisory East Africa",
-    "PhD Economists Kampala",
+    "Economists Kampala",
     "Feasibility Studies",
     "Impact Monitoring and Evaluation",
-    "Makerere Kyambogo Research",
+    "Professional Training Africa",
   ],
 
   openGraph: {
-    title: "Academic Rigor: Economic Consulting by PhD Scholars | HighRoad",
+    // OG Title: Concise, high-level service description
+    title: "Strategic Consulting & Policy Expertise | HighRoad Services Ltd",
     description:
       "Delivering data-driven policy and strategy for sustainable growth in Uganda and the EAC region.",
     url: "https://www.highroad-services.vercel.app",
@@ -74,7 +85,7 @@ export const metadata: Metadata = {
 };
 
 // -----------------------------
-// Root Layout Component
+// Root Layout Component (Unchanged)
 // -----------------------------
 export default function RootLayout({
   children,
@@ -84,6 +95,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
+        // The class names here remain correct
         className={`${merriweather.variable} ${inter.variable} font-body antialiased`}
       >
         <ThemeProvider>
