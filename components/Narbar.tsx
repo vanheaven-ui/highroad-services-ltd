@@ -13,22 +13,16 @@ import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import FullMenuDrawer from "./FullMenuDrawer";
 
-// --------------------------------------------------------
-// --- Navigation Links (MODIFIED) ---
-// --------------------------------------------------------
 const navLinks = [
-  // Added Home link
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" }, // Changed from Expertise
-  { name: "Projects", href: "/case-studies" }, // Changed from Case Studies
-  { name: "Our Team", href: "/experts" }, // Changed from Team & Affiliations
+  { name: "Services", href: "/services" },
+  { name: "Projects", href: "/case-studies" },
+  { name: "Our Team", href: "/experts" },
+  { name: "Contact Us", href: "/contact" },
   { name: "Our Approach", href: "/approach" },
 ];
 
-// --------------------------------------------------------
-// --- Framer Motion Variants ---
-// --------------------------------------------------------
 const listVariants: Variants = {
   open: {
     opacity: 1,
@@ -63,9 +57,6 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: -20, transition: { duration: 0.2 } },
 };
 
-// --------------------------------------------------------
-// --- Mobile Nav Dropdown Component ---
-// --------------------------------------------------------
 interface MobileDropdownProps {
   links: typeof navLinks;
   isOpen: boolean;
@@ -87,9 +78,7 @@ const MobileNavDropdown = ({
     style={{ pointerEvents: isOpen ? "auto" : "none" }}
   >
     <motion.div className="flex flex-col p-4 space-y-2">
-      {/* Navigation Links */}
       {links.map((link) => {
-        // MODIFIED: Corrected isActive check for the Home link ("/")
         const isActive =
           link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
 
@@ -113,7 +102,6 @@ const MobileNavDropdown = ({
         );
       })}
 
-      {/* Contact Icons */}
       <motion.div
         variants={itemVariants}
         className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
@@ -139,9 +127,6 @@ const MobileNavDropdown = ({
   </motion.div>
 );
 
-// --------------------------------------------------------
-// --- Animated Grid Icon Component (No changes) ---
-// --------------------------------------------------------
 interface AnimatedGridIconProps {
   isOpen: boolean;
   color: string;
@@ -202,9 +187,6 @@ const AnimatedGridIcon = ({ isOpen, color }: AnimatedGridIconProps) => {
   );
 };
 
-// --------------------------------------------------------
-// --- Stylistic Logo Component (No changes) ---
-// --------------------------------------------------------
 interface LogoProps {
   isActive: boolean;
   nonActiveColor: string;
@@ -213,7 +195,6 @@ interface LogoProps {
 
 const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
   <div className="relative flex flex-col items-start">
-    {/* HighRoad Text */}
     <span
       className="text-2xl font-heading font-black nav-text relative"
       style={{ color: isActive ? "#CFA83B" : nonActiveColor }}
@@ -221,7 +202,6 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
       HighRoad
     </span>
 
-    {/* Curved Element (SVG Arc/Swoosh above the text) */}
     <svg
       className="absolute -top-1 -right-1 w-20 h-10 pointer-events-none"
       viewBox="0 0 100 50"
@@ -239,7 +219,6 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
       />
     </svg>
 
-    {/* Services Ltd Subscript */}
     <span
       className="text-xs font-semibold uppercase tracking-widest mt-[-4px] ml-1 nav-logo-sub"
       style={{ color: iconColor, verticalAlign: "sub", fontSize: "0.65em" }}
@@ -249,9 +228,6 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
   </div>
 );
 
-// --------------------------------------------------------
-// --- Main Navbar Component ---
-// --------------------------------------------------------
 export default function Navbar(): JSX.Element {
   const { scrollY } = useScroll();
   const pathname = usePathname();
@@ -292,23 +268,19 @@ export default function Navbar(): JSX.Element {
             />
           </Link>
 
-          {/* Desktop Links */}
+          {/* Desktop Links (FONT SIZE MODIFIED to 13px) */}
           <div className="hidden lg:flex space-x-1 items-center">
             {navLinks.map((link) => {
-              // MODIFIED: Corrected isActive check for the Home link ("/")
               const isActive =
                 link.href === "/"
                   ? pathname === "/"
                   : pathname.startsWith(link.href);
 
-              // Conditional classes for base state (no inline color needed)
               const baseClasses = clsx(
-                "px-4 py-2 rounded-full text-sm font-body font-medium transition duration-200 uppercase tracking-wide nav-link relative group",
+                "px-4 py-2 rounded-full font-body font-medium transition duration-200 uppercase tracking-wide nav-link relative group",
                 {
-                  // Non-active base
                   "text-primary": !isScrolled && !isActive,
                   "text-white": isScrolled && !isActive,
-                  // Active base (combined for both scrolled/non-scrolled)
                   "text-primary bg-accent-gold": isActive,
                 }
               );
@@ -326,10 +298,10 @@ export default function Navbar(): JSX.Element {
                   <Link
                     href={link.href}
                     className={clsx(baseClasses, {
-                      // Hovers (only on non-active)
                       "hover:bg-accent-gold hover:text-primary": !isActive,
-                      // Active doesn't need hover, but you could add if desired
                     })}
+                    // CUSTOM FONT SIZE APPLIED HERE
+                    style={{ fontSize: "13px" }}
                   >
                     {link.name}
                     {!isActive && (
