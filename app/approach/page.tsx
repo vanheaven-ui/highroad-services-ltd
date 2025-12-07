@@ -8,11 +8,14 @@ import {
   CheckCircle,
   Brain,
   Target,
+  LucideIcon,
 } from "lucide-react";
 import Link from "next/link";
 import React, { JSX } from "react";
+// 💡 IMPORT FRAMER MOTION, Variants is still useful for child components
+import { motion, Variants } from "framer-motion";
 
-// --- DATA STRUCTURES ---
+// --- DATA STRUCTURES (NO CHANGES) ---
 
 const fourPillars = [
   {
@@ -31,7 +34,7 @@ const fourPillars = [
   },
   {
     icon: TrendingUp,
-    title: "3. Analyze with Rigor",
+    title: "3. Analyze with Precision",
     description:
       "Application of advanced econometric modeling, causal inference techniques (e.g., DiD, RCTs), and statistical software (Stata/R) to turn complex data into verifiable evidence.",
     color: "bg-red-500/10 text-red-700",
@@ -66,32 +69,110 @@ const methodologyHighlights = [
   },
 ];
 
+// --- FRAMER MOTION VARIANTS ---
+// These are only used for children where staggering or whileInView is needed.
+
+// Container for staggering the four pillars
+const pillarContainerVariants: Variants = {
+  // Only defining the state that triggers the children
+  visible: {
+    transition: {
+      staggerChildren: 0.1, // Delay between each pillar's animation
+    },
+  },
+};
+
+// Item animation for the four pillars
+const pillarItemVariants: Variants = {
+  hidden: { opacity: 0, y: 50 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
+// Item animation for the highlights list
+const highlightItemVariants: Variants = {
+  hidden: { opacity: 0, x: 50 },
+  visible: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 // --- MAIN PAGE COMPONENT ---
 
 export default function ApproachPage(): JSX.Element {
   return (
-    <main>
-      {/* 🚀 1. Unique Philosophy Header (Setting the Tone) */}
-      <section className="bg-primary pt-24 pb-16 md:py-32 text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <h1 className="text-4xl md:text-6xl font-heading font-black text-white leading-snug">
-            The HighRoad Standard: Rigor, Evidence, Impact.
+    // 💡 REFACTOR: Using direct property definition for the main page entrance.
+    <motion.main
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6, ease: "easeOut" }}
+    >
+      {/* 1. Hero Header */}
+      <section className="bg-primary text-white relative overflow-hidden py-20 md:py-28 text-center">
+        {/* SVG background: No animation needed here, keep as div */}
+        <div className="absolute inset-0 opacity-10">
+          <svg
+            className="w-full h-full"
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 1200 600"
+            preserveAspectRatio="xMidYMid slice"
+          >
+            {/* Geometric Pattern Elements */}
+            <circle
+              cx="200"
+              cy="150"
+              r="100"
+              fill="currentColor"
+              className="text-white/5"
+            />
+            <circle
+              cx="800"
+              cy="450"
+              r="150"
+              fill="currentColor"
+              className="text-white/10"
+            />
+            <line
+              x1="0"
+              y1="300"
+              x2="1200"
+              y2="300"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-white/10"
+            />
+            <line
+              x1="600"
+              y1="0"
+              x2="600"
+              y2="600"
+              stroke="currentColor"
+              strokeWidth="2"
+              className="text-white/10"
+            />
+          </svg>
+        </div>
+
+        {/* 💡 Animate the Hero Content (relative to the main tag) */}
+        <motion.div
+          className="max-w-4xl mx-auto px-6 relative z-10"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
+          <h1 className="text-4xl md:text-6xl font-heading font-black text-white leading-snug drop-shadow-lg">
+            The HighRoad Standard: Integrity, Evidence, Client Impact.
           </h1>
           <p className="mt-6 text-white/80 text-xl max-w-3xl mx-auto font-body">
-            Our approach is rooted in **academic excellence** and **practical
-            relevance**. We apply the gold standard of research
-            methodology—usually reserved for PhD dissertations—to solve
-            real-world economic and policy challenges.
+            Our approach is built on core values of **Integrity, Transparency,
+            and Commitment**. We apply the highest standards of evidence-based
+            methodology to solve complex economic and policy challenges for
+            lasting client success.
           </p>
-        </div>
+        </motion.div>
       </section>
-
-      {/* --- */}
-
-      {/* ⚙️ 2. The Four-Pillar Process (Visually Structured) */}
+      ---
+      {/* 2. The Four-Pillar Process (Visually Structured) */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
             Our Consulting Lifecycle
           </h2>
           <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
@@ -99,19 +180,27 @@ export default function ApproachPage(): JSX.Element {
           </h3>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {/* 💡 APPLY STAGGERED CONTAINER */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+          variants={pillarContainerVariants}
+          initial="hidden" // Ensure children start hidden
+          whileInView="visible" // Triggers animation when section enters viewport
+          viewport={{ once: true, amount: 0.4 }}
+        >
           {fourPillars.map((pillar, index) => {
             const Icon = pillar.icon;
             return (
-              <div
+              // 💡 APPLY STAGGERED ITEM
+              <motion.div
                 key={index}
-                className="text-center p-6 bg-white rounded-xl shadow-lg border-t-8 border-primary/5 hover:border-accentGold transition duration-300 transform hover:-translate-y-1"
+                className="text-center p-6 bg-white rounded-xl shadow-lg border-t-8 border-primary/5 hover:border-accent-gold transition duration-300 transform hover:-translate-y-1"
+                variants={pillarItemVariants}
               >
                 <div
                   className={`w-16 h-16 ${pillar.color} rounded-full flex items-center justify-center mx-auto mb-4`}
                 >
-                  <Icon className={`w-8 h-8 ${pillar.color.split(" ")[1]}`} />{" "}
-                  {/* Extracts the text color class */}
+                  <Icon className={`w-8 h-8 ${pillar.color.split(" ")[1]}`} />
                 </div>
                 <h4 className="text-xl font-heading font-bold text-primary mb-2">
                   {pillar.title}
@@ -119,64 +208,82 @@ export default function ApproachPage(): JSX.Element {
                 <p className="text-sm text-gray-600 font-body leading-relaxed">
                   {pillar.description}
                 </p>
-              </div>
+              </motion.div>
             );
           })}
-        </div>
+        </motion.div>
       </section>
-
-      {/* --- */}
-
-      {/* 🔬 3. Methodological Rigor Section (The Proof of Authority) */}
+      ---
+      {/* 3. Methodological Section (The Proof of Authority) */}
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 items-center">
             {/* Title Block */}
-            <div className="lg:col-span-1">
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+            <motion.div
+              className="lg:col-span-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+            >
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
                 Beyond Simple Analysis
               </h2>
               <h3 className="text-3xl font-heading font-black text-primary mt-2 mb-4">
                 Our Method is Our Edge
               </h3>
               <p className="text-gray-700 font-body">
-                We utilize methods favored by research institutions and central
-                banks, ensuring our insights are robust, peer-review ready, and
-                provide<span className="ml-1 text-accentGold font-bold">quantitative confidence</span>.
+                Our commitment to **ethical practice and transparency** ensures
+                our insights are robust, peer-review ready, and provide
+                <span className="ml-1 text-accent-gold font-bold">
+                  quantitative confidence
+                </span>
+                in every strategic decision.
               </p>
               <Link
                 href="/experts"
-                className="mt-6 inline-flex items-center text-primary font-bold border-b-2 border-primary/50 hover:border-accentGold transition"
+                className="mt-6 inline-flex items-center text-primary font-bold border-b-2 border-primary/50 hover:border-accent-gold transition"
               >
-                Meet the PhD Economists →
+                Explore Our Expert Team &rarr;
               </Link>
-            </div>
+            </motion.div>
 
-            {/* Highlights Grid */}
-            <div className="lg:col-span-2 space-y-6">
+            {/* Highlights Grid (Sequential slide-in) */}
+            <motion.div
+              className="lg:col-span-2 space-y-6"
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.5 }}
+              variants={pillarContainerVariants} // Reuse container variant for stagger
+            >
               {methodologyHighlights.map((item, index) => (
-                <div
+                <motion.div
                   key={index}
-                  className="flex items-start bg-white p-6 rounded-xl shadow border-l-4 border-accentGold/50"
+                  className="flex items-start bg-white p-6 rounded-xl shadow border-l-4 border-accent-gold/50"
+                  variants={highlightItemVariants}
                 >
-                  <item.icon className="w-6 h-6 mr-4 mt-1 text-accentGold flex-shrink-0" />
+                  <item.icon className="w-6 h-6 mr-4 mt-1 text-accent-gold flex-shrink-0" />
                   <div>
                     <h4 className="text-lg font-semibold text-primary">
                       {item.title}
                     </h4>
                     <p className="text-sm text-gray-700">{item.description}</p>
                   </div>
-                </div>
+                </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
-
-      {/* --- */}
-
-      {/* 🤝 4. Client Collaboration Model (Conversion CTA) */}
-      <section className="bg-primary/95 py-16 md:py-20">
+      ---
+      {/* 4. Client Collaboration Model (Conversion CTA) */}
+      <motion.section
+        className="bg-primary/95 py-16 md:py-20"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.5 }}
+        transition={{ duration: 0.6 }}
+      >
         <div className="max-w-4xl mx-auto text-center px-6">
           <h2 className="text-3xl md:text-4xl font-heading font-bold text-white mb-4">
             Ready for an Evidence-Based Partnership?
@@ -193,7 +300,7 @@ export default function ApproachPage(): JSX.Element {
             Define Your Project Scope Today
           </Link>
         </div>
-      </section>
-    </main>
+      </motion.section>
+    </motion.main>
   );
 }

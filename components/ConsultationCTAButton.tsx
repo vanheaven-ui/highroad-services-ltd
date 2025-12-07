@@ -94,7 +94,7 @@ export default function ConsultationCTAButton(): JSX.Element {
           e.preventDefault();
           toggleModal();
         }}
-        className="fixed bottom-6 right-6 z-[60] flex items-center space-x-3 p-4 bg-gradient-to-r from-accentGold to-yellow-500 text-primary rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group border border-white/20 backdrop-blur-sm"
+        className="fixed bottom-6 right-6 z-[60] flex items-center space-x-3 p-4 bg-gradient-to-r from-accent-gold to-yellow-500 text-primary rounded-full shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105 active:scale-95 group border border-white/20 backdrop-blur-sm"
         aria-label={buttonText}
       >
         <motion.div
@@ -150,7 +150,7 @@ export default function ConsultationCTAButton(): JSX.Element {
                   className="flex items-center space-x-3"
                   variants={childVariants}
                 >
-                  <div className="p-2 bg-accentGold rounded-full">
+                  <div className="p-2 bg-accent-gold rounded-full">
                     <CalendarCheck className="h-5 w-5 text-primary" />
                   </div>
                   <div>
@@ -190,13 +190,13 @@ export default function ConsultationCTAButton(): JSX.Element {
 
                 <motion.div
                   variants={childVariants}
-                  className="bg-gradient-to-br from-gray-50 to-white border border-accentGold/20 rounded-xl p-6 mb-8 shadow-sm"
+                  className="bg-gradient-to-br from-gray-50 to-white border border-accent-gold/20 rounded-xl p-6 mb-8 shadow-sm"
                 >
                   <motion.h3
                     variants={childVariants}
                     className="font-semibold text-primary mb-3 flex items-center"
                   >
-                    <CalendarCheck className="h-4 w-4 mr-2 text-accentGold" />
+                    <CalendarCheck className="h-4 w-4 mr-2 text-accent-gold" />
                     Select Your Slot
                   </motion.h3>
                   <div className="w-full h-96 md:h-[500px] relative">
@@ -218,7 +218,7 @@ export default function ConsultationCTAButton(): JSX.Element {
                 </motion.div>
 
                 <motion.div variants={childVariants} className="space-y-4">
-                  <h3 className="text-lg font-heading font-semibold text-primary mb-4 border-l-4 border-accentGold pl-3">
+                  <h3 className="text-lg font-heading font-semibold text-primary mb-4 border-l-4 border-accent-gold pl-3">
                     What Happens Next?
                   </h3>
                   <div className="grid md:grid-cols-2 gap-4">

@@ -11,12 +11,33 @@ import { JSX } from "react";
 import { services } from "@/data/services";
 import { FullCaseStudy } from "@/components/case-study/CaseStudyModal";
 import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
+// 💡 IMPORT FRAMER MOTION
+import { motion, Variants } from "framer-motion";
 
 // CaseStudy type matches FullCaseStudy
 type CaseStudy = FullCaseStudy;
 
+// --- FRAMER MOTION VARIANTS ---
+
+// Container variant for staggered lists (Services and Case Studies)
+const containerVariants: Variants = {
+  hidden: {},
+  visible: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
+    },
+  },
+};
+
+// Item variant for cards (slide-up)
+const itemSlideUpVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
+};
+
 // ----------------------
-// 3. Case Studies Data (Enhanced)
+// 3. Case Studies Data (UNCHANGED)
 // ----------------------
 const caseStudies: CaseStudy[] = [
   {
@@ -75,10 +96,12 @@ interface HomeCaseStudyCardProps {
 const HomeCaseStudyCard: React.FC<HomeCaseStudyCardProps> = ({ study }) => {
   const { openModal } = useModal();
 
+  // 💡 WRAP COMPONENT IN motion.div
   return (
-    <div
+    <motion.div
       className="flex-shrink-0 w-[90vw] md:w-[65vw] lg:w-[50vw] xl:w-[45vw]"
       key={study.title}
+      variants={itemSlideUpVariants}
     >
       <CaseStudyCard
         title={study.title}
@@ -87,7 +110,7 @@ const HomeCaseStudyCard: React.FC<HomeCaseStudyCardProps> = ({ study }) => {
         impact={study.impact}
         onViewFullStudy={() => openModal(study)}
       />
-    </div>
+    </motion.div>
   );
 };
 
@@ -97,20 +120,49 @@ const HomeCaseStudyCard: React.FC<HomeCaseStudyCardProps> = ({ study }) => {
 export default function Home(): JSX.Element {
   return (
     <ModalProvider>
+      {/* 💡 Animate Hero separately if it doesn't already use motion */}
       <Hero />
 
       <main>
         {/* Impact Section */}
-        <ImpactSection />
+        {/* Assume ImpactSection is a large component, animate it on scroll */}
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+        >
+          <ImpactSection />
+        </motion.div>
 
         {/* Affiliations Section */}
-        <AffiliationsSection />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+        >
+          <AffiliationsSection />
+        </motion.div>
 
         {/* Approach Section */}
-        <ApproachSection />
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.7 }}
+        >
+          <ApproachSection />
+        </motion.div>
 
         {/* ⭐ NEW: Engaging CTA to the About Page ⭐ */}
-        <section className="bg-primary py-10">
+        <motion.section
+          className="bg-primary py-10"
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true, amount: 0.5 }}
+          transition={{ duration: 0.5 }}
+        >
           <div className="max-w-4xl mx-auto text-center px-6">
             <h3 className="text-3xl font-heading font-bold text-white mb-4">
               Why Choose Our Rigor?
@@ -126,62 +178,103 @@ export default function Home(): JSX.Element {
               Meet Our Founders & Mission
             </Link>
           </div>
-        </section>
+        </motion.section>
 
         {/* Services Section */}
         <section className="max-w-6xl mx-auto px-6 py-16">
-          <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
+          {/* Title Fade-in */}
+          <motion.h2
+            className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1"
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.6 }}
+          >
             Our Core Services: Expertise in Action
-          </h2>
+          </motion.h2>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          {/* 💡 APPLY STAGGERED CONTAINER for Services */}
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
+          >
             {services.map((service) => (
-              <ServiceCard
-                key={service.title}
-                title={service.title}
-                description={service.description}
-                icon={service.icon}
-                color={service.color}
-              />
+              <motion.div key={service.title} variants={itemSlideUpVariants}>
+                <ServiceCard
+                  title={service.title}
+                  description={service.description}
+                  icon={service.icon}
+                  color={service.color}
+                />
+              </motion.div>
             ))}
-          </div>
+          </motion.div>
 
-          <div className="text-center mt-12">
+          <motion.div
+            className="text-center mt-12"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Link
               href="/services"
               className="px-6 py-3 border-2 border-primary text-primary font-semibold rounded-lg hover:bg-primary hover:text-white transition"
             >
               View Detailed Capabilities
             </Link>
-          </div>
+          </motion.div>
         </section>
 
         {/* Case Studies Section */}
         <section className="bg-gray-50 py-16">
           <div className="max-w-6xl mx-auto px-6">
-            <h2 className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1">
+            {/* Title Fade-in */}
+            <motion.h2
+              className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1"
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, amount: 0.5 }}
+              transition={{ duration: 0.6 }}
+            >
               Verified Impact & Case Studies
-            </h2>
+            </motion.h2>
           </div>
 
           {/* Horizontal Scroll */}
           <div className="overflow-x-auto pb-6">
-            <div className="flex space-x-8 px-6 md:px-10 lg:px-24 w-max">
+            {/* 💡 APPLY STAGGERED CONTAINER for Case Studies */}
+            <motion.div
+              className="flex space-x-8 px-6 md:px-10 lg:px-24 w-max"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true, amount: 0.1 }} // Less amount for horizontal scroll
+            >
               {caseStudies.map((study) => (
                 <HomeCaseStudyCard key={study.title} study={study} />
               ))}
-            </div>
+            </motion.div>
           </div>
 
           {/* CTA */}
-          <div className="max-w-6xl mx-auto text-center mt-12 px-6">
+          <motion.div
+            className="max-w-6xl mx-auto text-center mt-12 px-6"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true, amount: 0.5 }}
+            transition={{ duration: 0.5, delay: 0.4 }}
+          >
             <Link
               href="/case-studies"
               className="px-6 py-3 bg-primary text-white font-semibold rounded-lg hover:bg-accent-gold hover:text-primary transition"
             >
               Explore More Success Stories
             </Link>
-          </div>
+          </motion.div>
         </section>
       </main>
     </ModalProvider>

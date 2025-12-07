@@ -1,4 +1,4 @@
-import { FlaskConical, LucideIcon } from "lucide-react";
+import { FlaskConical, LucideIcon, ArrowRight } from "lucide-react"; // Imported ArrowRight for a cleaner link look
 import React, { FC } from "react";
 import Link from "next/link";
 import { slugify } from "@/lib/slugify";
@@ -10,7 +10,7 @@ interface ServiceCardProps {
   title: string;
   description: string;
   icon: string; // The name of the icon (e.g., 'database')
-  color: string; 
+  color: string;
 }
 
 // Simplified Icon Mapping (You would expand this in a real project)
@@ -34,7 +34,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
   const [bgColor, textColor] = color.split(" ");
 
   return (
-    <div className="p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-transparent hover:border-accentGold">
+    <div className="p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-transparent hover:border-accent-gold">
       <div className="flex items-start space-x-4 mb-4">
         {/* Icon Container with Color Accent */}
         <div className={`p-3 rounded-full ${bgColor} flex-shrink-0`}>
@@ -50,9 +50,11 @@ const ServiceCard: FC<ServiceCardProps> = ({
       <p className="mt-3 text-gray-700 font-body text-base">{description}</p>
       <Link
         href={`/services/${slugify(title)}`}
-        className="mt-6 inline-flex items-center text-accentGold font-semibold border-b-2 border-accentGold/50 hover:border-accentGold transition duration-200"
+        // NEW HOVER EFFECT: Changes background, lifts the border, and adds a slight movement to the icon.
+        className="mt-6 inline-flex items-center text-accent-gold font-semibold border-b-2 border-accent-gold/50 transition duration-300 group hover:border-accent-gold hover:text-primary"
       >
-        Read Deep Dive →
+        Read Deep Dive
+        <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 duration-300" />
       </Link>
     </div>
   );

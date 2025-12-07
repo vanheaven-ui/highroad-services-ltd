@@ -65,7 +65,7 @@ export default function ThemeSwitcher(): JSX.Element {
                 // Default Inactive Color: White icon in dark mode, Primary (dark) icon in light mode
                 text-primary dark:text-white
                 // Hover Color: Always Gold
-                hover:text-accentGold dark:hover:text-accentGold
+                hover:text-accent-gold dark:hover:text-accent-gold
                 // Opacity when not active
                 ${isActive ? "" : "opacity-70"}
               `}
@@ -86,7 +86,7 @@ export default function ThemeSwitcher(): JSX.Element {
               <span
                 className={`relative z-20 transition-colors duration-300 ${
                   isActive
-                    ? "text-accentGold" // Force gold when active for maximum visibility
+                    ? "text-accent-gold" // Force gold when active for maximum visibility
                     : "text-inherit"
                 }`}
               >

@@ -80,13 +80,15 @@ export default function Hero(): JSX.Element {
         <div className="mt-10 flex flex-col md:flex-row gap-4 justify-center md:justify-start">
           <Link
             href="/contact"
-            className="inline-flex px-8 py-3 bg-accent-gold text-white font-bold rounded-lg shadow-xl ring-2 ring-accent-gold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accent-gold/50 transition-all duration-300 transform hover:scale-[1.02]"
+            // 💡 ADDED w-full (for mobile full width) and text-center (for centering text)
+            className="w-full text-center md:w-auto inline-flex px-8 py-3 bg-accent-gold text-white font-bold rounded-lg shadow-xl ring-2 ring-accent-gold/30 hover:bg-accent-gold hover:shadow-2xl hover:ring-accent-gold/50 transition-all duration-300 transform hover:scale-[1.02]"
           >
             Request a Consultation
           </Link>
           <Link
             href="/experts"
-            className="px-8 py-3 border border-white rounded-lg hover:bg-white hover:text-primary font-semibold transition"
+            // 💡 ADDED w-full (for mobile full width) and md:w-auto
+            className="w-full md:w-auto px-8 py-3 border border-white rounded-lg hover:bg-white hover:text-primary font-semibold transition"
           >
             Meet the Team
           </Link>
