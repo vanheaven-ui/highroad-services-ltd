@@ -40,48 +40,75 @@ const inter = Inter({
 // -----------------------------
 // Metadata Configuration (CLEANED - UNCHANGED from last request)
 // -----------------------------
+
 export const metadata: Metadata = {
-  // Title: Focused on core services, removed academic mention
-  title:
-    "HighRoad Services Ltd | Economic Consulting, Strategy & Training in East Africa",
+  // Page Title
+  title: "HighRoad Services Ltd | Economic Consulting, Strategy & Training",
 
-  // Description: Concise, emphasizes expertise and delivery, removes specific affiliations
+  // Meta Description
   description:
-    "Delivering **data-driven economic consulting**, policy advisory, and professional training in Uganda. Our experts provide rigorous analysis, feasibility studies, and Monitoring & Evaluation (M&E) services across East Africa.",
+    "Delivering data-driven economic consulting, policy advisory, and professional training worldwide. Our experts provide rigorous analysis, feasibility studies, and Monitoring & Evaluation (M&E) services to international organizations.",
 
+  // SEO Keywords
   keywords: [
-    "Economic Consultancy Uganda",
-    "Policy Advisory East Africa",
-    "Economists Kampala",
-    "Feasibility Studies",
-    "Impact Monitoring and Evaluation",
-    "Professional Training Africa",
+    "Economic Consulting Firm",
+    "Policy Advisory Services",
+    "Econometric Modeling",
+    "Feasibility Studies Consultant",
+    "Impact Monitoring and Evaluation (M&E)",
+    "Causal Inference Consulting",
+    "Professional Development Training",
+    "Data-Driven Strategy",
+    "Global Development Consulting",
   ],
 
+  // OpenGraph Metadata
   openGraph: {
-    // OG Title: Concise, high-level service description
     title: "Strategic Consulting & Policy Expertise | HighRoad Services Ltd",
     description:
-      "Delivering data-driven policy and strategy for sustainable growth in Uganda and the EAC region.",
+      "Delivering data-driven policy and strategy for sustainable global growth.",
     url: "https://www.highroad-services.vercel.app",
     siteName: "HighRoad Services Ltd",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "/assets/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Economic Strategy and Policy Consultants in Kampala",
+        alt: "Economic Strategy and Policy Consultants",
       },
     ],
-    locale: "en_UG",
+    locale: "en_US",
     type: "website",
   },
 
+  // Canonical URL
   alternates: {
     canonical: "https://www.highroad-services.vercel.app",
   },
 
+  // Authors
   authors: [{ name: "HighRoad Services Ltd" }],
+
+  // Favicon + Icons
+  icons: {
+    icon: [
+      { url: "/assets/favicon.ico", sizes: "any" },
+      { url: "/assets/favicon-16x16.png", sizes: "16x16", type: "image/png" },
+      { url: "/assets/favicon-32x32.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: "/assets/apple-touch-icon.png",
+    other: [
+      {
+        rel: "mask-icon",
+        url: "/assets/safari-pinned-tab.svg",
+        color: "#0b2545",
+      },
+      {
+        rel: "shortcut icon",
+        url: "/assets/favicon.ico",
+      },
+    ],
+  },
 };
 
 // -----------------------------
