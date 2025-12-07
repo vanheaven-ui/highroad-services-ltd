@@ -233,7 +233,7 @@ export default function CaseStudiesPage(): JSX.Element {
         {/* Case Study Grid */}
         <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
               Our Portfolio of Excellence
             </h2>
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">

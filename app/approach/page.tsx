@@ -172,7 +172,7 @@ export default function ApproachPage(): JSX.Element {
       {/* 2. The Four-Pillar Process (Visually Structured) */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-16">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+          <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
             Our Consulting Lifecycle
           </h2>
           <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
@@ -194,7 +194,7 @@ export default function ApproachPage(): JSX.Element {
               // 💡 APPLY STAGGERED ITEM
               <motion.div
                 key={index}
-                className="text-center p-6 bg-white rounded-xl shadow-lg border-t-8 border-primary/5 hover:border-accentGold transition duration-300 transform hover:-translate-y-1"
+                className="text-center p-6 bg-white rounded-xl shadow-lg border-t-8 border-primary/5 hover:border-accent-gold transition duration-300 transform hover:-translate-y-1"
                 variants={pillarItemVariants}
               >
                 <div
@@ -226,7 +226,7 @@ export default function ApproachPage(): JSX.Element {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+              <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
                 Beyond Simple Analysis
               </h2>
               <h3 className="text-3xl font-heading font-black text-primary mt-2 mb-4">
@@ -235,14 +235,14 @@ export default function ApproachPage(): JSX.Element {
               <p className="text-gray-700 font-body">
                 Our commitment to **ethical practice and transparency** ensures
                 our insights are robust, peer-review ready, and provide
-                <span className="ml-1 text-accentGold font-bold">
+                <span className="ml-1 text-accent-gold font-bold">
                   quantitative confidence
                 </span>
                 in every strategic decision.
               </p>
               <Link
                 href="/experts"
-                className="mt-6 inline-flex items-center text-primary font-bold border-b-2 border-primary/50 hover:border-accentGold transition"
+                className="mt-6 inline-flex items-center text-primary font-bold border-b-2 border-primary/50 hover:border-accent-gold transition"
               >
                 Explore Our Expert Team &rarr;
               </Link>
@@ -259,10 +259,10 @@ export default function ApproachPage(): JSX.Element {
               {methodologyHighlights.map((item, index) => (
                 <motion.div
                   key={index}
-                  className="flex items-start bg-white p-6 rounded-xl shadow border-l-4 border-accentGold/50"
+                  className="flex items-start bg-white p-6 rounded-xl shadow border-l-4 border-accent-gold/50"
                   variants={highlightItemVariants}
                 >
-                  <item.icon className="w-6 h-6 mr-4 mt-1 text-accentGold flex-shrink-0" />
+                  <item.icon className="w-6 h-6 mr-4 mt-1 text-accent-gold flex-shrink-0" />
                   <div>
                     <h4 className="text-lg font-semibold text-primary">
                       {item.title}

@@ -34,7 +34,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
   const [bgColor, textColor] = color.split(" ");
 
   return (
-    <div className="p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-transparent hover:border-accentGold">
+    <div className="p-8 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-t-4 border-transparent hover:border-accent-gold">
       <div className="flex items-start space-x-4 mb-4">
         {/* Icon Container with Color Accent */}
         <div className={`p-3 rounded-full ${bgColor} flex-shrink-0`}>
@@ -51,7 +51,7 @@ const ServiceCard: FC<ServiceCardProps> = ({
       <Link
         href={`/services/${slugify(title)}`}
         // NEW HOVER EFFECT: Changes background, lifts the border, and adds a slight movement to the icon.
-        className="mt-6 inline-flex items-center text-accent-gold font-semibold border-b-2 border-accentGold/50 transition duration-300 group hover:border-accentGold hover:text-primary"
+        className="mt-6 inline-flex items-center text-accent-gold font-semibold border-b-2 border-accent-gold/50 transition duration-300 group hover:border-accent-gold hover:text-primary"
       >
         Read Deep Dive
         <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1 duration-300" />

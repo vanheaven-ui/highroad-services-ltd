@@ -26,7 +26,7 @@ const FounderPlaceholder = ({
   color = "#1F2937",
 }: FounderPlaceholderProps): JSX.Element => (
   <div
-    className="rounded-lg shadow-xl bg-gray-100 flex items-center justify-center p-8 border-4 border-accentGold/50"
+    className="rounded-lg shadow-xl bg-gray-100 flex items-center justify-center p-8 border-4 border-accent-gold/50"
     style={{ width: size, height: size, minWidth: size, minHeight: size }}
   >
     <svg
@@ -122,7 +122,7 @@ export default function About(): JSX.Element {
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.7, delay: 0.1 }}
           >
-            <p className="text-sm font-semibold uppercase tracking-widest text-accentGold border-l-4 border-accentGold pl-3">
+            <p className="text-sm font-semibold uppercase tracking-widest text-accent-gold border-l-4 border-accent-gold pl-3">
               Our Origin Story
             </p>
             <h1 className="text-4xl font-heading font-black text-primary leading-snug">
@@ -183,7 +183,7 @@ export default function About(): JSX.Element {
                 alt="Dr. Norman Tumwine, Founder"
                 width={400}
                 height={400}
-                className="rounded-lg shadow-2xl border-4 border-accentGold/50"
+                className="rounded-lg shadow-2xl border-4 border-accent-gold/50"
               />
             ) : (
               <FounderPlaceholder size={400} color="#1F2937" />
@@ -203,7 +203,7 @@ export default function About(): JSX.Element {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6 }}
             >
-              <div className="absolute right-0 top-0 h-4 w-4 rounded-full bg-accentGold ring-8 ring-gray-50/50 hidden lg:block transform translate-x-1/2"></div>
+              <div className="absolute right-0 top-0 h-4 w-4 rounded-full bg-accent-gold ring-8 ring-gray-50/50 hidden lg:block transform translate-x-1/2"></div>
               <h2 className="text-sm font-semibold uppercase tracking-widest text-red-600 mb-2">
                 The Challenge
               </h2>
@@ -228,7 +228,7 @@ export default function About(): JSX.Element {
               viewport={{ once: true, amount: 0.5 }}
               transition={{ duration: 0.6, delay: 0.2 }} // Delayed slightly
             >
-              <div className="absolute right-0 top-6 h-4 w-4 rounded-full bg-accentGold ring-8 ring-gray-50/50 hidden lg:block transform translate-x-1/2"></div>
+              <div className="absolute right-0 top-6 h-4 w-4 rounded-full bg-accent-gold ring-8 ring-gray-50/50 hidden lg:block transform translate-x-1/2"></div>
               <h2 className="text-sm font-semibold uppercase tracking-widest text-green-600 mb-2">
                 The Solution
               </h2>
@@ -279,7 +279,7 @@ export default function About(): JSX.Element {
                   variants={listItemVariants}
                 >
                   <div
-                    className={`p-3 inline-block rounded-full bg-accentGold/20 mb-4`}
+                    className={`p-3 inline-block rounded-full bg-accent-gold/20 mb-4`}
                   >
                     <Icon className={`w-6 h-6 ${item.color}`} />
                   </div>
@@ -301,13 +301,13 @@ export default function About(): JSX.Element {
       {/* 4. MISSION & VISION (Framed and Connected) */}
       <section className="max-w-6xl mx-auto px-6 py-16 md:py-24 relative">
         {/* Timeline Dot 3: Mission/Future */}
-        <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 top-2 h-4 w-4 rounded-full bg-accentGold ring-8 ring-white/50 hidden lg:block"></div>
+        <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 top-2 h-4 w-4 rounded-full bg-accent-gold ring-8 ring-white/50 hidden lg:block"></div>
 
         {/* Applying individual animations to the mission/vision blocks */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-10">
           {/* Mission Block */}
           <motion.div
-            className="bg-white p-8 rounded-xl shadow-2xl border-l-8 border-accentGold transition hover:shadow-3xl"
+            className="bg-white p-8 rounded-xl shadow-2xl border-l-8 border-accent-gold transition hover:shadow-3xl"
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.6 }}
@@ -315,7 +315,7 @@ export default function About(): JSX.Element {
           >
             <h2 className="text-3xl font-bold text-primary mb-3 flex items-center">
               Our Mission{" "}
-              <CornerDownRight className="w-5 h-5 ml-2 text-accentGold" />
+              <CornerDownRight className="w-5 h-5 ml-2 text-accent-gold" />
             </h2>
             <p className="text-lg text-gray-700">
               To empower organizations and governments with evidence-driven

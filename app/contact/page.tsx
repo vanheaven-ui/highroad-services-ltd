@@ -88,11 +88,11 @@ const ContactDetail = ({
     variants={detailItemVariants}
     href={href}
     target={target}
-    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accentGold/50 hover:border-accentGold"
+    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent-gold/50 hover:border-accent-gold"
   >
     <Icon className="w-5 h-5 mr-4 mt-1 text-primary flex-shrink-0" />
     <div>
-      <span className="text-sm font-semibold uppercase tracking-wider text-accentGold block">
+      <span className="text-sm font-semibold uppercase tracking-wider text-accent-gold block">
         {label}
       </span>
       <span className="text-base text-gray-800 font-body break-words">
@@ -130,7 +130,7 @@ const FormInput = ({
       onChange={onChange}
       required={required}
       placeholder={placeholder}
-      className="mt-1 w-full border border-gray-300 rounded-lg p-3 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accentGold/50 transition"
+      className="mt-1 w-full border border-gray-300 rounded-lg p-3 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accent-gold/50 transition"
     />
   </div>
 );
@@ -207,7 +207,7 @@ export default function ContactPage(): JSX.Element {
               animate="animate"
               variants={detailListVariants} // 💡 CONTAINER FOR STAGGERING
             >
-              <h2 className="text-2xl font-heading font-bold text-primary mb-6 border-l-4 border-accentGold pl-3">
+              <h2 className="text-2xl font-heading font-bold text-primary mb-6 border-l-4 border-accent-gold pl-3">
                 Connect Directly
               </h2>
               <div className="space-y-4">
@@ -245,7 +245,7 @@ export default function ContactPage(): JSX.Element {
               </h3>
 
               {/* Unique Callout from old Hero */}
-              <div className="mb-4 flex items-center text-primary font-semibold text-lg p-3 bg-accentGold/30 rounded-lg">
+              <div className="mb-4 flex items-center text-primary font-semibold text-lg p-3 bg-accent-gold/30 rounded-lg">
                 <Clock className="w-5 h-5 mr-3 text-primary" />
                 Response Guaranteed within **12 Hours.**
               </div>
@@ -261,7 +261,7 @@ export default function ContactPage(): JSX.Element {
                     key={index}
                     className="flex items-center text-gray-700 text-base font-body"
                   >
-                    <ChevronRight className="w-4 h-4 mr-2 text-accentGold flex-shrink-0" />
+                    <ChevronRight className="w-4 h-4 mr-2 text-accent-gold flex-shrink-0" />
                     <span className="font-bold mr-1">{index + 1}.</span> {step}
                   </li>
                 ))}
@@ -272,13 +272,13 @@ export default function ContactPage(): JSX.Element {
           {/* MAIN FORM AREA (3/5): Highest Priority Element */}
           {/* 💡 APPLY FORM MOTION */}
           <motion.div
-            className="lg:col-span-3 bg-white p-8 md:p-12 rounded-xl shadow-3xl border-t-4 border-accentGold"
+            className="lg:col-span-3 bg-white p-8 md:p-12 rounded-xl shadow-3xl border-t-4 border-accent-gold"
             initial="initial"
             animate="animate"
             variants={formVariants} // Slides in from the right
           >
             <h2 className="text-3xl font-heading font-bold text-primary mb-8 flex items-center">
-              <Send className="w-7 h-7 mr-3 text-accentGold" /> Start the
+              <Send className="w-7 h-7 mr-3 text-accent-gold" /> Start the
               Discussion
             </h2>
             <form onSubmit={handleSubmit} className="space-y-6">
@@ -325,7 +325,7 @@ export default function ContactPage(): JSX.Element {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-2 w-full border border-gray-300 rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accentGold/50 transition resize-y"
+                  className="mt-2 w-full border border-gray-300 rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accent-gold/50 transition resize-y"
                 ></textarea>
               </div>
 

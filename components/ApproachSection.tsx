@@ -37,10 +37,10 @@ export default function ApproachSection(): JSX.Element {
         {approachPillars.map((pillar) => (
           <div
             key={pillar.title}
-            className="p-8 bg-white rounded-xl border-t-4 border-accentGold shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
+            className="p-8 bg-white rounded-xl border-t-4 border-accent-gold shadow-lg hover:shadow-xl transition duration-300 transform hover:-translate-y-1"
           >
             {/* The icon is now a component from the pillar object */}
-            <pillar.icon className="h-10 w-10 text-accentGold mb-4" /> 
+            <pillar.icon className="h-10 w-10 text-accent-gold mb-4" /> 
             <h3 className="text-2xl font-semibold text-primary mb-3">
               {pillar.title}
             </h3>

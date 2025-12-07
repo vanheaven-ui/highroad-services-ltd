@@ -27,7 +27,7 @@ const FormInput = ({
       value={value}
       onChange={onChange}
       placeholder={placeholder}
-      className="mt-2 w-full border border-gray-300 rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accentGold/50 transition"
+      className="mt-2 w-full border border-gray-300 rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accent-gold/50 transition"
     />
   </div>
 );
