@@ -168,7 +168,6 @@ export default function ApproachPage(): JSX.Element {
           </p>
         </motion.div>
       </section>
-      ---
       {/* 2. The Four-Pillar Process (Visually Structured) */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-16">
@@ -213,7 +212,6 @@ export default function ApproachPage(): JSX.Element {
           })}
         </motion.div>
       </section>
-      ---
       {/* 3. Methodological Section (The Proof of Authority) */}
       <section className="bg-gray-50 py-16 md:py-24">
         <div className="max-w-6xl mx-auto px-6">
