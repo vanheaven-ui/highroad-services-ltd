@@ -53,38 +53,38 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ isOpen, onClose, study 
 
             {/* Modal Content */}
             <div className="p-8 md:p-16">
-              <span className="inline-flex items-center text-sm font-medium uppercase tracking-widest text-accentGold mb-2">
+              <span className="inline-flex items-center text-sm font-medium uppercase tracking-widest text-accent-gold mb-2">
                 Case Study
                 <ExternalLink className="w-4 h-4 ml-2" />
               </span>
-              <h1 className="text-4xl md:text-5xl font-heading font-black mb-6 border-l-4 border-accentGold pl-4">
+              <h1 className="text-4xl md:text-5xl font-heading font-black mb-6 border-l-4 border-accent-gold pl-4">
                 {study.title}
               </h1>
 
               {/* Key Details Grid */}
               <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 text-sm font-medium text-gray-700 border-t border-b py-4">
                 <p className="flex items-center">
-                    <TrendingUp className="w-5 h-5 mr-2 text-accentGold" />
+                    <TrendingUp className="w-5 h-5 mr-2 text-accent-gold" />
                     <span className="font-bold text-lg text-primary mr-2">Impact:</span> 
                     {study.impact}
                 </p>
                 {study.client && (
                     <p className="flex items-center">
-                        <Users className="w-5 h-5 mr-2 text-accentGold" /> 
+                        <Users className="w-5 h-5 mr-2 text-accent-gold" /> 
                         <span className="font-bold text-lg text-primary mr-2">Client:</span> 
                         {study.client}
                     </p>
                 )}
                 {study.region && (
                     <p className="flex items-center">
-                        <MapPin className="w-5 h-5 mr-2 text-accentGold" /> 
+                        <MapPin className="w-5 h-5 mr-2 text-accent-gold" /> 
                         <span className="font-bold text-lg text-primary mr-2">Region:</span> 
                         {study.region}
                     </p>
                 )}
                 {study.date && (
                     <p className="flex items-center">
-                        <Calendar className="w-5 h-5 mr-2 text-accentGold" /> 
+                        <Calendar className="w-5 h-5 mr-2 text-accent-gold" /> 
                         <span className="font-bold text-lg text-primary mr-2">Date:</span> 
                         {study.date}
                     </p>
@@ -101,7 +101,7 @@ const CaseStudyModal: React.FC<CaseStudyModalProps> = ({ isOpen, onClose, study 
                 </div>
                 <div>
                     <h3 className="text-2xl font-bold text-primary mb-3">Our Approach (Summary)</h3>
-                    <p className="text-gray-700 leading-relaxed border-l-4 border-accentGold/50 pl-3">
+                    <p className="text-gray-700 leading-relaxed border-l-4 border-accent-gold/50 pl-3">
                         {study.summary}
                     </p>
                 </div>

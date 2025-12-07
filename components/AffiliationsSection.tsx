@@ -1,77 +1,77 @@
 import React, { JSX } from "react";
+import { BarChart3, Users, GraduationCap } from "lucide-react";
 
 export default function AffiliationsSection(): JSX.Element {
+  // Updated data structure to use professional Lucide Icons and clearer color names
   const services = [
     {
-      title: "Research",
+      title: "Research & Analysis",
       description:
         "In-depth analysis to uncover actionable insights for informed decision-making.",
-      // Using a letter/initial for the icon placeholder for cleaner rendering
-      icon: "R",
-      color: "text-blue-600 bg-blue-100",
+      icon: BarChart3, // Research/Data icon
+      // Color used for background and text
+      color: "text-blue-700 bg-blue-50 border-blue-200",
     },
     {
-      title: "Consultancy",
+      title: "Consultancy & Strategy",
       description:
         "Tailored strategies and guidance to navigate complex challenges with confidence.",
-      icon: "C",
-      color: "text-green-600 bg-green-100",
+      icon: Users, // People/Guidance icon
+      color: "text-primary bg-primary/5 border-primary/20",
     },
     {
-      title: "Training",
+      title: "Training & Capacity Building",
       description:
         "Custom programs in AI, data analytics, and leadership to build skills and empower your team for lasting success.",
-      icon: "T",
-      color: "text-accent-gold bg-yellow-100",
+      icon: GraduationCap, // Learning/Education icon
+      color: "text-accent-gold-darker bg-yellow-50 border-yellow-200",
     },
   ];
 
   return (
-    // Component name is now AffiliationsSection
-    <section className="py-20 md:py-32 bg-gray-50">
+    // Section remains clean (no background color)
+    <section className="py-20 md:py-32">
       <div className="max-w-6xl mx-auto px-6">
-        {/* Updated headings to reflect "Our Expertise" and "What We Offer" */}
-        <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-widest mb-2 text-center md:text-left">
-          What We Offer
+        {/* 💡 REVISED: Focused on 'Value' and 'Pillars' */}
+        <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-widest mb-2 text-center">
+          What We Do
         </h3>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-16 text-center md:text-left">
-          Our Expertise
+        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-12 text-center">
+          Our Core Pillars of Value
         </h2>
 
-        {/* Asymmetrical/Stacked layout */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <hr className="w-1/3 mx-auto border-t-2 border-accent-gold mb-16" />
+
+        {/* Service-Tiled Flow Layout (content unchanged) */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <div
               key={index}
               className={`
-                bg-white p-6 md:p-8 rounded-xl shadow-lg 
-                hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02]
-                border border-gray-100
-                ${
-                  // Staggered layout logic
-                  index === 1 ? "md:col-start-2 lg:col-start-auto" : ""
-                }
+                bg-white p-6 md:p-8 rounded-xl shadow-xl border-t-8 border-accent-gold/50
+                hover:shadow-2xl transition-all duration-500 transform hover:scale-[1.01]
+                hover:border-accent-gold
               `}
             >
-              <div className="flex items-start">
-                {/* Icon styling: Themed circle with bold initial/placeholder */}
+              <div className="flex flex-col items-center text-center">
+                {/* Icon styling: Themed square with shadow and bold color */}
                 <div
                   className={`
-                    flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center 
-                    text-xl font-bold mr-4 shadow-md 
+                    flex-shrink-0 w-16 h-16 rounded-lg flex items-center justify-center 
+                    text-3xl font-bold mb-6 shadow-lg transition-colors
                     ${service.color}
                   `}
                 >
-                  {service.icon}
+                  {/* Render the imported Lucide Icon component */}
+                  <service.icon className="w-8 h-8" />
                 </div>
-                <div>
-                  <h4 className="text-xl font-heading font-bold text-primary mb-2">
-                    {service.title}
-                  </h4>
-                  <p className="text-base text-gray-600 leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+
+                <h4 className="text-2xl font-heading font-bold text-primary mb-3">
+                  {service.title}
+                </h4>
+                <p className="text-lg text-gray-700 leading-relaxed">
+                  {service.description}
+                </p>
               </div>
             </div>
           ))}
