@@ -10,7 +10,7 @@ import React, { JSX } from "react";
 import { motion, Variants } from "framer-motion";
 
 /* ----------------------------------------------
-   TEAM MEMBERS DATA
+ * TEAM MEMBERS DATA
 ---------------------------------------------- */
 const teamMembersData: FullExpertProfile[] = [
   {
@@ -23,9 +23,10 @@ const teamMembersData: FullExpertProfile[] = [
       "Dr. Tumwine is an economist with extensive experience in teaching, research and consultancy. His expertise spans impact evaluation, feasibility studies, cost benefit analysis, econometric modelling, Computable General Equilibrium (CGE) and Dynamic Stochastic General Equilibrium (DSGE) modelling, Social Accounting Matrix (SAM) and National Transfer Accounts (NTA).",
     email: "geoffrey.tumwine@highroadservicesltd.com",
     linkedinUrl: "#",
-    imageSrc: "",
+    // NOTE: Image path needs to be added by the client
+    imageSrc: "/images/norman.png",
     fullBio:
-      "He has undertaken extensive training and applied analytical methods in research, consultancy assignments, policy advisory work and capacity building. His work further includes macroeconomics, public investment appraisal, baseline surveys, monitoring and evaluation, environmental and social impact assessment, human capacity development, and policy analysis. He has demonstrated strong ability in conducting tracer studies, financial and economic analysis of projects, and feasibility assessments, as well as training stakeholders in the application of artificial intelligence, data analytics and econometrics.\n\nDr. Tumwine has participated in and led research and consultancy projects in collaboration with several national and international organisations, including the Uganda Bureau of Statistics (UBOS), United States Agency for International Development (USAID), ActionAid, Uganda Development Corporation (UDC), National Planning Authority (NPA), Kyambogo University, Uganda Business and Technical Examinations Board (UBTEB), African Economic Research Consortium (AERC), TrustAfrica, and the International Development Research Centre (IDRC), among others.\n\nHis areas of interest span education, agriculture, energy and climate change, macroeconomic modelling, impact evaluation, policy analysis, and the use of advanced analytical tools to support evidence-based decision-making.",
+      "He has undertaken extensive training and applied analytical methods in research, consultancy assignments, policy advisory work and capacity building. His work further includes macroeconomics, public investment appraisal, baseline surveys, monitoring and evaluation, environmental and social impact assessment, human capacity development, and policy analysis.\n\nHe has demonstrated strong ability in conducting tracer studies, financial and economic analysis of projects, and feasibility assessments, as well as training stakeholders in the application of artificial intelligence, data analytics and econometrics.\n\nDr. Tumwine has participated in and led research and consultancy projects in collaboration with several national and international organisations, including the Uganda Bureau of Statistics (UBOS), United States Agency for International Development (USAID), ActionAid, Uganda Development Corporation (UDC), National Planning Authority (NPA), Kyambogo University, Uganda Business and Technical Examinations Board (UBTEB), African Economic Research Consortium (AERC), Trust Africa, and the International Development Research Centre (IDRC), among others.\n\nHis areas of interest span education, agriculture, energy and climate change, macroeconomic modelling, impact evaluation, policy analysis, and the use of advanced analytical tools to support evidence-based decision-making.",
     keyProjects: [
       "Led research and consultancy projects with Uganda Bureau of Statistics (UBOS) and USAID on baseline surveys and impact evaluations.",
       "Collaborated with National Planning Authority (NPA) and African Economic Research Consortium (AERC) on public investment appraisal and policy analysis.",
@@ -40,16 +41,16 @@ const teamMembersData: FullExpertProfile[] = [
     qualifications:
       "PhD in Economics, University of South Africa; MA in Economics, University of Dar es Salaam; BA in Economics, Makerere University",
     bioSummary:
-      "Dr. Enock Nyorekwa Twinoburyo is a distinguished Economist with extensive regional experience in public policy analysis, macroeconomic research, impact evaluations, public financial management, public investment appraisal, and development advisory services. With over 17 years of professional engagement across East and Southern Africa, and more than 15 years leading complex research and project management assignments, he combines empirical rigor, policy insight, and practical development expertise.",
+      "Dr. Enock Nyorekwa Twinoburyo is a distinguished Economist with extensive regional experience in public policy analysis, macroeconomic research, impact evaluations, public financial management, public investment appraisal, and development advisory services. With over 17 years of professional engagement across East and Southern Africa, he combines empirical rigor, policy insight, and practical development expertise.",
     email: "enock.nyorekwa@highroadservicesltd.com",
     linkedinUrl: "#",
-    imageSrc: "/images/enok.png",
+    imageSrc: "/images/enok.png", // Retained original imageSrc
     fullBio:
-      "His work spans macroeconomic stability, fiscal policy, public debt management, poverty reduction, and real-time monitoring of service delivery systems. Dr. Nyorekwa's technical strengths include advanced econometric modeling, panel data analysis, mixed-methods research, cost–benefit and cost-effectiveness analysis, and financial and economic appraisal of public investments. He has specialized training in PEFA, Public Financial Management, Governance of Extractives, Aid Effectiveness, and Public Investment Appraisal.\n\nHe has designed and led major impact evaluations and socio-economic studies across Uganda, Kenya, Rwanda, Zambia, and Malawi, applying robust methods such as propensity score matching, difference-in-differences, and quasi-experimental designs. His evaluation portfolio includes DRDIP, NUSAF3, SVD socio-economic assessments, AIRTEA regional surveys, and UNICEF/OPM Cash+ evaluations. He also supported macro-fiscal analysis for development partners, contributed to the Uganda Economic Update (2022), developed public debt toolkits, and served in advisory roles with the EU, Norway, and Denmark, including technical contributions to the Uganda PEFA 2022 assessment.\n\nDr. Twinoburyo provides advisory expertise on public investment management, PFM reforms, MTEF assessments, expenditure reviews, and fiduciary risk analysis. He has advised under FINMAP and JBSF, developed SMART indicators, strengthened frontline service delivery monitoring, and led SDG financing diagnostics at the SDG Center for Africa, including authorship of the Africa SDG Index and Dashboards. His professional strength lies in translating complex evidence into actionable insights, working with governments and development partners, and leading multi-country, multi-disciplinary teams to deliver high-quality outputs.",
+      "His work spans macroeconomic stability, fiscal policy, public debt management, poverty reduction, and real-time monitoring of service delivery systems. Dr. Twinoburyo's technical strengths include advanced econometric modeling, panel data analysis, mixed-methods research, cost–benefit and cost-effectiveness analysis, and financial and economic appraisal of public investments. He has specialized training in PEFA, Public Financial Management, Governance of Extractives, Aid Effectiveness, and Public Investment Appraisal.\n\nHe has designed and led major impact evaluations and socio-economic studies across Uganda, Kenya, Rwanda, Zambia, and Malawi, applying robust methods such as propensity score matching, difference-in-differences, and quasi-experimental designs. His evaluation portfolio includes DRDIP, NUSAF3, SVD socio-economic assessments, AIRTEA regional surveys, and UNICEF/OPM Cash+ evaluations. He also supported macro-fiscal analysis for development partners, contributed to the Uganda Economic Update (2022), developed public debt toolkits, and served in advisory roles with the EU, Norway, and Denmark, including technical contributions to the Uganda PEFA 2022 assessment.\n\nDr. Twinoburyo provides advisory expertise on public investment management, PFM reforms, MTEF assessments, expenditure reviews, and fiduciary risk analysis. His professional strength lies in translating complex evidence into actionable insights, working with governments and development partners, and leading multi-country, multi-disciplinary teams to deliver high-quality outputs.",
     keyProjects: [
-      "Designed and led impact evaluations for DRDIP, NUSAF3, and SVD socio-economic assessments across Uganda, Kenya, Rwanda, Zambia, and Malawi.",
-      "Contributed to Uganda Economic Update (2022) and Uganda PEFA 2022 assessment, including advisory roles with EU, Norway, and Denmark.",
-      "Led SDG financing diagnostics at SDG Center for Africa, authoring Africa SDG Index and Dashboards, and advised on PFM reforms under FINMAP and JBSF.",
+      "Designed and led major impact evaluations and socio-economic studies across Uganda, Kenya, Rwanda, Zambia, and Malawi.",
+      "Contributed to the Uganda Economic Update (2022) and the Uganda PEFA 2022 assessment, serving in advisory roles with the EU, Norway, and Denmark.",
+      "Led SDG financing diagnostics at the SDG Center for Africa, including authorship of the Africa SDG Index and Dashboards.",
     ],
   },
   {
@@ -59,12 +60,12 @@ const teamMembersData: FullExpertProfile[] = [
     qualifications:
       "PhD in Applied Economics, University of Agder; MSc in Quantitative Economics & BA in Economics with Education, Makerere University",
     bioSummary:
-      "Dr. Richard Sebaggala is an applied economist, researcher and academic with extensive experience in policy-oriented research, impact evaluation and quantitative economic analysis. He lectures at Uganda Christian University and Makerere University Business School. His expertise spans applied econometrics, development, health and agricultural economics, trade policy and institutional analysis, using experimental and quasi-experimental designs, survey analytics and large-scale datasets to inform policy and strengthen evidence-based decision-making.",
+      "Dr. Richard Sebaggala is an applied economist, researcher and academic with extensive experience in policy-oriented research, impact evaluation and quantitative economic analysis. He lectures at Uganda Christian University and Makerere University Business School.",
     email: "richard.sebaggala@highroadservicesltd.com",
     linkedinUrl: "#",
-    imageSrc: "/images/richard.png",
+    imageSrc: "/images/richard.png", // Retained original imageSrc
     fullBio:
-      "He has led research and consultancy assignments for organisations including TradeMark East Africa, UNDP, UNCTAD, USAID, CARE International, ICRW, AERC, IDRC, DFID and several government ministries. His contributions cover baseline studies, midline and endline evaluations, strategy development, policy impact assessments and socio-economic diagnostics across trade, health, gender, social protection, agriculture and migration.\n\nDr. Sebaggala has also held leadership roles, including Head of Department (Economics and Statistics) and Head of the Oil and Gas Leadership Institute at Uganda Christian University. His publications include peer-reviewed journal articles, book chapters and policy papers, and his current interests focus on applying artificial intelligence and advanced analytics in research, policy analysis and higher education capacity building.\n\nHis areas of interest include development policy analysis, governance and corruption, health and agricultural economics, trade and industrial policy, impact evaluation and the use of quantitative tools to support evidence-based decision-making.",
+      "His expertise spans applied econometrics, development, health and agricultural economics, trade policy and institutional analysis, using experimental and quasi-experimental designs, survey analytics and large-scale datasets to inform policy and strengthen evidence-based decision-making.\n\nHe has led research and consultancy assignments for organisations including TradeMark East Africa, UNDP, UNCTAD, USAID, CARE International, ICRW, AERC, IDRC, DFID and several government ministries. His contributions cover baseline studies, midline and endline evaluations, strategy development, policy impact assessments and socio-economic diagnostics across trade, health, gender, social protection, agriculture and migration.\n\nDr. Sebaggala has also held leadership roles, including Head of Department (Economics and Statistics) and Head of the Oil and Gas Leadership Institute at Uganda Christian University. His publications include peer-reviewed journal articles, book chapters and policy papers.\n\nHis areas of interest include development policy analysis, governance and corruption, health and agricultural economics, trade and industrial policy, impact evaluation and the use of quantitative tools to support evidence-based decision-making.",
     keyProjects: [
       "Led baseline, midline, and endline evaluations for TradeMark East Africa, UNDP, and USAID on trade, agriculture, and health.",
       "Conducted policy impact assessments and strategy development for UNCTAD, CARE International, ICRW, and AERC on gender, social protection, and migration.",
@@ -78,22 +79,23 @@ const teamMembersData: FullExpertProfile[] = [
     qualifications:
       "PhD in Economics, University of Dar es Salaam; MA & BA in Economics, Makerere University",
     bioSummary:
-      "Dr. Ambrose Rwaheru Aheise is a Development Economist with over 15 years of experience in economic analysis, applied research, project management and socio-economic impact evaluation across East and Southern Africa. His work spans data analysis, monitoring and evaluation, agricultural economics, climate resilience and results-based management.",
+      "Dr. Ambrose Rwaheru Aheisibwe is a Development Economist with over 15 years of experience in economic analysis, applied research, project management and socio-economic impact evaluation across East and Southern Africa. His work spans data analysis, monitoring and evaluation, agricultural economics, climate resilience and results-based management.",
     email: "ambrose.aheise@highroadservicesltd.com",
     linkedinUrl: "#",
-    imageSrc: "",
+    // NOTE: Image path needs to be added by the client
+    imageSrc: "/images/ambrose.png",
     fullBio:
       "He has served as Lecturer and Consultant at the Uganda Management Institute, teaching courses in data analytics, project management, monitoring and evaluation and impact evaluation. He has supervised postgraduate and doctoral research, published widely and mentored early-career researchers. He has held senior leadership roles at the SDG Center for Africa, including Programmes Director, Regional Director and SDGs Advisor, where he coordinated multi-country initiatives on food systems, agricultural innovation, climate adaptation and SDG monitoring and reporting.\n\nDr. Aheisibwe has led and contributed to major evaluations and impact assessments. These include the AIRTEA agricultural technology transfer evaluation in Kenya, Rwanda and Uganda; the SNV Smallholder Dairy Programme in Kigezi; and the ATAAS Cooperative Strengthening Programme assessing governance, sustainability and technology adoption. His consultancy experience further includes IDRC-funded GroW Project evaluations in Rwanda, cash transfer and socio-economic assessments with UNICEF, evaluations under DRDIP and NUSAF3, SDG coordination support in Lesotho, WASH systems analysis and validation of APRM Baseline Studies.\n\nHis areas of expertise include applied econometric modelling, agricultural value chains, climate resilience, social protection analytics, SDG monitoring and capacity strengthening. Dr. Aheisibwe is proficient in STATA, SPSS, R, Python, EViews, Power BI and Tableau, which he uses to transform data into insights that inform policy formulation, strategic planning and sustainable development.",
     keyProjects: [
-      "Led AIRTEA agricultural technology transfer evaluation in Kenya, Rwanda, and Uganda; SNV Smallholder Dairy Programme in Kigezi.",
-      "Contributed to ATAAS Cooperative Strengthening Programme, IDRC-funded GroW Project evaluations in Rwanda, and UNICEF cash transfer assessments.",
+      "Led AIRTEA agricultural technology transfer evaluation in Kenya, Rwanda, and Uganda; and the SNV Smallholder Dairy Programme in Kigezi.",
+      "Contributed to the ATAAS Cooperative Strengthening Programme, IDRC-funded GroW Project evaluations in Rwanda, and UNICEF cash transfer assessments.",
       "Evaluations under DRDIP and NUSAF3, SDG coordination in Lesotho, WASH systems analysis, and APRM Baseline Studies validation.",
     ],
   },
 ];
 
 /* ----------------------------------------------
-   FRAMER MOTION VARIANTS
+ * FRAMER MOTION VARIANTS (NO CHANGE)
 ---------------------------------------------- */
 const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -113,7 +115,7 @@ const slideUpItemVariants: Variants = {
 };
 
 /* ----------------------------------------------
-   MAIN PAGE CONTENT
+ * MAIN PAGE CONTENT (NO CHANGE)
 ---------------------------------------------- */
 function ExpertsPageContent(): JSX.Element {
   return (
@@ -122,9 +124,7 @@ function ExpertsPageContent(): JSX.Element {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.5 }}
     >
-      {/* ---------------------------------------------- */}
       {/* 1. Narrative Header */}
-      {/* ---------------------------------------------- */}
       <section className="bg-white pt-16 pb-16 md:pt-20 md:pb-20 text-center">
         <motion.div
           className="max-w-4xl mx-auto px-6"
@@ -137,7 +137,7 @@ function ExpertsPageContent(): JSX.Element {
           </h1>
 
           <p className="mt-6 text-xl max-w-3xl mx-auto font-body text-gray-700">
-            HighRoad is led by specialist consultants whose{" "}
+            HighRoad Services Ltd is led by specialist consultants whose{" "}
             <strong>deep sector experience</strong> and advanced training
             directly translate into actionable, high-impact strategy and policy
             recommendations.
@@ -147,9 +147,7 @@ function ExpertsPageContent(): JSX.Element {
         </motion.div>
       </section>
 
-      {/* ---------------------------------------------- */}
       {/* 2. Core Leadership Team */}
-      {/* ---------------------------------------------- */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-12">
           <h2 className="text-sm font-subheading font-semibold uppercase tracking-widest text-accent-gold">
@@ -194,9 +192,7 @@ function ExpertsPageContent(): JSX.Element {
         </motion.div>
       </section>
 
-      {/* ---------------------------------------------- */}
       {/* 3. Strategic Advantage */}
-      {/* ---------------------------------------------- */}
       <section className="bg-gray-100 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -274,7 +270,7 @@ function ExpertsPageContent(): JSX.Element {
 }
 
 /* ----------------------------------------------
-   EXPORT WITH PROVIDER WRAPPER
+ * EXPORT WITH PROVIDER WRAPPER (NO CHANGE)
 ---------------------------------------------- */
 export default function ExpertsPage() {
   return (

@@ -120,7 +120,8 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
                     <Link
                       href={expert.linkedinUrl}
                       target="_blank"
-                      className="flex items-center text-blue-600 hover:text-blue-800 transition font-subheading"
+                      // UPDATED: LinkedIn now uses golden hover
+                      className="flex items-center text-blue-600 hover:text-accent-gold transition font-subheading"
                     >
                       <LinkIcon className="w-5 h-5 mr-3 flex-shrink-0" />
                       View LinkedIn Profile
@@ -128,10 +129,13 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
                   )}
                   <a
                     href={`mailto:${expert.email}`}
+                    // UPDATED: Email uses primary color with golden hover
                     className="flex items-center text-primary hover:text-accent-gold transition font-subheading"
                   >
                     <Mail className="w-5 h-5 mr-3 flex-shrink-0" />
-                    <span className="break-all min-w-0">{expert.email}</span>
+                    <span className="break-all min-w-0 font-medium">
+                      {expert.email}
+                    </span>
                   </a>
                 </div>
               </div>
