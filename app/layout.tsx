@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
 
-// Import Local Font for Merriweather (Self-Hosted) - REMOVED!
 // Import Google Font for Merriweather (REMOTE)
-import { Merriweather } from "next/font/google"; // <-- Changed import
+import { Merriweather } from "next/font/google";
 // Import Google Font for Inter (Still Remote)
 import { Inter } from "next/font/google";
+// NEW: Import the additional Google Fonts
+import { Playfair_Display } from "next/font/google"; // For display/hero elements
+import { Raleway } from "next/font/google"; // For subheadings/nav
 
 import "./globals.css";
 import Footer from "@/components/Footer";
@@ -35,6 +37,22 @@ const inter = Inter({
   variable: "--font-body",
   weight: ["300", "400", "600", "700"],
   subsets: ["latin"],
+});
+
+// NEW: Playfair Display Config
+const playfair = Playfair_Display({
+  variable: "--font-display",
+  weight: ["400", "700", "900"],
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// NEW: Raleway Config
+const raleway = Raleway({
+  variable: "--font-subheading",
+  weight: ["300", "400", "700"],
+  subsets: ["latin"],
+  display: "swap",
 });
 
 // -----------------------------
@@ -112,7 +130,7 @@ export const metadata: Metadata = {
 };
 
 // -----------------------------
-// Root Layout Component (Unchanged)
+// Root Layout Component (Updated with GSC Meta Tag)
 // -----------------------------
 export default function RootLayout({
   children,
@@ -121,9 +139,15 @@ export default function RootLayout({
 }>): JSX.Element {
   return (
     <html lang="en">
+      <head>
+        <meta
+          name="google-site-verification"
+          content="vq7I3LuzNhr-ZvsIahUnxWSeUZ1pFFmDCR5oIwr42YI"
+        />
+      </head>
       <body
         // The class names here remain correct
-        className={`${merriweather.variable} ${inter.variable} font-body antialiased`}
+        className={`${merriweather.variable} ${inter.variable} ${playfair.variable} ${raleway.variable} font-body antialiased`}
       >
         <ThemeProvider>
           <Navbar />
