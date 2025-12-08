@@ -101,7 +101,7 @@ export const metadata: Metadata = {
 
   // Canonical URL
   alternates: {
-    canonical: "https://www.highroad-services.vercel.app",
+    canonical: "https://highroad-services-ltd.vercel.app",
   },
 
   // Authors
@@ -127,6 +127,7 @@ export const metadata: Metadata = {
       },
     ],
   },
+  metadataBase: new URL("https://highroad-services-ltd.vercel.app"),
 };
 
 // -----------------------------

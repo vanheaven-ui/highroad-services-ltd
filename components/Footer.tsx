@@ -8,7 +8,7 @@ interface FooterLinkProps {
   children: React.ReactNode;
 }
 
-// Sliding underline link
+// Sliding underline link (used for internal navigation)
 const SlidingUnderlineLink: React.FC<FooterLinkProps> = ({
   href,
   children,
@@ -22,7 +22,7 @@ const SlidingUnderlineLink: React.FC<FooterLinkProps> = ({
   </Link>
 );
 
-// Simple hover link (no underline)
+// Simple hover link (no underline, used for external contact links)
 const SimpleHoverLink: React.FC<FooterLinkProps> = ({ href, children }) => (
   <a
     href={href}
@@ -39,13 +39,14 @@ export default function Footer() {
     <footer className="bg-primary text-white mt-20">
       <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/20 pb-12">
-          {/* Column 1 */}
+          {/* Column 1: Logo and Mission */}
           <div>
             <div className="relative flex flex-col items-start mb-4">
-              <span className="text-3xl font-heading font-black relative inline-block text-white">
+              <span className="text-3xl font-heading font-black text-white">
                 HighRoad
               </span>
 
+              {/* Decorative golden path/road SVG */}
               <svg
                 className="absolute -top-0 left-16 w-20 h-10 pointer-events-none"
                 viewBox="0 0 100 50"
@@ -57,6 +58,7 @@ export default function Footer() {
                   stroke="#CFA83B"
                   strokeWidth="3.5"
                   strokeLinecap="round"
+                  strokeLinejoin="round"
                   opacity="0.95"
                   style={{
                     filter: "drop-shadow(0 1px 3px rgba(207, 168, 59, 0.5))",
@@ -70,9 +72,9 @@ export default function Footer() {
             </div>
 
             <p className="text-sm opacity-80 mb-4 font-body">
-              <span className="font-bold">Strategic consulting</span>,{" "}
-              <span className="font-bold">impact research</span>, and{" "}
-              <span className="font-bold">professional training</span> for
+              <span className="font-bold">Strategic consulting</span>,
+              <span className="font-bold"> impact research</span>, and
+              <span className="font-bold"> professional training</span> for
               development and economic growth.
             </p>
 
@@ -81,7 +83,7 @@ export default function Footer() {
             </p>
           </div>
 
-          {/* Column 2 */}
+          {/* Column 2: Quick Links (Updated with Legal Links) */}
           <div>
             <h4 className="font-subheading font-semibold text-lg mb-4">
               Quick Links
@@ -112,10 +114,20 @@ export default function Footer() {
                   Request a Proposal
                 </SlidingUnderlineLink>
               </li>
+              <li>
+                <SlidingUnderlineLink href="/legal#privacy">
+                  Privacy Policy
+                </SlidingUnderlineLink>
+              </li>
+              <li>
+                <SlidingUnderlineLink href="/legal#terms">
+                  Terms & Conditions
+                </SlidingUnderlineLink>
+              </li>
             </ul>
           </div>
 
-          {/* Column 3 */}
+          {/* Column 3: Contact */}
           <div>
             <h4 className="font-subheading font-semibold text-lg mb-4">
               Contact
@@ -124,8 +136,10 @@ export default function Footer() {
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1 text-accent-gold flex-shrink-0" />
                 <span className="font-body">
-                  P.O Box 21446, <br />
-                  Plot 4 Ttula, Kawempe, <br />
+                  P.O Box 21446,
+                  <br />
+                  Plot 4 Ttula, Kawempe,
+                  <br />
                   Kampala, Uganda
                 </span>
               </li>
@@ -146,7 +160,7 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Column 4 */}
+          {/* Column 4: Research & Insights (Modified for subscription link) */}
           <div>
             <h4 className="font-subheading font-semibold text-lg mb-4">
               Research & Insights
@@ -155,10 +169,14 @@ export default function Footer() {
               Stay updated with our latest policy analysis and publications.
             </p>
 
-            <button className="w-full py-2 bg-accent-gold text-primary font-subheading font-bold rounded-md hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-xl relative group overflow-hidden">
+            {/* 💡 MODIFICATION: Replaced <button> with <Link> for navigation */}
+            <Link
+              href="/contact#subscribe" // Directs to the contact page, possibly anchoring to a subscription section
+              className="w-full py-2 bg-accent-gold text-primary font-subheading font-bold rounded-md hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-xl relative group overflow-hidden inline-flex justify-center"
+            >
               Subscribe to Research
               <span className="absolute top-0 left-0 w-full h-[3px] bg-primary transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
-            </button>
+            </Link>
           </div>
         </div>
 
