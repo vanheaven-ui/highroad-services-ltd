@@ -15,7 +15,7 @@ const SlidingUnderlineLink: React.FC<FooterLinkProps> = ({
 }) => (
   <Link
     href={href}
-    className="group relative inline-block text-white/80 hover:text-accent-gold transition duration-300 overflow-hidden"
+    className="group relative inline-block text-white/80 hover:text-accent-gold transition duration-300 overflow-hidden font-body"
   >
     {children}
     <span className="absolute bottom-0 left-0 w-full h-[1px] bg-accent-gold transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
@@ -24,7 +24,10 @@ const SlidingUnderlineLink: React.FC<FooterLinkProps> = ({
 
 // Simple hover link (no underline)
 const SimpleHoverLink: React.FC<FooterLinkProps> = ({ href, children }) => (
-  <a href={href} className="hover:text-accent-gold transition duration-300">
+  <a
+    href={href}
+    className="hover:text-accent-gold transition duration-300 font-body"
+  >
     {children}
   </a>
 );
@@ -61,26 +64,28 @@ export default function Footer() {
                 />
               </svg>
 
-              <span className="text-xs font-semibold uppercase tracking-widest mt-[-4px] ml-1 text-accent-gold nav-logo-sub">
+              <span className="text-xs font-subheading font-semibold uppercase tracking-widest mt-[-4px] ml-1 text-accent-gold nav-logo-sub">
                 Services Ltd
               </span>
             </div>
 
-            <p className="text-sm opacity-80 mb-4">
+            <p className="text-sm opacity-80 mb-4 font-body">
               <span className="font-bold">Strategic consulting</span>,{" "}
               <span className="font-bold">impact research</span>, and{" "}
               <span className="font-bold">professional training</span> for
               development and economic growth.
             </p>
 
-            <p className="text-xs font-semibold uppercase tracking-wider text-accent-gold mt-4">
+            <p className="text-xs font-subheading font-semibold uppercase tracking-wider text-accent-gold mt-4">
               Consultancy & Training Focused
             </p>
           </div>
 
           {/* Column 2 */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Quick Links</h4>
+            <h4 className="font-subheading font-semibold text-lg mb-4">
+              Quick Links
+            </h4>
             <ul className="space-y-3 text-sm">
               <li>
                 <SlidingUnderlineLink href="/about">
@@ -112,11 +117,13 @@ export default function Footer() {
 
           {/* Column 3 */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Contact</h4>
+            <h4 className="font-subheading font-semibold text-lg mb-4">
+              Contact
+            </h4>
             <ul className="space-y-3 text-sm opacity-80">
               <li className="flex items-start">
                 <MapPin className="h-5 w-5 mr-3 mt-1 text-accent-gold flex-shrink-0" />
-                <span>
+                <span className="font-body">
                   P.O Box 21446, <br />
                   Plot 4 Ttula, Kawempe, <br />
                   Kampala, Uganda
@@ -141,12 +148,14 @@ export default function Footer() {
 
           {/* Column 4 */}
           <div>
-            <h4 className="font-semibold text-lg mb-4">Research & Insights</h4>
-            <p className="text-sm opacity-80 mb-4">
+            <h4 className="font-subheading font-semibold text-lg mb-4">
+              Research & Insights
+            </h4>
+            <p className="text-sm opacity-80 mb-4 font-body">
               Stay updated with our latest policy analysis and publications.
             </p>
 
-            <button className="w-full py-2 bg-accent-gold text-primary font-bold rounded-md hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-xl relative group overflow-hidden">
+            <button className="w-full py-2 bg-accent-gold text-primary font-subheading font-bold rounded-md hover:bg-yellow-500 hover:text-white transition duration-300 transform hover:scale-[1.01] shadow-md hover:shadow-xl relative group overflow-hidden">
               Subscribe to Research
               <span className="absolute top-0 left-0 w-full h-[3px] bg-primary transform scale-x-0 transition-transform duration-300 ease-out origin-center group-hover:scale-x-100" />
             </button>
@@ -154,7 +163,7 @@ export default function Footer() {
         </div>
 
         {/* Copyright */}
-        <div className="mt-8 text-center text-xs opacity-60">
+        <div className="mt-8 text-center text-xs opacity-60 font-body">
           &copy; {currentYear} HighRoad Services Ltd. All rights reserved.
         </div>
       </div>

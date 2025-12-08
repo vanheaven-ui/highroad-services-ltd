@@ -14,57 +14,80 @@ import { motion, Variants } from "framer-motion";
 ---------------------------------------------- */
 const teamMembersData: FullExpertProfile[] = [
   {
-    name: "Dr. Norman Tumwine",
-    title: "Founder & Chief Economist",
-    focus: "Applied Econometrics & Policy Analysis",
-    qualifications: "Ph.D. Economics, Makerere University",
+    name: "Geoffrey Norman Tumwine, PhD",
+    title: "Founder & Team Leader",
+    focus: "Impact Evaluation, Feasibility Studies & Macroeconomic Modelling",
+    qualifications:
+      "PhD in Economics, University of Dar es Salaam; MA in Economics & BSc in Economics and Mathematics, Makerere University",
     bioSummary:
-      "A specialist in causal inference for development policy, Dr. Tumwine leads all quantitative research and strategic advisory services. His work has been published in several top regional journals.",
-    email: "norman-tumwine@highroad.example",
+      "Dr. Tumwine is an economist with extensive experience in teaching, research and consultancy. His expertise spans impact evaluation, feasibility studies, cost benefit analysis, econometric modelling, Computable General Equilibrium (CGE) and Dynamic Stochastic General Equilibrium (DSGE) modelling, Social Accounting Matrix (SAM) and National Transfer Accounts (NTA).",
+    email: "geoffrey.tumwine@highroadservicesltd.com",
     linkedinUrl: "#",
     imageSrc: "",
     fullBio:
-      "Dr. Tumwine holds extensive expertise in complex econometric modeling, experimental design (RCTs), and quasi-experimental methods (DiD, RDD). His career spans advisory roles for governmental ministries and international development organizations across East Africa, focusing on leveraging data for structural reform and macroeconomic stability. He is passionate about translating 'precision' analysis into clear, practical policy recommendations that drive measurable growth and poverty reduction.",
+      "He has undertaken extensive training and applied analytical methods in research, consultancy assignments, policy advisory work and capacity building. His work further includes macroeconomics, public investment appraisal, baseline surveys, monitoring and evaluation, environmental and social impact assessment, human capacity development, and policy analysis. He has demonstrated strong ability in conducting tracer studies, financial and economic analysis of projects, and feasibility assessments, as well as training stakeholders in the application of artificial intelligence, data analytics and econometrics.\n\nDr. Tumwine has participated in and led research and consultancy projects in collaboration with several national and international organisations, including the Uganda Bureau of Statistics (UBOS), United States Agency for International Development (USAID), ActionAid, Uganda Development Corporation (UDC), National Planning Authority (NPA), Kyambogo University, Uganda Business and Technical Examinations Board (UBTEB), African Economic Research Consortium (AERC), TrustAfrica, and the International Development Research Centre (IDRC), among others.\n\nHis areas of interest span education, agriculture, energy and climate change, macroeconomic modelling, impact evaluation, policy analysis, and the use of advanced analytical tools to support evidence-based decision-making.",
     keyProjects: [
-      "Led the impact evaluation of a $50M regional trade facilitation project (2020-2022).",
-      "Designed national policy simulations for climate change adaptation funding.",
-      "Authored the financial feasibility report for a major infrastructure bond issuance.",
+      "Led research and consultancy projects with Uganda Bureau of Statistics (UBOS) and USAID on baseline surveys and impact evaluations.",
+      "Collaborated with National Planning Authority (NPA) and African Economic Research Consortium (AERC) on public investment appraisal and policy analysis.",
+      "Provided capacity building and tracer studies for Kyambogo University, UBTEB, and IDRC on data analytics and econometrics.",
     ],
   },
   {
-    name: "Dr. Enock Nyorekwa",
-    title: "Senior Economist/Consultant",
-    focus: "SDG Impact Evaluation & Data Science",
-    qualifications: "Ph.D. Economics, University of Cape Town",
+    name: "Enock Twinoburyo Nyorekwa, PhD",
+    title: "Research Fellow",
+    focus:
+      "Public Policy Analysis, Impact Evaluations & Public Financial Management",
+    qualifications:
+      "PhD in Economics, University of South Africa; MA in Economics, University of Dar es Salaam; BA in Economics, Makerere University",
     bioSummary:
-      "With over 15 years experience, Dr. Nyorekwa focuses on designing robust SDG assessment for large international development projects, ensuring data quality and accountability.",
-    email: "enyorekwa@highroad.example",
+      "Dr. Enock Nyorekwa Twinoburyo is a distinguished Economist with extensive regional experience in public policy analysis, macroeconomic research, impact evaluations, public financial management, public investment appraisal, and development advisory services. With over 17 years of professional engagement across East and Southern Africa, and more than 15 years leading complex research and project management assignments, he combines empirical rigor, policy insight, and practical development expertise.",
+    email: "enock.nyorekwa@highroadservicesltd.com",
     linkedinUrl: "#",
-    imageSrc: "",
+    imageSrc: "/images/enok.png",
     fullBio:
-      "Dr. Nyorekwa is a veteran in monitoring and evaluation (M&E) for large-scale development programs funded by the World Bank and various UN agencies. His specialization lies in integrating cutting-edge data science techniques, including machine learning and spatial econometrics, to deliver high-frequency, verifiable impact assessments, particularly for projects targeting Sustainable Development Goals (SDGs) in health and education.",
+      "His work spans macroeconomic stability, fiscal policy, public debt management, poverty reduction, and real-time monitoring of service delivery systems. Dr. Nyorekwa's technical strengths include advanced econometric modeling, panel data analysis, mixed-methods research, cost–benefit and cost-effectiveness analysis, and financial and economic appraisal of public investments. He has specialized training in PEFA, Public Financial Management, Governance of Extractives, Aid Effectiveness, and Public Investment Appraisal.\n\nHe has designed and led major impact evaluations and socio-economic studies across Uganda, Kenya, Rwanda, Zambia, and Malawi, applying robust methods such as propensity score matching, difference-in-differences, and quasi-experimental designs. His evaluation portfolio includes DRDIP, NUSAF3, SVD socio-economic assessments, AIRTEA regional surveys, and UNICEF/OPM Cash+ evaluations. He also supported macro-fiscal analysis for development partners, contributed to the Uganda Economic Update (2022), developed public debt toolkits, and served in advisory roles with the EU, Norway, and Denmark, including technical contributions to the Uganda PEFA 2022 assessment.\n\nDr. Twinoburyo provides advisory expertise on public investment management, PFM reforms, MTEF assessments, expenditure reviews, and fiduciary risk analysis. He has advised under FINMAP and JBSF, developed SMART indicators, strengthened frontline service delivery monitoring, and led SDG financing diagnostics at the SDG Center for Africa, including authorship of the Africa SDG Index and Dashboards. His professional strength lies in translating complex evidence into actionable insights, working with governments and development partners, and leading multi-country, multi-disciplinary teams to deliver high-quality outputs.",
     keyProjects: [
-      "Developed the M&E framework for a multi-country sanitation program (SDG 6).",
-      "Pioneered the use of satellite imagery for rapid poverty mapping in urban centers.",
-      "Served as lead consultant on a $10M public health sector effectiveness review.",
+      "Designed and led impact evaluations for DRDIP, NUSAF3, and SVD socio-economic assessments across Uganda, Kenya, Rwanda, Zambia, and Malawi.",
+      "Contributed to Uganda Economic Update (2022) and Uganda PEFA 2022 assessment, including advisory roles with EU, Norway, and Denmark.",
+      "Led SDG financing diagnostics at SDG Center for Africa, authoring Africa SDG Index and Dashboards, and advised on PFM reforms under FINMAP and JBSF.",
     ],
   },
   {
-    name: "Dr. Richard Magaala",
-    title: "Senior Strategy Consultant",
-    focus: "Market Feasibility & Sector Strategy",
-    qualifications: "M.Sc. Finance, London School of Economics (LSE)",
+    name: "Richard Sebaggala, PhD",
+    title: "Research Fellow",
+    focus: "Applied Econometrics, Development & Trade Policy Analysis",
+    qualifications:
+      "PhD in Applied Economics, University of Agder; MSc in Quantitative Economics & BA in Economics with Education, Makerere University",
     bioSummary:
-      "Richard is the firm's expert in investment viability, guiding clients through complex market entry strategies and financial forecasting for sustainable growth.",
-    email: "richard-magaala@highroad.example",
+      "Dr. Richard Sebaggala is an applied economist, researcher and academic with extensive experience in policy-oriented research, impact evaluation and quantitative economic analysis. He lectures at Uganda Christian University and Makerere University Business School. His expertise spans applied econometrics, development, health and agricultural economics, trade policy and institutional analysis, using experimental and quasi-experimental designs, survey analytics and large-scale datasets to inform policy and strengthen evidence-based decision-making.",
+    email: "richard.sebaggala@highroadservicesltd.com",
+    linkedinUrl: "#",
+    imageSrc: "/images/richard.png",
+    fullBio:
+      "He has led research and consultancy assignments for organisations including TradeMark East Africa, UNDP, UNCTAD, USAID, CARE International, ICRW, AERC, IDRC, DFID and several government ministries. His contributions cover baseline studies, midline and endline evaluations, strategy development, policy impact assessments and socio-economic diagnostics across trade, health, gender, social protection, agriculture and migration.\n\nDr. Sebaggala has also held leadership roles, including Head of Department (Economics and Statistics) and Head of the Oil and Gas Leadership Institute at Uganda Christian University. His publications include peer-reviewed journal articles, book chapters and policy papers, and his current interests focus on applying artificial intelligence and advanced analytics in research, policy analysis and higher education capacity building.\n\nHis areas of interest include development policy analysis, governance and corruption, health and agricultural economics, trade and industrial policy, impact evaluation and the use of quantitative tools to support evidence-based decision-making.",
+    keyProjects: [
+      "Led baseline, midline, and endline evaluations for TradeMark East Africa, UNDP, and USAID on trade, agriculture, and health.",
+      "Conducted policy impact assessments and strategy development for UNCTAD, CARE International, ICRW, and AERC on gender, social protection, and migration.",
+      "Socio-economic diagnostics and institutional analysis for IDRC, DFID, and government ministries across development and trade policy.",
+    ],
+  },
+  {
+    name: "Ambrose Rwaheru Aheise, PhD",
+    title: "Research Fellow",
+    focus: "Economic Analysis, Impact Evaluation & Agricultural Economics",
+    qualifications:
+      "PhD in Economics, University of Dar es Salaam; MA & BA in Economics, Makerere University",
+    bioSummary:
+      "Dr. Ambrose Rwaheru Aheise is a Development Economist with over 15 years of experience in economic analysis, applied research, project management and socio-economic impact evaluation across East and Southern Africa. His work spans data analysis, monitoring and evaluation, agricultural economics, climate resilience and results-based management.",
+    email: "ambrose.aheise@highroadservicesltd.com",
     linkedinUrl: "#",
     imageSrc: "",
     fullBio:
-      "Richard leverages his background in corporate finance and strategy consulting to advise private equity firms, DFIs, and large corporations operating in African markets. His approach is rooted in rigorous financial modeling and comprehensive scenario analysis, ensuring investment decisions are financially sound and sustainable in complex regulatory environments. He excels at translating economic policy into tangible business opportunities.",
+      "He has served as Lecturer and Consultant at the Uganda Management Institute, teaching courses in data analytics, project management, monitoring and evaluation and impact evaluation. He has supervised postgraduate and doctoral research, published widely and mentored early-career researchers. He has held senior leadership roles at the SDG Center for Africa, including Programmes Director, Regional Director and SDGs Advisor, where he coordinated multi-country initiatives on food systems, agricultural innovation, climate adaptation and SDG monitoring and reporting.\n\nDr. Aheisibwe has led and contributed to major evaluations and impact assessments. These include the AIRTEA agricultural technology transfer evaluation in Kenya, Rwanda and Uganda; the SNV Smallholder Dairy Programme in Kigezi; and the ATAAS Cooperative Strengthening Programme assessing governance, sustainability and technology adoption. His consultancy experience further includes IDRC-funded GroW Project evaluations in Rwanda, cash transfer and socio-economic assessments with UNICEF, evaluations under DRDIP and NUSAF3, SDG coordination support in Lesotho, WASH systems analysis and validation of APRM Baseline Studies.\n\nHis areas of expertise include applied econometric modelling, agricultural value chains, climate resilience, social protection analytics, SDG monitoring and capacity strengthening. Dr. Aheisibwe is proficient in STATA, SPSS, R, Python, EViews, Power BI and Tableau, which he uses to transform data into insights that inform policy formulation, strategic planning and sustainable development.",
     keyProjects: [
-      "Completed a successful market entry strategy for a major telecoms firm in West Africa.",
-      "Provided due diligence and financial modeling for a multi-million-dollar land acquisition.",
-      "Developed a five-year growth strategy for a regional logistics company, optimizing capital expenditure.",
+      "Led AIRTEA agricultural technology transfer evaluation in Kenya, Rwanda, and Uganda; SNV Smallholder Dairy Programme in Kigezi.",
+      "Contributed to ATAAS Cooperative Strengthening Programme, IDRC-funded GroW Project evaluations in Rwanda, and UNICEF cash transfer assessments.",
+      "Evaluations under DRDIP and NUSAF3, SDG coordination in Lesotho, WASH systems analysis, and APRM Baseline Studies validation.",
     ],
   },
 ];
@@ -109,8 +132,8 @@ function ExpertsPageContent(): JSX.Element {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.1 }}
         >
-          <h1 className="text-4xl md:text-5xl font-heading font-black text-primary leading-snug">
-            Meet Our Experts: The Core of Your Strategy
+          <h1 className="text-4xl md:text-5xl font-display font-black text-primary leading-snug">
+            OUR TEAM
           </h1>
 
           <p className="mt-6 text-xl max-w-3xl mx-auto font-body text-gray-700">
@@ -129,13 +152,13 @@ function ExpertsPageContent(): JSX.Element {
       {/* ---------------------------------------------- */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-12">
-          <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+          <h2 className="text-sm font-subheading font-semibold uppercase tracking-widest text-accent-gold">
             Focused Expertise. Proven Results.
           </h2>
           <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
             Our Core Leadership
           </h3>
-          <p className="mt-2 text-gray-600">
+          <p className="mt-2 text-gray-600 font-body">
             Click any profile to view full expertise, track record, and key
             projects.
           </p>
@@ -164,7 +187,7 @@ function ExpertsPageContent(): JSX.Element {
         >
           <Link
             href="/careers"
-            className="px-8 py-3 bg-accentGold text-primary font-bold rounded-lg shadow-md hover:bg-yellow-500 transition"
+            className="px-8 py-3 bg-accent-gold text-primary font-subheading font-bold rounded-lg shadow-md hover:bg-yellow-500 transition"
           >
             Explore Career Opportunities →
           </Link>
@@ -177,13 +200,13 @@ function ExpertsPageContent(): JSX.Element {
       <section className="bg-gray-100 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-accentGold">
+            <h2 className="text-sm font-subheading font-semibold uppercase tracking-widest text-accent-gold">
               Methodology. Experience. Results.
             </h2>
             <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
               The HighRoad Strategic Advantage
             </h3>
-            <p className="mt-4 text-lg text-gray-700 max-w-3xl mx-auto">
+            <p className="mt-4 text-lg text-gray-700 max-w-3xl mx-auto font-body">
               Our expertise is backed by a framework that ensures analytical
               rigor and reliable, implementable outcomes.
             </p>
@@ -198,14 +221,14 @@ function ExpertsPageContent(): JSX.Element {
           >
             {/* Pillar 1 */}
             <motion.div
-              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accentGold/70"
+              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
               variants={slideUpItemVariants}
             >
-              <Cpu className="w-8 h-8 text-accentGold mb-4" />
+              <Cpu className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
                 Advanced Analytical Rigor
               </h4>
-              <p className="text-gray-700">
+              <p className="text-gray-700 font-body">
                 We utilize{" "}
                 <strong>Ph.D.-level econometrics and data science</strong> to
                 ensure every finding is statistically robust and validated
@@ -215,14 +238,14 @@ function ExpertsPageContent(): JSX.Element {
 
             {/* Pillar 2 */}
             <motion.div
-              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accentGold/70"
+              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
               variants={slideUpItemVariants}
             >
-              <Globe className="w-8 h-8 text-accentGold mb-4" />
+              <Globe className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
                 Global Standards, Local Context
               </h4>
-              <p className="text-gray-700">
+              <p className="text-gray-700 font-body">
                 Our team blends international best practice with{" "}
                 <strong>deep regional knowledge</strong> across the continent.
               </p>
@@ -230,14 +253,14 @@ function ExpertsPageContent(): JSX.Element {
 
             {/* Pillar 3 */}
             <motion.div
-              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accentGold/70"
+              className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
               variants={slideUpItemVariants}
             >
-              <Handshake className="w-8 h-8 text-accentGold mb-4" />
+              <Handshake className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
                 Strategy Built for Implementation
               </h4>
-              <p className="text-gray-700">
+              <p className="text-gray-700 font-body">
                 We don’t just deliver reports; we deliver{" "}
                 <strong>clear, funded roadmaps</strong> designed for immediate
                 implementation and measurable success.

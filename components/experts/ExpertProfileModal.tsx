@@ -99,13 +99,13 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
                 <h2 className="text-3xl font-heading font-black text-primary mb-1">
                   {expert.name}
                 </h2>
-                <h3 className="text-xl font-semibold text-accent-gold mb-4">
+                <h3 className="text-xl font-subheading font-semibold text-accent-gold mb-4">
                   {expert.title}
                 </h3>
 
                 <hr className="my-4" />
 
-                <div className="space-y-3 text-gray-700">
+                <div className="space-y-3 text-gray-700 font-body">
                   <p className="flex items-start">
                     <GraduationCap className="w-5 h-5 mr-3 mt-1 text-primary flex-shrink-0" />
                     <span className="font-medium">Qualification:</span>{" "}
@@ -120,7 +120,7 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
                     <Link
                       href={expert.linkedinUrl}
                       target="_blank"
-                      className="flex items-center text-blue-600 hover:text-blue-800 transition"
+                      className="flex items-center text-blue-600 hover:text-blue-800 transition font-subheading"
                     >
                       <LinkIcon className="w-5 h-5 mr-3 flex-shrink-0" />
                       View LinkedIn Profile
@@ -128,33 +128,33 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
                   )}
                   <a
                     href={`mailto:${expert.email}`}
-                    className="flex items-center text-primary hover:text-accent-gold transition"
+                    className="flex items-center text-primary hover:text-accent-gold transition font-subheading"
                   >
                     <Mail className="w-5 h-5 mr-3 flex-shrink-0" />
-                    {expert.email}
+                    <span className="break-all min-w-0">{expert.email}</span>
                   </a>
                 </div>
               </div>
 
               {/* Right Column: Detailed Bio and Projects */}
               <div className="col-span-2 p-8 md:p-10">
-                <h1 className="text-3xl md:text-4xl font-heading font-black mb-6 border-l-4 border-accent-gold pl-4">
+                <h1 className="text-3xl md:text-4xl font-display font-black mb-6 border-l-4 border-accent-gold pl-4">
                   Full Profile & Track Record
                 </h1>
 
                 {/* Summary */}
                 <div className="mb-8">
-                  <h4 className="text-2xl font-bold text-primary mb-3">
+                  <h4 className="text-2xl font-heading font-bold text-primary mb-3">
                     Professional Summary
                   </h4>
-                  <p className="text-gray-700 leading-relaxed italic border-l-4 border-gray-200 pl-4">
+                  <p className="text-gray-700 leading-relaxed italic border-l-4 border-gray-200 pl-4 font-body">
                     {expert.bioSummary}
                   </p>
                 </div>
 
                 {/* Full Bio */}
-                <div className="mb-10 text-lg text-gray-800 leading-relaxed whitespace-pre-line">
-                  <h4 className="text-2xl font-bold text-primary mb-3">
+                <div className="mb-10 text-lg text-gray-800 leading-relaxed whitespace-pre-line font-body">
+                  <h4 className="text-2xl font-heading font-bold text-primary mb-3">
                     Detailed Background
                   </h4>
                   <p>{expert.fullBio}</p>
@@ -162,11 +162,11 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
 
                 {/* Key Projects */}
                 <div>
-                  <h4 className="text-2xl font-bold text-primary mb-4 flex items-center">
+                  <h4 className="text-2xl font-heading font-bold text-primary mb-4 flex items-center">
                     <TrendingUp className="w-6 h-6 mr-3 text-accent-gold" />
                     Key Project Highlights
                   </h4>
-                  <ul className="space-y-3 list-disc list-inside text-gray-700">
+                  <ul className="space-y-3 list-disc list-inside text-gray-700 font-body">
                     {expert.keyProjects.map((project, index) => (
                       <li key={index} className="pl-2 relative">
                         <span className="text-primary font-semibold block">

@@ -21,7 +21,7 @@ const navLinks = [
   { name: "Our Team", href: "/experts" },
   { name: "Contact Us", href: "/contact" },
   { name: "Our Approach", href: "/approach" },
-];
+] as const;
 
 const listVariants: Variants = {
   open: {
@@ -87,14 +87,15 @@ const MobileNavDropdown = ({
             <Link
               href={link.href}
               onClick={onLinkClick}
-              className={`
-                w-full block px-4 py-2 text-sm font-semibold uppercase rounded-lg transition duration-150 text-center relative
-                ${
-                  isActive
-                    ? "bg-accent-gold text-primary border-b-[3px] border-accent-gold pb-1"
-                    : "text-primary dark:text-white hover:bg-accent-gold dark:hover:bg-accent-gold hover:text-primary"
+              className={clsx(
+                "w-full block px-4 py-2 text-sm font-subheading font-semibold uppercase rounded-lg transition duration-150 text-center relative",
+                {
+                  "bg-accent-gold text-primary border-b-[3px] border-accent-gold pb-1":
+                    isActive,
+                  "text-primary dark:text-white hover:bg-accent-gold dark:hover:bg-accent-gold hover:text-primary":
+                    !isActive,
                 }
-              `}
+              )}
             >
               {link.name}
             </Link>
@@ -220,7 +221,7 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
     </svg>
 
     <span
-      className="text-xs font-semibold uppercase tracking-widest mt-[-4px] ml-1 nav-logo-sub"
+      className="text-xs font-subheading font-semibold uppercase tracking-widest mt-[-4px] ml-1 nav-logo-sub"
       style={{ color: iconColor, verticalAlign: "sub", fontSize: "0.65em" }}
     >
       Services Ltd
@@ -268,7 +269,7 @@ export default function Navbar(): JSX.Element {
             />
           </Link>
 
-          {/* Desktop Links (FONT SIZE MODIFIED to 13px) */}
+          {/* Desktop Links - APPLIED font-subheading for modern nav vibe */}
           <div className="hidden lg:flex space-x-1 items-center">
             {navLinks.map((link) => {
               const isActive =
@@ -277,7 +278,7 @@ export default function Navbar(): JSX.Element {
                   : pathname.startsWith(link.href);
 
               const baseClasses = clsx(
-                "px-4 py-2 rounded-full font-body font-medium transition duration-200 uppercase tracking-wide nav-link relative group",
+                "px-4 py-2 rounded-full font-subheading font-medium transition duration-200 uppercase tracking-wide nav-link relative group",
                 {
                   "text-primary": !isScrolled && !isActive,
                   "text-white": isScrolled && !isActive,

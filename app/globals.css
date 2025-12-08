@@ -12,24 +12,30 @@
   --color-accent-gold-hover: #b89534; /* Darker gold for hover (light mode) */
   --color-accent-green: #0a6b4a; /* Deep green */
 
-  /* Typography */
-  --font-heading-stack: "Merriweather", serif;
-  --font-body-stack: "Inter", sans-serif;
+  /* NEW: Muted text for secondary elements */
+  --color-muted: #6b7280; /* Neutral gray for lighter text in light mode */
+
+  /* Typography - Updated to use Next.js CSS vars for stacks */
+  --font-heading-stack: var(--font-heading), serif;
+  --font-body-stack: var(--font-body), sans-serif;
+  --font-display-stack: var(--font-display), serif; /* NEW: Playfair for display elements */
+  --font-subheading-stack: var(--font-subheading), sans-serif; /* NEW: Raleway for subheadings */
 }
 
 /* Dark Mode Overrides (Activated by .dark class on <html>) */
 :root.dark {
-  --background: #0a0e17; /* Slightly warmer very dark blue-gray for less starkness (improved from #0d1117) */
-  --foreground: #e6edf3; /* Warmer light gray for better readability and reduced eye strain (improved from #c9d1d9) */
+  --background: #0a0e17; /* Slightly warmer very dark blue-gray for less starkness */
+  --foreground: #f8fafc; /* Warmer off-white for sharper readability and reduced eye strain (up from #e6edf3) */
 
   /* Custom Brand Colors - DARK Mode adjustments */
-  --color-primary: #3b82f6; /* Softer sky blue with better harmony to navy brand roots, higher contrast (improved from #58a6ff) */
-  --color-surface: #111827; /* Deeper slate for surfaces to add depth without overwhelming (improved from #161b22) */
-  --color-accent-gold: #fbbf24; /* Warmer, more vibrant gold for pop without harshness (improved from #ffc43a) */
-  --color-accent-gold-hover: #f59e0b; /* Adjusted hover for smoother transition in dark (improved from #e5ac2e) */
-  --color-accent-green: #10b981;
-  --color-foreground: #e6edf3; /* Warmer light gray for better readability and reduced eye strain (improved from #c9d1d9) */
-   /* Brighter, more accessible green with emerald tones (improved from #3fb950) */
+  --color-primary: #1e3a8a; /* Darker blue (blue-800) for better harmony and contrast with accents (down from #3b82f6) */
+  --color-surface: #111827; /* Deeper slate for surfaces to add depth without overwhelming */
+  --color-accent-gold: #fbbf24; /* Kept warmer gold, now pairs better with darker primary */
+  --color-accent-gold-hover: #f59e0b; /* Amber-500 for smoother, less jarring hover transition */
+  --color-accent-green: #10b981; /* Brighter emerald green, solid contrast */
+
+  /* NEW: Muted text for secondary elements in dark */
+  --color-muted: #d1d5db; /* Lighter gray for secondary text/subtle elements */
 }
 
 /* Tailwind v4 THEME MAPPING — inline custom properties */
@@ -40,13 +46,16 @@
   --color-accent-gold: var(--color-accent-gold);
   --color-accent-green: var(--color-accent-green);
 
-  /* Text Colors */
+  /* Text Colors - Updated with foreground mapping */
   --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-foreground: var(--foreground); /* Consolidated, no duplicate */
+  --color-muted: var(--color-muted); /* NEW: For secondary text */
 
-  /* Fonts */
+  /* Fonts - Updated with new mappings */
   --font-heading: var(--font-heading-stack);
   --font-body: var(--font-body-stack);
+  --font-display: var(--font-display-stack); /* NEW: For hero/quotes */
+  --font-subheading: var(--font-subheading-stack); /* NEW: For nav/subheads */
 }
 
 body {
