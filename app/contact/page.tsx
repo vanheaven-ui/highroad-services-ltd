@@ -192,9 +192,9 @@ const UnderConstructionModal = ({
           Feature Under Construction
         </h3>
         <p className="text-gray-700 text-lg font-body mb-6">
-          The <strong>"Subscribe to Research"</strong> feature is currently
-          being finalized. We are integrating our system with our research
-          publication pipeline to deliver the most current insights.
+          The <strong>&quot;Subscribe to Research&quot;</strong> feature is
+          currently being finalized. We are integrating our system with our
+          research publication pipeline to deliver the most current insights.
         </p>
         <p className="text-gray-700 text-sm mb-6">
           Please check back soon! In the meantime, feel free to use the contact

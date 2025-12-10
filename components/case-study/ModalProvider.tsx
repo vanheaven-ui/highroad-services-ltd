@@ -1,7 +1,8 @@
 "use client";
 
 import React, { createContext, useContext, useState, useCallback } from "react";
-import CaseStudyModal, { FullCaseStudy } from "./CaseStudyModal"; // Import the modal component
+import CaseStudyModal from "./CaseStudyModal";
+import { FullCaseStudy } from "@/data/case-studies";
 
 interface ModalContextType {
   openModal: (study: FullCaseStudy) => void;

@@ -4,14 +4,16 @@ export type ServiceIcon =
   | "briefcase"
   | "building"
   | "globe"
-  | "line-chart";
+  | "line-chart"
+  | "leaf"
+  | "clipboard-list";
 
 export interface Service {
   id: string;
   title: string;
   description: string;
   icon: ServiceIcon;
-  color: string; // Now a Tailwind bg class, e.g., "bg-blue-600"
+  color: string;
 
   detailedOverview: string;
   highlights: string[];
@@ -27,266 +29,313 @@ export interface Service {
     impact: string;
   }[];
 
-  relatedServices: string[]; // Now uses IDs like "mel" for matching
+  relatedServices: string[];
 }
 
 export const services: Service[] = [
   {
-    id: "economic-research",
-    title: "Economic Research & Analysis",
+    id: "baseline-surveys",
+    title: "Baseline Surveys",
     description:
-      "Data-driven insights supporting policy formulation, investment decisions, and economic strategies.",
-    icon: "bar-chart-3",
-    color: "bg-blue-600", // Dark blue for analytical depth
+      "Conducting baseline assessments to establish program starting points and inform planning.",
+    icon: "clipboard-list",
+    color: "bg-blue-600",
 
     detailedOverview:
-      "We provide rigorous economic research and advanced analytics to support evidence-based decision-making for governments, development partners, and private-sector organizations.",
+      "We carry out rigorous baseline surveys to collect essential data at the start of projects or interventions. These surveys help organizations understand the initial context, inform program design, and provide a reference point for measuring impact over time.",
 
     highlights: [
-      "Macroeconomic & sectoral analysis",
-      "Impact and cost-benefit assessments",
-      "Forecasting and economic modeling",
-      "Labor market and social sector analysis",
+      "Comprehensive household and organizational surveys",
+      "Contextual analysis to inform program design",
+      "Quantitative and qualitative data collection",
+      "Benchmarking for monitoring and evaluation",
     ],
 
     methodology: {
-      title: "Our Analytical Approach",
+      title: "Our Baseline Survey Approach",
       steps: [
-        "Problem definition and data-needs assessment",
-        "Primary and secondary data collection",
-        "Econometric and statistical modeling",
-        "Interpretation of findings and scenario analysis",
-        "Policy recommendations and reporting",
+        "Defining objectives and indicators",
+        "Designing survey instruments and sampling",
+        "Data collection and quality assurance",
+        "Data analysis and reporting",
+        "Presentation of findings and recommendations",
       ],
     },
 
     caseStudies: [
       {
-        title: "Agricultural Value-Chain Assessment",
+        title: "Baseline Surveys and Impact Evaluations for UBOS and USAID",
         description:
-          "Analyzed productivity drivers in rural districts to identify policy constraints and investment opportunities.",
+          "Led comprehensive research and consultancy, conducting baseline surveys and impact evaluations to assess program effectiveness and guide adjustments.",
         impact:
-          "Informed a government agricultural transformation agenda and shaped private-sector investment priorities.",
+          "Informed evidence-based policy tweaks, enhancing program reach and efficiency for thousands of beneficiaries.",
+      },
+      {
+        title:
+          "Baseline, Midline, and Endline Evaluations for TradeMark East Africa",
+        description:
+          "Led multi-phase evaluations on trade, agriculture, and health impacts using experimental designs.",
+        impact:
+          "Optimized interventions, increasing cross-border trade volumes by 22% for 8,000+ participants.",
       },
     ],
 
-    relatedServices: ["mel", "policy-advisory", "market-research"],
+    relatedServices: ["monitoring-evaluation", "human-capacity-development"],
   },
 
   {
-    id: "capacity-development",
-    title: "Capacity Development & Training",
+    id: "feasibility-studies",
+    title: "Feasibility Studies",
     description:
-      "Strengthening institutional and organizational capacity through tailored training and skills development.",
-    icon: "users",
-    color: "bg-green-600", // Vibrant green for growth & people
+      "Evaluating the viability, market potential, and strategic options for investments or initiatives.",
+    icon: "globe",
+    color: "bg-red-600",
 
     detailedOverview:
-      "We design and deliver transformative capacity-development programs that enhance the technical and operational capabilities of institutions, teams, and individuals.",
+      "Our feasibility studies provide investors and organizations with reliable insights into market dynamics, operational requirements, and financial viability. We assess risks and opportunities to guide informed decision-making and minimize investment risks.",
 
     highlights: [
-      "Institutional capacity assessments",
-      "Customized training curriculum design",
-      "Workshops and virtual learning programs",
-      "Technical mentorship and coaching",
+      "Market and competitive analysis",
+      "Financial modeling and projections",
+      "Risk and opportunity assessment",
+      "Regulatory and operational feasibility",
     ],
 
     methodology: {
-      title: "Our Training Methodology",
+      title: "Our Feasibility Approach",
       steps: [
-        "Needs assessment and skills gap analysis",
-        "Curriculum and training-material development",
-        "Delivery through interactive, adult-learning methods",
-        "Assessment and feedback loops",
-        "Post-training support and performance tracking",
+        "Market and context analysis",
+        "Data collection and validation",
+        "Financial modeling and scenario analysis",
+        "Risk assessment and mitigation planning",
+        "Strategic recommendations for implementation",
       ],
     },
 
     caseStudies: [
       {
-        title: "Public Sector Skills Strengthening",
+        title:
+          "Public Investment Appraisal and Policy Analysis with NPA and AERC",
         description:
-          "Developed and delivered a leadership and performance-management course for local-government officials.",
+          "Collaborated on appraisals using cost-benefit analysis and policy modeling to recommend optimized public spending strategies.",
         impact:
-          "Improved service delivery outcomes and strengthened management capacity.",
+          "Shaped national investment frameworks, unlocking $20M+ in efficient funding for infrastructure projects.",
       },
     ],
 
-    relatedServices: ["mel", "economic-research", "policy-advisory"],
+    relatedServices: ["strategy-development", "policy-analysis-development"],
   },
 
   {
-    id: "policy-advisory",
-    title: "Policy Advisory & Strategy",
+    id: "strategy-development",
+    title: "Strategy Development",
     description:
-      "Supporting public and private institutions with data-driven policy formulation and strategic planning.",
+      "Helping organizations design actionable strategies to achieve their objectives effectively.",
     icon: "briefcase",
-    color: "bg-indigo-600", // Indigo for strategic insight
+    color: "bg-indigo-600",
 
     detailedOverview:
-      "We help institutions navigate complex policy environments, design effective policies, and implement strategic plans aligned with economic and developmental objectives.",
+      "We work with clients to develop strategic frameworks and actionable roadmaps that align with their vision, mission, and goals. Our process ensures that strategies are evidence-based, stakeholder-informed, and implementable.",
 
     highlights: [
-      "Policy design and reform advisory",
-      "Institutional strategy development",
-      "Regulatory analysis and frameworks",
-      "Stakeholder mapping and engagement",
+      "Organizational strategy and planning",
+      "Programmatic and sector-specific strategies",
+      "Stakeholder engagement and alignment",
+      "Scenario planning and risk mitigation",
     ],
 
     methodology: {
-      title: "Our Advisory Framework",
+      title: "Our Strategy Development Process",
       steps: [
-        "Policy environment analysis",
-        "Stakeholder consultations",
-        "Scenario modeling and strategy development",
-        "Drafting policy instruments",
-        "Implementation support and monitoring",
+        "Stakeholder consultations and needs assessment",
+        "Environmental and situational analysis",
+        "Strategy formulation and scenario modeling",
+        "Validation workshops and feedback incorporation",
+        "Implementation planning and monitoring framework",
       ],
     },
 
     caseStudies: [
       {
-        title: "National Digital Strategy Review",
+        title:
+          "Capacity Building and Tracer Studies for Kyambogo University and IDRC",
         description:
-          "Worked with stakeholders across ICT, finance, and governance to refine a national digital-transformation policy.",
+          "Provided targeted training and tracer studies on AI, data analytics, and econometrics to build institutional capabilities.",
         impact:
-          "Enabled government and private sector alignment toward a unified digital-ecosystem approach.",
+          "Equipped 200+ stakeholders with practical skills, boosting research output by 25% in participating programs.",
       },
     ],
 
-    relatedServices: ["economic-research", "mel", "market-research"],
+    relatedServices: ["policy-analysis-development", "monitoring-evaluation"],
   },
 
   {
-    id: "mel",
-    title: "Monitoring, Evaluation & Learning (MEL)",
+    id: "monitoring-evaluation",
+    title: "Monitoring & Evaluation",
     description:
-      "Providing robust MEL systems to strengthen accountability, learning, and performance across programs.",
+      "Designing and implementing robust systems to track performance, outcomes, and impact.",
     icon: "building",
-    color: "bg-purple-600", // Purple for evaluation & structure
+    color: "bg-purple-600",
 
     detailedOverview:
-      "We design and implement MEL frameworks that enable organizations to track progress, extract insights, and improve program effectiveness.",
+      "Our M&E services help organizations systematically track their progress, measure outcomes, and learn from experience. We design user-friendly dashboards, reports, and feedback mechanisms to support adaptive management and evidence-based decision-making.",
 
     highlights: [
-      "Theory of Change development",
-      "Baseline, midline, and endline evaluations",
-      "Performance monitoring systems",
-      "Learning agenda design and facilitation",
+      "Development of MEL frameworks and indicators",
+      "Real-time dashboards and performance tracking",
+      "Evaluation studies (baseline, midline, endline)",
+      "Learning integration for program improvement",
     ],
 
     methodology: {
       title: "Our MEL Process",
       steps: [
-        "Understanding program goals and context",
-        "Developing MEL tools and frameworks",
-        "Data collection and validation",
-        "Analysis and learning synthesis",
-        "Reporting and adaptive-management support",
+        "Defining outcomes and indicators",
+        "Designing MEL tools and data collection methods",
+        "Data collection, cleaning, and analysis",
+        "Synthesizing findings and lessons learned",
+        "Reporting and adaptive management support",
       ],
     },
 
     caseStudies: [
       {
-        title: "Youth Employability Program Evaluation",
+        title:
+          "Multi-Country Impact Evaluations Across East and Southern Africa",
         description:
-          "Conducted a multi-phase evaluation for a national workforce-development initiative.",
+          "Designed and led evaluations using propensity score matching and difference-in-differences to assess socio-economic outcomes.",
         impact:
-          "Results improved program targeting and informed donor funding extensions.",
+          "Validated program efficacy, supporting $15M in continued funding and refinements for 50,000+ beneficiaries.",
       },
     ],
 
-    relatedServices: [
-      "capacity-development",
-      "economic-research",
-      "policy-advisory",
-    ],
+    relatedServices: ["baseline-surveys", "human-capacity-development"],
   },
 
   {
-    id: "market-research",
-    title: "Feasibility Studies",
+    id: "human-capacity-development",
+    title: "Human Capacity Development",
     description:
-      "In-depth feasibility studies supporting investment, expansion, and strategic decisions.",
-    icon: "globe",
-    color: "bg-red-600", // Red for market energy & global reach
+      "Strengthening organizational and individual capabilities through tailored training and mentorship.",
+    icon: "users",
+    color: "bg-green-600",
 
     detailedOverview:
-      "Our market research provides investors, organizations, and entrepreneurs with accurate insights to guide strategic planning and operational decisions.",
+      "We provide targeted capacity development programs designed to enhance skills, knowledge, and operational effectiveness. Our approach is hands-on and practical, ensuring immediate application and measurable improvements.",
 
     highlights: [
-      "Market opportunity assessments",
-      "Demand & supply analysis",
-      "Financial feasibility modeling",
-      "Consumer behavior and segmentation studies",
+      "Skills assessments and gap analysis",
+      "Customized training programs",
+      "Workshops, coaching, and mentorship",
+      "Performance tracking and feedback mechanisms",
     ],
 
     methodology: {
-      title: "Our Market-Analysis Approach",
+      title: "Our Capacity Development Approach",
       steps: [
-        "Context and market-system understanding",
-        "Data collection (surveys, interviews, secondary sources)",
-        "Competitor and value-chain analysis",
-        "Financial and risk modeling",
-        "Feasibility recommendations",
+        "Assessment of learning needs",
+        "Curriculum design tailored to context",
+        "Interactive training delivery",
+        "Evaluation and feedback integration",
+        "Ongoing mentorship and skills application",
       ],
     },
 
     caseStudies: [
       {
-        title: "Fintech Market Entry Study",
+        title:
+          "Capacity Building and Tracer Studies for Kyambogo University and IDRC",
         description:
-          "Evaluated market readiness, regulatory frameworks, and customer-segment behavior for a regional fintech startup.",
+          "Provided targeted training and tracer studies to build institutional capabilities.",
         impact:
-          "Supported investment decisions and guided the client’s market-entry roadmap.",
+          "Equipped 200+ stakeholders with practical skills, boosting research output by 25%.",
       },
     ],
 
-    relatedServices: [
-      "economic-research",
-      "policy-advisory",
-      "capacity-development",
-    ],
+    relatedServices: ["strategy-development", "monitoring-evaluation"],
   },
 
   {
-    id: "data-analytics",
-    title: "Data & Advanced Analytics",
+    id: "policy-analysis-development",
+    title: "Policy Analysis & Development",
     description:
-      "Applying modern data science techniques to drive insights, automation, and smarter decision-making.",
-    icon: "line-chart",
-    color: "bg-amber-600", // Amber (yellow-600 equiv) for data insights; note: Tailwind uses "amber" not "yellow" for this shade
+      "Supporting evidence-based policy formulation and strategic recommendations for institutions.",
+    icon: "bar-chart-3",
+    color: "bg-amber-600",
 
     detailedOverview:
-      "We help organizations harness the power of data through modern analytics, visualization, and predictive modeling.",
+      "We analyze policy environments and provide actionable recommendations to guide strategic decisions. Our work involves data-driven insights, stakeholder engagement, and practical policy instruments to facilitate effective implementation.",
 
     highlights: [
-      "Predictive modeling and forecasting",
-      "Dashboard development",
-      "Data engineering and cleaning",
-      "Cloud-based analytics solutions",
+      "Policy research and evaluation",
+      "Regulatory and institutional analysis",
+      "Stakeholder consultation and engagement",
+      "Drafting policy instruments and guidance",
     ],
 
     methodology: {
-      title: "Our Data-Analytics Approach",
+      title: "Our Policy Development Approach",
       steps: [
-        "Data audit and systems mapping",
-        "Data engineering & preparation",
-        "Analytics modeling and experimentation",
-        "Visualization and reporting",
-        "Training and adoption support",
+        "Research and situational analysis",
+        "Stakeholder engagement",
+        "Drafting and consultation of policy documents",
+        "Scenario modeling and risk assessment",
+        "Implementation guidance and monitoring",
       ],
     },
 
     caseStudies: [
       {
-        title: "Health Data Predictive Model",
+        title: "Uganda Economic Update and PEFA Assessment Contributions",
         description:
-          "Built a predictive model to forecast health-facility demand for a national health agency.",
-        impact: "Improved planning accuracy and optimized resource allocation.",
+          "Contributed macro-fiscal analysis and advisory on debt toolkits, aiding the 2022 Economic Update and PEFA assessment.",
+        impact:
+          "Enhanced Uganda's PFM scoring, attracting $10M+ in EU/Norway/Denmark aid for reforms.",
       },
     ],
 
-    relatedServices: ["economic-research", "mel", "market-research"],
+    relatedServices: ["strategy-development", "feasibility-studies"],
+  },
+
+  {
+    id: "environmental-social-impact",
+    title: "Environmental & Social Impact Assessment",
+    description:
+      "Assessing potential environmental and social effects of projects and programs to ensure sustainability and compliance.",
+    icon: "leaf",
+    color: "bg-teal-600",
+
+    detailedOverview:
+      "We conduct Environmental and Social Impact Assessments (ESIA) to help organizations anticipate risks, comply with regulations, and design sustainable interventions that benefit communities and ecosystems.",
+
+    highlights: [
+      "Environmental baseline studies",
+      "Social and community impact assessments",
+      "Mitigation planning and recommendations",
+      "Compliance with national and international standards",
+    ],
+
+    methodology: {
+      title: "Our ESIA Methodology",
+      steps: [
+        "Scoping and stakeholder engagement",
+        "Baseline environmental and social data collection",
+        "Impact prediction and analysis",
+        "Mitigation and management planning",
+        "Reporting and monitoring recommendations",
+      ],
+    },
+
+    caseStudies: [
+      {
+        title: "SDG Financing Diagnostics and Africa SDG Index",
+        description:
+          "Led diagnostics and authored the Africa SDG Index/Dashboards, developing indicators for multi-country SDG progress.",
+        impact:
+          "Guided $30M+ in targeted SDG investments, improving continental reporting frameworks.",
+      },
+    ],
+
+    relatedServices: ["feasibility-studies", "policy-analysis-development"],
   },
 ];

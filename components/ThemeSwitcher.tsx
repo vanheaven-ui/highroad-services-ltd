@@ -1,7 +1,7 @@
 "use client";
 
-import React, { JSX, useState } from "react";
-import { Moon, Sun, Monitor, Palette } from "lucide-react";
+import React, { JSX, useState, useRef, useEffect } from "react";
+import { Moon, Sun, Monitor } from "lucide-react";
 import { useTheme } from "@/context/theme-context";
 import { motion, AnimatePresence, Variants } from "framer-motion";
 
@@ -25,9 +25,35 @@ const listVariants: Variants = {
 };
 // ------------------------------
 
+// Shared Tooltip Component (Desktop only) - Hoisted outside
+const Tooltip: React.FC<{ showTooltip: boolean }> = ({ showTooltip }) => (
+  <AnimatePresence>
+    {showTooltip && (
+      <motion.div
+        initial={{ opacity: 0, y: 10, scale: 0.9 }}
+        animate={{ opacity: 1, y: 0, scale: 1 }}
+        exit={{ opacity: 0, y: 10, scale: 0.9 }}
+        transition={{ duration: 0.15 }}
+        className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-3 py-1.5 bg-primary/95 dark:bg-primary/95 text-accent-gold text-xs font-medium rounded-md whitespace-nowrap shadow-lg border border-accent-gold/20 z-50"
+        style={{ pointerEvents: "none" }}
+      >
+        <div className="relative">
+          Switch Theme Mode
+          {/* Unique arrow pointing up */}
+          <div className="absolute top-full left-1/2 -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-primary/95 dark:border-t-primary/95" />
+        </div>
+      </motion.div>
+    )}
+  </AnimatePresence>
+);
+
 export default function ThemeSwitcher(): JSX.Element {
   const { theme, setTheme } = useTheme();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const [showTooltip, setShowTooltip] = useState(false);
+
+  const containerRef = useRef<HTMLDivElement>(null);
 
   const themes: {
     name: string;
@@ -41,9 +67,65 @@ export default function ThemeSwitcher(): JSX.Element {
 
   const handleThemeChange = (newTheme: "light" | "dark" | "system") => {
     setTheme(newTheme);
-    setIsMenuOpen(false);
+    if (window.innerWidth >= 1024) {
+      setIsHovered(false); // Close expanded on desktop after selection
+    } else {
+      setIsMenuOpen(false); // Close mobile menu
+    }
   };
 
+  // Click outside handler
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        containerRef.current &&
+        !containerRef.current.contains(event.target as Node)
+      ) {
+        setIsMenuOpen(false);
+      }
+    };
+
+    if (isMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isMenuOpen]);
+
+  // Render active-only for compact desktop/mobile toggle view
+  const renderActiveOnly = () => {
+    const activeTheme = themes.find((t) => t.value === theme);
+    if (!activeTheme) return null;
+
+    const Icon = activeTheme.icon;
+
+    return (
+      <motion.button
+        onClick={() => handleThemeChange(activeTheme.value)} // Still clickable for consistency
+        className={`
+          relative z-10 flex items-center justify-center p-2.5 rounded-full transition-colors duration-300
+          text-primary dark:text-white
+          hover:text-accent-gold dark:hover:text-accent-gold
+        `}
+        aria-label={`Current theme: ${activeTheme.name}`}
+        whileTap={{ scale: 0.95 }}
+      >
+        {/* Active Background Indicator */}
+        <motion.div
+          layoutId="active-theme-background"
+          transition={{ type: "spring", stiffness: 500, damping: 30 }}
+          className="absolute inset-0 bg-primary dark:bg-primary rounded-full shadow-md"
+        />
+
+        {/* Icon */}
+        <span className="relative z-20">
+          <Icon className="h-5 w-5 text-accent-gold" />
+        </span>
+      </motion.button>
+    );
+  };
+
+  // Render full buttons for expanded/mobile popup
   const renderButtons = (className: string) => {
     return (
       <motion.div
@@ -62,11 +144,8 @@ export default function ThemeSwitcher(): JSX.Element {
               onClick={() => handleThemeChange(value)}
               className={`
                 relative z-10 flex items-center justify-center p-2.5 rounded-full transition-colors duration-300
-                // Default Inactive Color: White icon in dark mode, Primary (dark) icon in light mode
                 text-primary dark:text-white
-                // Hover Color: Always Gold
                 hover:text-accent-gold dark:hover:text-accent-gold
-                // Opacity when not active
                 ${isActive ? "" : "opacity-70"}
               `}
               aria-label={`Switch to ${name} theme`}
@@ -77,12 +156,11 @@ export default function ThemeSwitcher(): JSX.Element {
                 <motion.div
                   layoutId="active-theme-background"
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
-                  // Ensure active background is strong color
                   className="absolute inset-0 bg-primary dark:bg-primary rounded-full shadow-md"
                 />
               )}
 
-              {/* Icon (above the motion.div background) */}
+              {/* Icon */}
               <span
                 className={`relative z-20 transition-colors duration-300 ${
                   isActive
@@ -100,32 +178,76 @@ export default function ThemeSwitcher(): JSX.Element {
   };
 
   return (
-    <div className="relative">
-      {/* 1. Full Display (Large Screens and Up) */}
-      {renderButtons(
-        "hidden lg:flex items-center p-1.5 bg-white/70 dark:bg-primary/50 backdrop-blur-md rounded-full shadow-xl border border-gray-100 dark:border-primary/10"
-      )}
+    <div className="relative" ref={containerRef}>
+      {/* 1. Desktop: Compact Active + Expand on Hover */}
+      <div className="hidden lg:block relative">
+        <div
+          className="flex items-center justify-center p-1.5 bg-white/70 dark:bg-primary/50 backdrop-blur-md rounded-full shadow-xl border border-gray-100 dark:border-primary/10 overflow-hidden w-32"
+          onMouseEnter={() => {
+            setIsHovered(true);
+            setShowTooltip(true);
+          }}
+          onMouseLeave={() => {
+            setIsHovered(false);
+            setShowTooltip(false);
+          }}
+        >
+          <AnimatePresence mode="wait">
+            {isHovered ? (
+              <motion.div
+                key="expanded"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.2 }}
+                className="flex items-center space-x-1"
+              >
+                {renderButtons("flex items-center space-x-1")}
+              </motion.div>
+            ) : (
+              <motion.div
+                key="compact"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.2 }}
+                className="flex justify-center items-center"
+              >
+                {renderActiveOnly()}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </div>
+        <Tooltip showTooltip={showTooltip} />
+      </div>
 
-      {/* 2. Compact Display (Below Large Screens) */}
-      <div className="lg:hidden">
-        {/* Toggle Button */}
+      {/* 2. Mobile/Medium: Active Icon Toggle + Popup */}
+      <div className="lg:hidden relative">
+        {/* Toggle Button with Active Icon */}
         <motion.button
           onClick={() => setIsMenuOpen(!isMenuOpen)}
-          className="p-2.5 rounded-full text-primary dark:text-white bg-white/70 dark:bg-primary/50 backdrop-blur-md shadow-xl border border-gray-100 dark:border-primary/10 hover:bg-gray-100 dark:hover:bg-primary/70 transition"
+          onFocus={() => setShowTooltip(true)}
+          onBlur={() => setTimeout(() => setShowTooltip(false), 150)} // Delay to allow menu interaction
+          className="p-2.5 rounded-full text-primary dark:text-white bg-white/70 dark:bg-primary/50 backdrop-blur-md shadow-xl border border-gray-100 dark:border-primary/10 hover:bg-gray-100 dark:hover:bg-primary/70 transition relative z-10"
           aria-label="Toggle theme selection"
           whileTap={{ scale: 0.95 }}
         >
-          <Palette className="h-5 w-5" />
+          {renderActiveOnly()}
         </motion.button>
 
         {/* Animated Pop-up Menu */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 10 }}
-              transition={{ duration: 0.2 }}
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, y: 10, scale: 0.95 }}
+              transition={{
+                duration: 0.2,
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+              }}
               className="absolute top-full right-0 mt-2 z-50 origin-top-right"
             >
               {renderButtons(
@@ -134,6 +256,9 @@ export default function ThemeSwitcher(): JSX.Element {
             </motion.div>
           )}
         </AnimatePresence>
+
+        {/* Tooltip for Mobile/Medium (on focus) */}
+        <Tooltip showTooltip={showTooltip} />
       </div>
     </div>
   );

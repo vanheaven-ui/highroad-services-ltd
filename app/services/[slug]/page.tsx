@@ -12,8 +12,8 @@ export default async function ServicePage({ params }: ServicePageProps) {
 
   // 1. Data Fetching and Logic (STAYS ON SERVER)
   const service: Service | undefined = services.find(
-    (s) => slugify(s.title) === slug
-  );
+    (s) => slugify(s.id) === slug
+  );  
 
   if (!service) return notFound();
 
@@ -21,7 +21,7 @@ export default async function ServicePage({ params }: ServicePageProps) {
   return (
     <ServicePageContent
       service={service}
-      services={services} // Passing the full array for related services logic
+      services={services} 
     />
   );
 }

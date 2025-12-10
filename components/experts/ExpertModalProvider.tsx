@@ -7,7 +7,8 @@ import React, {
   useCallback,
   ReactNode,
 } from "react";
-import ExpertProfileModal, { FullExpertProfile } from "./ExpertProfileModal";
+import ExpertProfileModal from "./ExpertProfileModal";
+import { FullExpertProfile } from "@/data/team";
 
 interface ExpertModalContextType {
   openExpertModal: (expert: FullExpertProfile) => void;

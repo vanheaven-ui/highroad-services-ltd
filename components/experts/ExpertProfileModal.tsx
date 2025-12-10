@@ -1,5 +1,6 @@
 "use client";
 
+import { FullExpertProfile } from "@/data/team";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -13,14 +14,6 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import React from "react";
-import { TeamMember } from "./TeamCard";
-
-// Define the full expert data structure for the modal
-export interface FullExpertProfile extends TeamMember {
-  fullBio: string; // Detailed section for the modal
-  keyProjects: string[]; // List of project highlights
-  imageSrc: string; // Profile picture URL
-}
 
 interface ExpertProfileModalProps {
   isOpen: boolean;

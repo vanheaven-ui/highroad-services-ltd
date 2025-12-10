@@ -1,18 +1,15 @@
-"use client";
+export interface FullCaseStudy {
+  title: string;
+  context: string;
+  summary: string;
+  impact: string;
+  client?: string; // Additional detail
+  region?: string; // Additional detail
+  date?: string; // Additional detail
+  detailedDescription: string; // The full content
+}
 
-import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
-import CaseStudyCard from "@/components/CasestudyCard";
-import Link from "next/link";
-import React, { JSX } from "react";
-// 💡 IMPORT FRAMER MOTION
-import { motion, Variants } from "framer-motion";
-import { FullCaseStudy } from "@/data/case-studies";
-
-// --- TYPE DEFINITIONS ---
-type CaseStudy = FullCaseStudy;
-
-// --- CASE STUDIES DATA (EXTRACTED & FORMATTED FROM TEAM KEY PROJECTS) ---
-const caseStudies: CaseStudy[] = [
+export const caseStudies: FullCaseStudy[] = [
   {
     title: "Baseline Surveys and Impact Evaluations for UBOS and USAID",
     context:
@@ -193,115 +190,3 @@ const caseStudies: CaseStudy[] = [
     `,
   },
 ];
-
-// --- FRAMER MOTION VARIANTS ---
-
-// Container for staggering the cards
-const cardContainerVariants: Variants = {
-  visible: {
-    transition: {
-      staggerChildren: 0.15, // Delay between each card's animation
-    },
-  },
-};
-
-// Item animation for each individual card
-const cardItemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
-};
-
-// --- WRAPPER COMPONENT TO USE MODAL CONTEXT ---
-interface CaseStudyCardWithModalProps {
-  study: CaseStudy;
-}
-
-const CaseStudyCardWithModal: React.FC<CaseStudyCardWithModalProps> = ({
-  study,
-}) => {
-  const { openModal } = useModal();
-
-  // 💡 APPLY FRAMER MOTION ITEM VARIANT HERE
-  return (
-    <motion.div variants={cardItemVariants}>
-      <CaseStudyCard
-        key={study.title}
-        title={study.title}
-        context={study.context}
-        summary={study.summary}
-        impact={study.impact}
-        onViewFullStudy={() => openModal(study)}
-      />
-    </motion.div>
-  );
-};
-
-// --- MAIN PAGE COMPONENT ---
-export default function CaseStudiesPage(): JSX.Element {
-  return (
-    <ModalProvider>
-      {/* 💡 APPLY MAIN PAGE FADE-IN */}
-      <motion.main
-        initial={{ opacity: 0, y: 10 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
-      >
-        {/* Case Study Grid – IMMEDIATE ENGAGEMENT */}
-        <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
-          <div className="text-center mb-12">
-            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
-              Our Portfolio of Excellence
-            </h2>
-            <h3 className="text-3xl md:text-4xl font-heading font-bold text-primary mt-2">
-              Client Success Stories
-            </h3>
-            <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-              Dive into real projects where our evidence-based approach turned
-              challenges into measurable wins. Each story highlights the work,
-              the methods, and the lasting difference made.
-            </p>
-          </div>
-
-          {/* 💡 APPLY STAGGERED CONTAINER */}
-          <motion.div
-            className="grid grid-cols-1 gap-10"
-            variants={cardContainerVariants}
-            initial="hidden"
-            whileInView="visible" // Triggers animation when section enters viewport
-            viewport={{ once: true, amount: 0.1 }}
-          >
-            {caseStudies.map((study) => (
-              <CaseStudyCardWithModal key={study.title} study={study} />
-            ))}
-          </motion.div>
-        </section>
-
-        {/* Final CTA Section */}
-        <section className="bg-gray-50 py-16 md:py-20 border-t border-gray-200">
-          {/* 💡 APPLY FADE/SLIDE-IN ON SCROLL */}
-          <motion.div
-            className="max-w-4xl mx-auto text-center px-6"
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.5 }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-3xl md:text-4xl font-heading font-bold text-primary mb-4">
-              Ready to Build Your Success Story?
-            </h2>
-            <p className="text-lg text-gray-700 mb-8 font-body">
-              Our track record shows what’s possible with clear, data-driven
-              strategies. Let’s talk about your next project.
-            </p>
-            <Link
-              href="/contact"
-              className="mt-8 inline-flex items-center px-8 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-2xl border-2 border-primary text-lg hover:bg-yellow-500 hover:text-primary transition transform hover:scale-[1.02]"
-            >
-              Start the Conversation
-            </Link>
-          </motion.div>
-        </section>
-      </motion.main>
-    </ModalProvider>
-  );
-}

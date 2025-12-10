@@ -12,7 +12,6 @@ import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Narbar";
 import ConsultationCTAButton from "@/components/ConsultationCTAButton";
-import ThemeSwitcher from "@/components/ThemeSwitcher";
 
 // NEW: Theme Provider
 import { ThemeProvider } from "@/context/theme-context";
@@ -156,11 +155,6 @@ export default function RootLayout({
           <main className="pt-32 md:pt-40">{children}</main>
 
           <Footer />
-
-          {/* Theme Switcher — fixed top-right */}
-          <div className="fixed top-24 right-4 z-50">
-            <ThemeSwitcher />
-          </div>
 
           {/* Consultation CTA — fixed bottom-right */}
           <ConsultationCTAButton />
