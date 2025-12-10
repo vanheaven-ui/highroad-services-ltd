@@ -61,7 +61,7 @@ const menuContent = [
     links: [
       { name: "Sectoral Assessments", href: "/services/assessments" },
       { name: "Econometric Modeling", href: "/services/modeling" },
-      { name: "M&E and Impact Evaluation", href: "/services/m-e" },
+      { name: "M&E and Impact Evaluation", href: "/services/monitoring-evaluation" },
     ],
   },
   {

@@ -1,8 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, Menu, X } from "lucide-react";
-import React, { JSX, useState } from "react";
+import { Phone, Mail, Menu, X, ChevronDown, Palette } from "lucide-react";
+import React, { JSX, useState, useRef, useEffect, forwardRef } from "react";
 import {
   motion,
   useScroll,
@@ -11,18 +11,23 @@ import {
 } from "framer-motion";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import FullMenuDrawer from "./FullMenuDrawer";
+import FullMenuDrawer from "./FullMenuDrawer"; 
+import { services } from "@/data/services"; 
+import ThemeSwitcher from "./ThemeSwitcher"; 
 
-const navLinks = [
-  { name: "Home", href: "/" },
-  { name: "About Us", href: "/about" },
-  { name: "Services", href: "/services" },
-  { name: "Projects", href: "/case-studies" },
-  { name: "Our Team", href: "/experts" },
-  { name: "Contact Us", href: "/contact" },
-  { name: "Our Approach", href: "/approach" },
-] as const;
+// --- Types ---
+interface NavLink {
+  name: string;
+  href: string;
+  hasDropdown?: boolean;
+}
 
+interface ServiceLink {
+  name: string;
+  href: string;
+}
+
+// --- Shared Variants ---
 const listVariants: Variants = {
   open: {
     opacity: 1,
@@ -57,77 +62,299 @@ const itemVariants: Variants = {
   closed: { opacity: 0, y: -20, transition: { duration: 0.2 } },
 };
 
+const submenuVariants: Variants = {
+  open: {
+    opacity: 1,
+    height: "auto",
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 25,
+      delayChildren: 0.05,
+      staggerChildren: 0.05,
+    },
+  },
+  closed: {
+    opacity: 0,
+    height: 0,
+    transition: {
+      type: "spring",
+      stiffness: 300,
+      damping: 25,
+      staggerChildren: 0.05,
+      staggerDirection: -1,
+    },
+  },
+};
+
+// --- Nav Links --- (Added Services as a dedicated item with dropdown flag for proper alignment)
+const navLinks: NavLink[] = [
+  { name: "Home", href: "/" },
+  { name: "About Us", href: "/about" },
+  { name: "Services", href: "#", hasDropdown: true }, // Now a proper nav item
+  { name: "Projects", href: "/case-studies" },
+  { name: "Our Approach", href: "/approach" },
+  { name: "Contact Us", href: "/contact" },
+] as const;
+
+// --- Services Dropdown ---
+const servicesDropdown: ServiceLink[] = services.map((service) => ({
+  name: service.title,
+  href: `/services/${service.id}`,
+}));
+
+// --- Mobile Dropdown --- (Adjusted to render Services as its own section for consistency)
 interface MobileDropdownProps {
-  links: typeof navLinks;
+  links: NavLink[];
+  servicesLinks: ServiceLink[];
   isOpen: boolean;
   onLinkClick: () => void;
   pathname: string;
+  onClose: () => void;
 }
 
-const MobileNavDropdown = ({
-  links,
-  isOpen,
-  onLinkClick,
-  pathname,
-}: MobileDropdownProps): JSX.Element => (
-  <motion.div
-    className="absolute top-full mt-2 w-[250px] bg-white dark:bg-primary shadow-2xl rounded-xl overflow-hidden right-1/2 translate-x-1/2 border border-gray-100 dark:border-gray-700"
-    variants={listVariants}
-    initial="closed"
-    animate={isOpen ? "open" : "closed"}
-    style={{ pointerEvents: isOpen ? "auto" : "none" }}
-  >
-    <motion.div className="flex flex-col p-4 space-y-2">
-      {links.map((link) => {
-        const isActive =
-          link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
+  ({ links, servicesLinks, isOpen, onLinkClick, pathname, onClose }, ref) => {
+    const [servicesOpen, setServicesOpen] = useState(false);
+    const dropdownRef = useRef<HTMLDivElement>(null);
 
-        return (
-          <motion.div variants={itemVariants} key={link.name}>
-            <Link
-              href={link.href}
+    // Click outside handler for submenu
+    useEffect(() => {
+      const handleClickOutside = (event: MouseEvent) => {
+        if (
+          dropdownRef.current &&
+          !dropdownRef.current.contains(event.target as Node)
+        ) {
+          setServicesOpen(false);
+        }
+      };
+
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }, []);
+
+    // Overall menu close on outside click (handled by parent, but local for submenu)
+
+    return (
+      <motion.div
+        ref={ref}
+        className="absolute top-full mt-2 w-[250px] bg-white dark:bg-primary shadow-2xl rounded-xl overflow-hidden right-1/2 translate-x-1/2 border border-gray-100 dark:border-gray-700"
+        variants={listVariants}
+        initial="closed"
+        animate={isOpen ? "open" : "closed"}
+        style={{ pointerEvents: isOpen ? "auto" : "none" }}
+      >
+        <motion.div ref={dropdownRef} className="flex flex-col p-4 space-y-2">
+          {links.map((link) => {
+            const isActive =
+              link.href === "/"
+                ? pathname === "/"
+                : pathname.startsWith(link.href);
+
+            if (link.hasDropdown) {
+              // Collapsible Services section in mobile
+              return (
+                <motion.div variants={itemVariants} key={link.name}>
+                  <button
+                    onClick={() => setServicesOpen(!servicesOpen)}
+                    className={clsx(
+                      "w-full flex items-center justify-between px-4 py-2 text-sm font-bold text-primary dark:text-white opacity-70 uppercase tracking-wide rounded-lg transition duration-150 text-left group",
+                      {
+                        "bg-gray-100 dark:bg-gray-800": servicesOpen,
+                        "hover:bg-gray-100 dark:hover:bg-gray-800":
+                          !servicesOpen,
+                      }
+                    )}
+                  >
+                    <span>{link.name}</span>
+                    <ChevronDown
+                      className={`w-4 h-4 transition-transform duration-300 group-hover:text-accent-gold ${
+                        servicesOpen ? "rotate-180" : "rotate-0"
+                      }`}
+                    />
+                  </button>
+                  <motion.div
+                    variants={submenuVariants}
+                    initial="closed"
+                    animate={servicesOpen ? "open" : "closed"}
+                    className="overflow-hidden"
+                  >
+                    <div className="space-y-1 pl-4 border-t border-gray-200 dark:border-gray-700 pt-2">
+                      {servicesLinks.map((service, idx) => (
+                        <motion.div
+                          key={service.name}
+                          variants={itemVariants}
+                          className="overflow-hidden"
+                        >
+                          <Link
+                            href={service.href}
+                            onClick={onLinkClick}
+                            className={clsx(
+                              "w-full block px-4 py-1 text-xs font-subheading rounded-lg transition duration-150 relative text-left",
+                              {
+                                "bg-accent-gold text-primary":
+                                  pathname.startsWith(service.href),
+                                "text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800":
+                                  !pathname.startsWith(service.href),
+                              }
+                            )}
+                          >
+                            {service.name}
+                          </Link>
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+                </motion.div>
+              );
+            }
+
+            return (
+              <motion.div variants={itemVariants} key={link.name}>
+                <Link
+                  href={link.href}
+                  onClick={onLinkClick}
+                  className={clsx(
+                    "w-full block px-4 py-2 text-sm font-subheading font-semibold uppercase rounded-lg transition duration-150 text-center relative",
+                    {
+                      "bg-accent-gold text-primary border-b-[3px] border-accent-gold pb-1":
+                        isActive,
+                      "text-primary dark:text-white hover:bg-accent-gold dark:hover:bg-accent-gold hover:text-primary":
+                        !isActive,
+                    }
+                  )}
+                >
+                  {link.name}
+                </Link>
+              </motion.div>
+            );
+          })}
+
+          <motion.div
+            variants={itemVariants}
+            className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
+          >
+            <a
+              href="tel:+256772688639"
               onClick={onLinkClick}
+              className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              aria-label="Call us"
+            >
+              <Phone className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:highroadservicesltd@gmail.com"
+              onClick={onLinkClick}
+              className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+              aria-label="Email us"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    );
+  }
+);
+
+MobileNavDropdown.displayName = "MobileNavDropdown";
+
+// --- Desktop Services Dropdown --- (Unchanged from your version, but now positioned correctly)
+interface ServicesDropdownProps {
+  isScrolled: boolean;
+  services: ServiceLink[];
+  pathname: string;
+}
+
+const DesktopServicesDropdown = ({
+  isScrolled,
+  services,
+  pathname,
+}: ServicesDropdownProps) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  const baseClasses = clsx(
+    "px-4 py-2 rounded-full font-subheading font-medium transition duration-200 uppercase tracking-wide nav-link relative flex items-center space-x-1",
+    {
+      "text-primary": !isScrolled,
+      "text-white": isScrolled,
+    }
+  );
+
+  const activeService = services.some((service) =>
+    pathname.startsWith(service.href)
+  );
+
+  const activeClasses = clsx(baseClasses, {
+    "text-primary bg-accent-gold": activeService,
+    "hover:bg-accent-gold hover:text-primary": !activeService,
+  });
+
+  const iconColor = activeService
+    ? "text-primary"
+    : isScrolled
+    ? "text-white"
+    : "text-primary";
+
+  return (
+    <div
+      className="flex relative overflow-visible"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <div
+        className={activeClasses}
+        style={{ fontSize: "13px", cursor: "pointer" }}
+      >
+        <span>Services</span>
+        <ChevronDown
+          className={`w-3 h-3 transition-transform duration-200 ${
+            isHovered ? "rotate-180" : "rotate-0"
+          }`}
+          style={{ color: iconColor }}
+        />
+        {activeService && (
+          <span className="absolute bottom-0 left-0 w-full h-[3px] bg-accent-gold" />
+        )}
+      </div>
+
+      <motion.div
+        initial={{ opacity: 0, y: 10, pointerEvents: "none" }}
+        animate={
+          isHovered
+            ? { opacity: 1, y: 0, pointerEvents: "auto" }
+            : { opacity: 0, y: 10, pointerEvents: "none" }
+        }
+        transition={{ duration: 0.2 }}
+        className="absolute top-full mt-2 w-64 bg-white dark:bg-primary shadow-2xl rounded-xl p-3 border border-gray-100 dark:border-gray-700"
+        style={{ zIndex: 60 }}
+      >
+        <div className="flex flex-col space-y-2">
+          {services.map((service) => (
+            <Link
+              key={service.name}
+              href={service.href}
               className={clsx(
-                "w-full block px-4 py-2 text-sm font-subheading font-semibold uppercase rounded-lg transition duration-150 text-center relative",
+                "block px-3 py-2 text-sm rounded-lg transition duration-150 text-left",
                 {
-                  "bg-accent-gold text-primary border-b-[3px] border-accent-gold pb-1":
-                    isActive,
-                  "text-primary dark:text-white hover:bg-accent-gold dark:hover:bg-accent-gold hover:text-primary":
-                    !isActive,
+                  "bg-accent-gold text-primary font-semibold":
+                    pathname.startsWith(service.href),
+                  "text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800":
+                    !pathname.startsWith(service.href),
                 }
               )}
             >
-              {link.name}
+              {service.name}
             </Link>
-          </motion.div>
-        );
-      })}
-
-      <motion.div
-        variants={itemVariants}
-        className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
-      >
-        <a
-          href="tel:+256772688639"
-          onClick={onLinkClick}
-          className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-          aria-label="Call us"
-        >
-          <Phone className="h-5 w-5" />
-        </a>
-        <a
-          href="mailto:highroadservicesltd@gmail.com"
-          onClick={onLinkClick}
-          className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-          aria-label="Email us"
-        >
-          <Mail className="h-5 w-5" />
-        </a>
+          ))}
+        </div>
       </motion.div>
-    </motion.div>
-  </motion.div>
-);
+    </div>
+  );
+};
 
+// --- Animated Grid Icon ---
 interface AnimatedGridIconProps {
   isOpen: boolean;
   color: string;
@@ -188,6 +415,7 @@ const AnimatedGridIcon = ({ isOpen, color }: AnimatedGridIconProps) => {
   );
 };
 
+// --- Logo ---
 interface LogoProps {
   isActive: boolean;
   nonActiveColor: string;
@@ -202,7 +430,6 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
     >
       HighRoad
     </span>
-
     <svg
       className="absolute -top-1 -right-1 w-20 h-10 pointer-events-none"
       viewBox="0 0 100 50"
@@ -219,7 +446,6 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
         style={{ filter: "drop-shadow(0 1px 2px rgba(207, 168, 59, 0.3))" }}
       />
     </svg>
-
     <span
       className="text-xs font-subheading font-semibold uppercase tracking-widest mt-[-4px] ml-1 nav-logo-sub"
       style={{ color: iconColor, verticalAlign: "sub", fontSize: "0.65em" }}
@@ -229,17 +455,37 @@ const StylisticLogo = ({ isActive, nonActiveColor, iconColor }: LogoProps) => (
   </div>
 );
 
+// --- Navbar ---
 export default function Navbar(): JSX.Element {
   const { scrollY } = useScroll();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const mobileDropdownRef = useRef<HTMLDivElement>(null);
 
   useMotionValueEvent(scrollY, "change", (latest) => {
     const scrolled = latest > 100;
     if (scrolled !== isScrolled) setIsScrolled(scrolled);
   });
+
+  // Click outside handler for mobile menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        mobileDropdownRef.current &&
+        !mobileDropdownRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    if (isMobileMenuOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+      return () =>
+        document.removeEventListener("mousedown", handleClickOutside);
+    }
+  }, [isMobileMenuOpen]);
 
   const navVariants: Variants = {
     top: { backgroundColor: "rgba(255, 255, 255, 0.95)", borderRadius: 50 },
@@ -260,7 +506,6 @@ export default function Navbar(): JSX.Element {
           animate={isScrolled ? "scrolled" : "top"}
           transition={{ duration: 0.2 }}
         >
-          {/* Logo */}
           <Link href="/" className="p-2">
             <StylisticLogo
               isActive={isLogoActive}
@@ -269,7 +514,6 @@ export default function Navbar(): JSX.Element {
             />
           </Link>
 
-          {/* Desktop Links - APPLIED font-subheading for modern nav vibe */}
           <div className="hidden lg:flex space-x-1 items-center">
             {navLinks.map((link) => {
               const isActive =
@@ -290,6 +534,26 @@ export default function Navbar(): JSX.Element {
                 ? { borderBottomWidth: 3, paddingBottom: "5px" }
                 : { borderBottomWidth: 0, paddingBottom: "8px" };
 
+              if (link.hasDropdown) {
+                // Render Services as a standalone aligned item
+                return (
+                  <div
+                    key={link.name}
+                    className="flex relative overflow-visible"
+                    style={{
+                      borderBottomColor: "#CFA83B",
+                      ...activeBorderStyle,
+                    }}
+                  >
+                    <DesktopServicesDropdown
+                      isScrolled={isScrolled}
+                      services={servicesDropdown}
+                      pathname={pathname}
+                    />
+                  </div>
+                );
+              }
+
               return (
                 <div
                   key={link.name}
@@ -301,7 +565,6 @@ export default function Navbar(): JSX.Element {
                     className={clsx(baseClasses, {
                       "hover:bg-accent-gold hover:text-primary": !isActive,
                     })}
-                    // CUSTOM FONT SIZE APPLIED HERE
                     style={{ fontSize: "13px" }}
                   >
                     {link.name}
@@ -314,27 +577,29 @@ export default function Navbar(): JSX.Element {
             })}
           </div>
 
-          {/* Mobile Menu */}
           <div className="lg:hidden relative">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
               className="p-3 text-primary rounded-full hover:bg-gray-100 transition nav-icon shadow-inner"
               aria-label="Toggle main navigation links"
+              style={{ color: iconColor }}
             >
               <AnimatedGridIcon isOpen={isMobileMenuOpen} color={iconColor} />
             </button>
             <MobileNavDropdown
+              ref={mobileDropdownRef}
               links={navLinks}
+              servicesLinks={servicesDropdown}
               isOpen={isMobileMenuOpen}
               onLinkClick={() => setIsMobileMenuOpen(false)}
               pathname={pathname}
+              onClose={() => setIsMobileMenuOpen(false)}
             />
           </div>
 
-          {/* Contact Icons / Drawer */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             <a
-              href="tel:+256000000000"
+              href="tel:+256772688639"
               className="hidden lg:flex items-center p-2 rounded-full hover:bg-surface transition"
             >
               <Phone
@@ -343,11 +608,12 @@ export default function Navbar(): JSX.Element {
               />
             </a>
             <a
-              href="mailto:info@highroad.com"
+              href="mailto:highroadservicesltd@gmail.com"
               className="hidden lg:flex items-center p-2 rounded-full hover:bg-surface transition"
             >
               <Mail className="h-5 w-5 nav-icon" style={{ color: iconColor }} />
             </a>
+            <ThemeSwitcher />
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-3 text-primary rounded-full hover:bg-surface transition nav-icon"

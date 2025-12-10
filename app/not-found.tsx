@@ -30,7 +30,7 @@ const itemVariants = {
 function NotFoundPage(): JSX.Element {
   return (
     <motion.main
-      className="bg-primary min-h-screen flex flex-col justify-center items-center text-white p-6"
+      className="bg-primary min-h-screen flex flex-col justify-center items-center text-white px-6 py-16"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
@@ -40,8 +40,7 @@ function NotFoundPage(): JSX.Element {
         <motion.p
           className="font-display font-black text-9xl md:text-[10rem] leading-none mb-4 tracking-tighter"
           variants={itemVariants}
-          // The WebkitTextStroke effect gives the 404 a unique, "hollow" look
-          style={{ WebkitTextStroke: "2px var(--accent-gold)" }}
+          style={{ WebkitTextStroke: "2px #FACC15" }}
         >
           <span className="text-transparent">404</span>
         </motion.p>
@@ -60,7 +59,7 @@ function NotFoundPage(): JSX.Element {
           className="text-xl text-gray-300 mb-10 font-body max-w-lg mx-auto"
           variants={itemVariants}
         >
-          It seems the analytical path you chose led to a dead end. We couldn't
+          It seems the analytical path you chose led to a dead end. We could not
           locate the data on this specific page address.
         </motion.p>
 
@@ -87,7 +86,7 @@ function NotFoundPage(): JSX.Element {
         </motion.div>
       </div>
 
-      {/* Subtle Background Element */}
+      {/* Background Arrow */}
       <div className="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none">
         <ArrowRight className="w-full h-full transform scale-[6] translate-x-1/3 translate-y-1/4" />
       </div>
