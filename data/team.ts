@@ -24,7 +24,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of Dar es Salaam; MA in Economics & BSc in Economics and Mathematics, Makerere University",
     bioSummary:
       "Dr. Tumwine is an economist with extensive experience in teaching, research and consultancy. His expertise spans impact evaluation, feasibility studies, cost benefit analysis, econometric modelling, Computable General Equilibrium (CGE) and Dynamic Stochastic General Equilibrium (DSGE) modelling, Social Accounting Matrix (SAM) and National Transfer Accounts (NTA).",
-    email: "geoffrey.tumwine@highroadservicesltd.com",
+    email: "highroadservicesltd@gmail.com",
     linkedinUrl: "#",
     imageSrc: "/images/norman.png",
     fullBio:
@@ -44,7 +44,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of South Africa; MA in Economics, University of Dar es Salaam; BA in Economics, Makerere University",
     bioSummary:
       "Dr. Enock Nyorekwa Twinoburyo is a distinguished Economist with extensive regional experience in public policy analysis, macroeconomic research, impact evaluations, public financial management, public investment appraisal, and development advisory services.",
-    email: "enock.nyorekwa@highroadservicesltd.com",
+    email: "highroadservicesltd@gmail.com",
     linkedinUrl: "#",
     imageSrc: "/images/enok.png",
     fullBio:
@@ -63,7 +63,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Applied Economics, University of Agder; MSc in Quantitative Economics & BA in Economics with Education, Makerere University",
     bioSummary:
       "Dr. Richard Sebaggala is an applied economist, researcher and academic with extensive experience in policy-oriented research, impact evaluation and quantitative economic analysis.",
-    email: "richard.sebaggala@highroadservicesltd.com",
+    email: "highroadservicesltd@gmail.com",
     linkedinUrl: "#",
     imageSrc: "/images/richard.png",
     fullBio:
@@ -82,7 +82,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of Dar es Salaam; MA & BA in Economics, Makerere University",
     bioSummary:
       "Dr. Ambrose Rwaheru Aheisibwe is a Development Economist with over 15 years of experience in economic analysis, applied research, project management and socio-economic impact evaluation across East and Southern Africa.",
-    email: "ambrose.aheise@highroadservicesltd.com",
+    email: "highroadservicesltd@gmail.com",
     linkedinUrl: "#",
     imageSrc: "/images/ambrose.png",
     fullBio:
@@ -111,6 +111,27 @@ export const teamMembersData: FullExpertProfile[] = [
       "Led multidisciplinary projects on productivity, seed systems, and farmer livelihoods with gender-transformative approaches.",
       "Contributed to publications in Frontiers in Sustainable Food Systems and Outlook on Agriculture on varietal adoption and seed systems.",
       "Integrated economic analysis and participatory methods for breeding programs, policy processes, and value-chain investments.",
+    ],
+  },
+  {
+    name: "Kuteesa David Mansen",
+    title: "Data Systems and GIS Specialist",
+    focus:
+      "Database Management, Geospatial Analytics, Mobile Data Collection & M&E Dashboards",
+    qualifications:
+      "Master of Science in Geo-Information Science and Technology, Makerere University; Master of Science in Information Systems, Uganda Martyrs University",
+    bioSummary:
+      "Kuteesa David Mansen is a Data Systems and GIS Specialist with over 15 years of experience in designing information systems, geospatial databases, and automated data quality assurance tools for large-scale development programmes in the energy, health and education sectors. His expertise lies at the intersection of database management, geospatial analytics, mobile data collection, and monitoring and evaluation (M&E), with a strong focus on dashboards and quality-assured data flows for evidence-based decision-making.",
+    email: "highroadservicesltd@gmail.com",
+    linkedinUrl: "#",
+    imageSrc: "/images/david.png",
+    fullBio:
+      "Currently serving as the Database Management Specialist for the Ministry of Energy and Mineral Development (MEMD) under the World Bank-funded Electricity Access Scale-up Project (EASP), David leads the development and maintenance of the National Electricity Connections Data Platform (ECDP), a web-based M&E and analytics system that consolidates data from electricity service providers into interactive, Business Intelligence and GIS-enabled dashboards, supporting the tracking of over 2.5 million customers on the national electricity grid, and generating actionable insights on national electricity connectivity. He has also spearheaded the design and implementation of the ECDP Mobile Field Validation Module, which enables field officers to capture geotagged photos and GPS coordinates, work offline, and run automated validation checks, thereby ensuring strict compliance of electricity connection installations by service providers before fund disbursement under the EASP project.\n\nPreviously, under the USAID Power Africa Uganda Electricity Supply Accelerator, David designed Android-based ODK survey tools and developed dynamic dashboards using Tableau and Power BI to track key performance indicators for on-grid and off-grid energy developers across the country. As the MIS/GIS Specialist for Save the Children, he rolled out mobile data collection systems using Kobo Toolbox, Survey123, and CommCare across different regions, integrating GIS into the Country Office's MEAL function for development and humanitarian response. His earlier work with the Infectious Diseases Institute and Malaria Consortium involved managing large datasets across multiple HMIS/EMR systems and implementing rigorous validation, verification and reporting workflows.\n\nAcross these assignments, David has worked with organisations such as MEMD, RTI International, the Rural Electrification Agency, Save the Children, Infectious Diseases Institute and Malaria Consortium, and with funders including the World Bank, USAID Power Africa, WHO, CDC, GIZ and SIDA. He is proficient in Power BI, Tableau, ArcGIS and ArcGIS Pro, Kobo/ODK, Survey123, CommCare, QGIS, QField, PostGIS, various enterprise database management systems and application programming languages, which he applies to transform complex multi-source data into reliable, policy-relevant insights that strengthen impact evaluation and programme performance management.",
+    keyProjects: [
+      "Database Management Specialist for MEMD under World Bank-funded EASP, leading the National Electricity Connections Data Platform (ECDP) and Mobile Field Validation Module for tracking 2.5M+ customers.",
+      "Designed ODK survey tools and dashboards (Tableau/Power BI) for USAID Power Africa Uganda Electricity Supply Accelerator to monitor on/off-grid energy developers.",
+      "MIS/GIS Specialist for Save the Children, rolling out mobile data systems (Kobo Toolbox, Survey123, CommCare) and integrating GIS into MEAL functions.",
+      "Managed datasets and workflows for Infectious Diseases Institute and Malaria Consortium across HMIS/EMR systems with validation and reporting.",
     ],
   },
 ];

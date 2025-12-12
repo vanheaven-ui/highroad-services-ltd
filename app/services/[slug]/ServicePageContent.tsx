@@ -12,20 +12,13 @@ import {
   Users,
   Briefcase,
   Building,
-  Eye,
 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { Service } from "@/data/services";
-import { caseStudies, FullCaseStudy } from "@/data/case-studies"; // Assuming this exports an array of FullCaseStudy for matching
+import { FullCaseStudy } from "@/data/case-studies";
 import { SVGProps } from "react";
 import { slugify } from "@/lib/slugify";
 import CaseStudyModal from "@/components/case-study/CaseStudyModal";
-
-interface CaseStudySummary {
-  title: string;
-  description: string;
-  impact: string;
-}
 
 // Icon mapping
 const iconMap: Record<string, React.ComponentType<SVGProps<SVGSVGElement>>> = {
@@ -65,9 +58,13 @@ const cardVariants: Variants = {
   },
 };
 
-// Component props
+const overlayVariants: Variants = {
+  initial: { y: "100%", opacity: 0 },
+  hover: { y: 0, opacity: 1, transition: { duration: 0.4, ease: "easeOut" } },
+};
+
 interface ServicePageContentProps {
-  service: Service;
+  service: Service & { caseStudies: FullCaseStudy[] };
   services: Service[];
 }
 
@@ -82,26 +79,13 @@ export default function ServicePageContent({
 
   const ServiceIcon = iconMap[service.icon] || iconMap.default;
 
-  const handleCardClick = (caseItem: CaseStudySummary) => {
-    // Match to full case study by title (assuming unique titles)
-    const fullStudy = caseStudies.find(
-      (study) => study.title === caseItem.title
-    );
-    if (fullStudy) {
-      setSelectedStudy(fullStudy);
-      setIsModalOpen(true);
-    }
+  const handleCardClick = (caseItem: FullCaseStudy) => {
+    setSelectedStudy(caseItem);
+    setIsModalOpen(true);
   };
 
   return (
-    <motion.main
-      initial="hidden"
-      animate="visible"
-      variants={{
-        hidden: { opacity: 0 },
-        visible: { opacity: 1, transition: { duration: 0.5 } },
-      }}
-    >
+    <motion.main initial="hidden" animate="visible">
       {/* 1. Service Header */}
       <motion.section
         className={`pt-20 pb-12 md:pt-28 md:pb-16 ${service.color} text-white border-b-4 border-white/50 shadow-inner relative`}
@@ -109,60 +93,57 @@ export default function ServicePageContent({
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.7, delay: 0.1 }}
       >
-        <div className="max-w-6xl mx-auto px-6 relative">
-          <div className="text-center relative">
-            <p className="text-sm font-semibold uppercase tracking-widest text-white/75 mb-3">
-              Quality for measurable{" "}
-              {service.title.includes("Consulting") ? "Outcomes" : "Impact"}
-            </p>
+        <div className="max-w-6xl mx-auto px-6 relative text-center">
+          <p className="text-sm font-semibold uppercase tracking-widest text-white/75 mb-3">
+            Quality for measurable{" "}
+            {service.title.includes("Consulting") ? "Outcomes" : "Impact"}
+          </p>
 
-            <div className="flex justify-center mb-4">
-              <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full inline-flex">
-                <ServiceIcon className="w-8 h-8 text-white" />
-              </div>
+          <div className="flex justify-center mb-4">
+            <div className="p-3 bg-white/20 backdrop-blur-sm rounded-full inline-flex">
+              <ServiceIcon className="w-8 h-8 text-white" />
             </div>
+          </div>
 
-            <h1 className="text-4xl md:text-5xl font-heading font-black mb-4 leading-tight max-w-4xl mx-auto">
-              {service.title}
-            </h1>
+          <h1 className="text-4xl md:text-5xl font-heading font-black mb-4 leading-tight max-w-4xl mx-auto">
+            {service.title}
+          </h1>
 
-            <p className="max-w-3xl mx-auto text-lg text-white/90 font-light mb-8">
-              {service.description}
-            </p>
+          <p className="max-w-3xl mx-auto text-lg text-white/90 font-light mb-8">
+            {service.description}
+          </p>
 
-            {/* REPLACED: Subtle on-page engagement – quick highlights teaser with scroll prompt */}
-            <div className="max-w-md mx-auto mb-8">
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                {service.highlights.slice(0, 3).map((highlight, idx) => (
-                  <div
-                    key={idx}
-                    className="text-center p-3 bg-white/10 rounded-lg"
-                  >
-                    <CheckCircle className="w-5 h-5 text-accent-gold mx-auto mb-1" />
-                    <p className="text-xs text-white/90">
-                      {highlight.split(".")[0]}
-                    </p>
-                  </div>
-                ))}
-              </div>
-              <motion.div
-                className="text-center"
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.8,
-                  repeat: Infinity,
-                  repeatType: "reverse",
-                  repeatDelay: 2,
-                }}
-              >
-                <p className="text-sm text-white/75 mb-2">
-                  Explore our approach below
-                </p>
-                <div className="w-1 h-8 bg-white/50 rounded-full mx-auto animate-bounce" />
-              </motion.div>
+          <div className="max-w-md mx-auto mb-8">
+            <div className="grid grid-cols-3 gap-4 mb-6">
+              {service.highlights.slice(0, 3).map((highlight, idx) => (
+                <div
+                  key={idx}
+                  className="text-center p-3 bg-white/10 rounded-lg"
+                >
+                  <CheckCircle className="w-5 h-5 text-accent-gold mx-auto mb-1" />
+                  <p className="text-xs text-white/90">
+                    {highlight.split(".")[0]}
+                  </p>
+                </div>
+              ))}
             </div>
+            <motion.div
+              className="text-center"
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{
+                duration: 0.6,
+                delay: 0.8,
+                repeat: Infinity,
+                repeatType: "reverse",
+                repeatDelay: 2,
+              }}
+            >
+              <p className="text-sm text-white/75 mb-2">
+                Explore our approach below
+              </p>
+              <div className="w-1 h-8 bg-white/50 rounded-full mx-auto animate-bounce" />
+            </motion.div>
           </div>
         </div>
       </motion.section>
@@ -175,38 +156,36 @@ export default function ServicePageContent({
         viewport={{ once: true, amount: 0.3 }}
         variants={itemVariants}
       >
-        <section className="py-16 md:py-24 max-w-6xl mx-auto px-6">
-          <div className="grid lg:grid-cols-3 gap-12">
-            {/* Overview Text */}
-            <div className="lg:col-span-2">
-              <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold mb-2">
-                The Analytical Edge
-              </h2>
-              <h3 className="text-3xl font-heading font-bold text-primary mb-6">
-                Comprehensive Service Overview
-              </h3>
-              <p className="whitespace-pre-line text-gray-700 leading-relaxed text-lg font-body">
-                {service.detailedOverview}
-              </p>
-            </div>
+        <section className="py-16 md:py-24 max-w-6xl mx-auto px-6 grid lg:grid-cols-3 gap-12">
+          {/* Overview */}
+          <div className="lg:col-span-2">
+            <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold mb-2">
+              The Analytical Edge
+            </h2>
+            <h3 className="text-3xl font-heading font-bold text-primary mb-6">
+              Comprehensive Service Overview
+            </h3>
+            <p className="whitespace-pre-line text-gray-700 leading-relaxed text-lg font-body">
+              {service.detailedOverview}
+            </p>
+          </div>
 
-            {/* Callout */}
-            <div className="lg:col-span-1 p-6 bg-surface border-l-4 border-accent-gold rounded-xl shadow-lg h-fit">
-              <Lightbulb className="w-8 h-8 text-accent-gold mb-4" />
-              <p className="text-xl font-heading font-semibold text-primary mb-3">
-                Need Immediate Insight?
-              </p>
-              <p className="text-gray-700 mb-6">
-                Our team specializes in rapid diagnostic assessments. Get a
-                focused, evidence-based review in weeks, not months.
-              </p>
-              <Link
-                href="/contact"
-                className="text-primary font-bold hover:text-accent-gold transition flex items-center"
-              >
-                Request Fast Track →
-              </Link>
-            </div>
+          {/* Callout */}
+          <div className="lg:col-span-1 p-6 bg-surface border-l-4 border-accent-gold rounded-xl shadow-lg h-fit">
+            <Lightbulb className="w-8 h-8 text-accent-gold mb-4" />
+            <p className="text-xl font-heading font-semibold text-primary mb-3">
+              Need Immediate Insight?
+            </p>
+            <p className="text-gray-700 mb-6">
+              Our team specializes in rapid diagnostic assessments. Get a
+              focused, evidence-based review in weeks, not months.
+            </p>
+            <Link
+              href="/contact"
+              className="text-primary font-bold hover:text-accent-gold transition flex items-center"
+            >
+              Request Fast Track →
+            </Link>
           </div>
         </section>
       </motion.div>
@@ -248,7 +227,7 @@ export default function ServicePageContent({
 
       <hr className="border-t border-gray-200" />
 
-      {/* 4. Methodology (Timeline) */}
+      {/* 4. Methodology */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold text-center">
@@ -312,65 +291,40 @@ export default function ServicePageContent({
             viewport={{ once: true, amount: 0.3 }}
             variants={listContainerVariants}
           >
-            {service.caseStudies.map((caseItem, index) => (
+            {service.caseStudies.map((cs) => (
               <motion.div
-                key={index}
+                key={cs.id}
                 variants={cardVariants}
-                className="bg-white p-8 rounded-xl shadow-2xl border-b-8 border-accent-gold/60 hover:border-accent-gold transition duration-300 cursor-pointer relative overflow-hidden group"
-                onClick={() => handleCardClick(caseItem)}
+                className="relative bg-white rounded-xl shadow-2xl border-b-8 border-accent-gold/60 hover:border-accent-gold transition duration-300 cursor-pointer overflow-hidden group"
+                onClick={() => handleCardClick(cs)}
                 whileHover="hover"
                 whileTap="tap"
               >
-                {/* Subtle shimmer overlay on hover for unique UX */}
+                <div className="p-8 relative z-10">
+                  <h4 className="text-xl font-heading text-primary font-bold mb-3">
+                    {cs.title}
+                  </h4>
+                  <p className="text-gray-600 mb-4 font-body">{cs.summary}</p>
+                  <p className="text-2xl text-primary font-black mt-4 border-t border-gray-200 pt-4">
+                    <span className="mr-1">Impact:</span>
+                    <span className="text-accent-gold">{cs.impact}</span>
+                  </p>
+                </div>
+
+                {/* Slide-Up Overlay */}
                 <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  initial={{ x: -100 }}
-                  whileHover={{ x: 100 }}
-                  transition={{
-                    duration: 1,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                  }}
-                />
-
-                {/* Glowing border pulse on hover */}
-                <motion.div
-                  className="absolute inset-0 rounded-xl border-2 border-transparent group-hover:border-accent-gold/50"
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.03 }}
-                  transition={{ duration: 0.3 }}
-                  style={{ boxShadow: "0 0 20px rgba(251, 191, 36, 0.3)" }}
-                />
-
-                <h4 className="text-xl font-heading text-primary font-bold mb-3 relative z-10">
-                  {caseItem.title}
-                </h4>
-                <p className="text-gray-600 mb-4 font-body relative z-10">
-                  {caseItem.description}
-                </p>
-                <p className="text-2xl text-primary font-black mt-4 border-t border-gray-200 pt-4 relative z-10">
-                  <span className="mr-1">Impact:</span>
-                  <span className="text-accent-gold">{caseItem.impact}</span>
-                </p>
-
-                {/* Clear indicator: Always-visible "View Details" button with hover animation */}
-                <motion.button
-                  className="mt-4 flex items-center justify-center text-primary font-semibold text-sm hover:text-accent-gold transition-colors duration-300 bg-accent-gold/10 hover:bg-accent-gold/20 rounded-md px-3 py-2 border border-accent-gold/20 relative z-10 w-full"
-                  whileHover={{ scale: 1.05, x: 5 }}
-                  whileTap={{ scale: 0.95 }}
+                  className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/80 to-transparent p-8 text-white z-20"
+                  variants={overlayVariants}
                 >
-                  <span>View Full Case Study</span>
-                  <Eye className="ml-2 w-4 h-4" />
-                </motion.button>
-
-                {/* Enhanced hover reveal for additional uniqueness */}
-                <motion.div
-                  className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center text-accent-gold font-bold text-xs relative z-10"
-                  initial={{ x: 20, opacity: 0 }}
-                  whileHover={{ x: 0, opacity: 1 }}
-                  transition={{ duration: 0.3, delay: 0.1 }}
-                >
-                  <span>Tap to Dive Deeper</span>
+                  <div className="text-center">
+                    <p className="text-sm font-medium mb-2 opacity-90">
+                      Discover detailed insights
+                    </p>
+                    <div className="flex items-center justify-center space-x-3 font-bold uppercase tracking-wide text-sm">
+                      <span>Dive Deeper</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </motion.div>
               </motion.div>
             ))}
@@ -399,7 +353,7 @@ export default function ServicePageContent({
                 .map((related, index) => (
                   <motion.div key={index} variants={itemVariants}>
                     <Link
-                      href={`/services/${slugify(related!.title)}`}
+                      href={`/services/${slugify(related!.id)}`}
                       className="group p-6 bg-surface hover:bg-primary transition rounded-xl shadow-lg hover:shadow-2xl flex flex-col justify-between h-full"
                     >
                       <div>
@@ -445,7 +399,7 @@ export default function ServicePageContent({
         </div>
       </motion.section>
 
-      {/* Render the Modal */}
+      {/* Modal */}
       <CaseStudyModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}

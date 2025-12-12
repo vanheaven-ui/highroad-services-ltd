@@ -30,7 +30,7 @@ const itemVariants = {
 function NotFoundPage(): JSX.Element {
   return (
     <motion.main
-      className="bg-primary min-h-screen flex flex-col justify-center items-center text-white px-6 py-16"
+      className="bg-primary min-h-screen flex flex-col justify-center items-center text-white px-6 py-16 relative overflow-hidden"
       initial="hidden"
       animate="visible"
       variants={containerVariants}
