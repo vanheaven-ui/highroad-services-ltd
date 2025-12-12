@@ -5,14 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
   Mail,
-  MapPin,
   Briefcase,
   GraduationCap,
   Link as LinkIcon,
-  Users,
   TrendingUp,
 } from "lucide-react";
 import Link from "next/link";
+import Image from "next/image";
 import React from "react";
 
 interface ExpertProfileModalProps {
@@ -77,12 +76,13 @@ const ExpertProfileModal: React.FC<ExpertProfileModalProps> = ({
             <div className="md:grid md:grid-cols-3 gap-10">
               {/* Left Column: Image and Key Info */}
               <div className="p-8 bg-surface border-r border-gray-200">
-                <div className="aspect-square w-full mb-6 rounded-xl overflow-hidden shadow-xl">
+                <div className="relative aspect-square w-full mb-6 rounded-xl overflow-hidden shadow-xl">
                   {expert.imageSrc ? (
-                    <img
+                    <Image
                       src={expert.imageSrc}
                       alt={`Profile picture of ${expert.name}`}
-                      className="w-full h-full object-cover"
+                      fill
+                      className="object-cover"
                     />
                   ) : (
                     <ExpertFallbackSVG />

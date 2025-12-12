@@ -2,7 +2,14 @@
 
 import Link from "next/link";
 import { Phone, Mail, Menu, X, ChevronDown, Palette } from "lucide-react";
-import React, { JSX, useState, useRef, useEffect, forwardRef } from "react";
+import React, {
+  JSX,
+  useState,
+  useRef,
+  useEffect,
+  forwardRef,
+  useMemo,
+} from "react";
 import {
   motion,
   useScroll,
@@ -11,9 +18,12 @@ import {
 } from "framer-motion";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
-import FullMenuDrawer from "./FullMenuDrawer"; 
-import { services } from "@/data/services"; 
-import ThemeSwitcher from "./ThemeSwitcher"; 
+import FullMenuDrawer from "./FullMenuDrawer";
+import { services } from "@/data/services";
+import ThemeSwitcher from "./ThemeSwitcher";
+
+// IMPORTANT: Import the ActionModalLink component
+import ActionModalLink from "./ActionModalLink";
 
 // --- Types ---
 interface NavLink {
@@ -27,7 +37,7 @@ interface ServiceLink {
   href: string;
 }
 
-// --- Shared Variants ---
+// --- Shared Variants (Unchanged) ---
 const listVariants: Variants = {
   open: {
     opacity: 1,
@@ -87,23 +97,70 @@ const submenuVariants: Variants = {
   },
 };
 
-// --- Nav Links --- (Added Services as a dedicated item with dropdown flag for proper alignment)
+// --- Nav Links (Unchanged) ---
 const navLinks: NavLink[] = [
   { name: "Home", href: "/" },
   { name: "About Us", href: "/about" },
-  { name: "Services", href: "#", hasDropdown: true }, // Now a proper nav item
+  { name: "Services", href: "#", hasDropdown: true },
   { name: "Projects", href: "/case-studies" },
   { name: "Our Approach", href: "/approach" },
   { name: "Contact Us", href: "/contact" },
 ] as const;
 
-// --- Services Dropdown ---
+// --- Services Dropdown (Unchanged) ---
 const servicesDropdown: ServiceLink[] = services.map((service) => ({
   name: service.title,
   href: `/services/${service.id}`,
 }));
 
-// --- Mobile Dropdown --- (Adjusted to render Services as its own section for consistency)
+// --- NEW ACTION LINK FOR NAVBAR UTILITY/MOBILE ---
+interface NavActionLinkProps {
+  href: string;
+  icon: React.ElementType; // Icon component (e.g., Phone, Mail)
+  iconColor: string;
+  isMobile?: boolean; // If true, apply mobile styling
+  onLinkClick: () => void;
+}
+
+const NavActionLink: React.FC<NavActionLinkProps> = ({
+  href,
+  icon: Icon,
+  iconColor,
+  isMobile = false,
+  onLinkClick,
+}) => {
+  const label = useMemo(() => {
+    // Extract the raw value for the modal label
+    return href.replace(/^(mailto|tel):/, "");
+  }, [href]);
+
+  const baseClasses = clsx("flex items-center p-2 rounded-full transition", {
+    // Desktop utility classes
+    "hidden lg:flex hover:bg-surface": !isMobile,
+    // Mobile dropdown classes
+    "text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800":
+      isMobile,
+  });
+
+  return (
+    <ActionModalLink href={href} label={label}>
+      <span
+        onClick={onLinkClick}
+        className={baseClasses}
+        aria-label={Icon === Phone ? "Call us" : "Email us"}
+      >
+        <Icon
+          className={clsx("h-5 w-5 nav-icon", {
+            "h-5 w-5": isMobile, // Maintain the size consistency
+          })}
+          style={{ color: isMobile ? undefined : iconColor }} // Only use iconColor for desktop to handle scroll state
+        />
+      </span>
+    </ActionModalLink>
+  );
+};
+
+// --- Mobile Dropdown (Modified) ---
 interface MobileDropdownProps {
   links: NavLink[];
   servicesLinks: ServiceLink[];
@@ -118,7 +175,7 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
     const [servicesOpen, setServicesOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Click outside handler for submenu
+    // Click outside handler for submenu (Unchanged)
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -133,8 +190,6 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
       return () =>
         document.removeEventListener("mousedown", handleClickOutside);
     }, []);
-
-    // Overall menu close on outside click (handled by parent, but local for submenu)
 
     return (
       <motion.div
@@ -153,7 +208,7 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
                 : pathname.startsWith(link.href);
 
             if (link.hasDropdown) {
-              // Collapsible Services section in mobile
+              // Collapsible Services section in mobile (Unchanged)
               return (
                 <motion.div variants={itemVariants} key={link.name}>
                   <button
@@ -231,26 +286,25 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
             );
           })}
 
+          {/* MOBILE CONTACT LINKS - MODIFIED TO USE NavActionLink */}
           <motion.div
             variants={itemVariants}
             className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
           >
-            <a
+            <NavActionLink
               href="tel:+256772688639"
-              onClick={onLinkClick}
-              className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-              aria-label="Call us"
-            >
-              <Phone className="h-5 w-5" />
-            </a>
-            <a
+              icon={Phone}
+              iconColor="" // Not used in mobile mode, styling is handled by baseClasses
+              isMobile={true}
+              onLinkClick={onLinkClick}
+            />
+            <NavActionLink
               href="mailto:highroadservicesltd@gmail.com"
-              onClick={onLinkClick}
-              className="p-2 rounded-full text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-              aria-label="Email us"
-            >
-              <Mail className="h-5 w-5" />
-            </a>
+              icon={Mail}
+              iconColor="" // Not used in mobile mode
+              isMobile={true}
+              onLinkClick={onLinkClick}
+            />
           </motion.div>
         </motion.div>
       </motion.div>
@@ -260,7 +314,7 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
 
 MobileNavDropdown.displayName = "MobileNavDropdown";
 
-// --- Desktop Services Dropdown --- (Unchanged from your version, but now positioned correctly)
+// --- Desktop Services Dropdown (Unchanged) ---
 interface ServicesDropdownProps {
   isScrolled: boolean;
   services: ServiceLink[];
@@ -354,7 +408,7 @@ const DesktopServicesDropdown = ({
   );
 };
 
-// --- Animated Grid Icon ---
+// --- Animated Grid Icon (Unchanged) ---
 interface AnimatedGridIconProps {
   isOpen: boolean;
   color: string;
@@ -415,7 +469,7 @@ const AnimatedGridIcon = ({ isOpen, color }: AnimatedGridIconProps) => {
   );
 };
 
-// --- Logo ---
+// --- Logo (Unchanged) ---
 interface LogoProps {
   isActive: boolean;
   nonActiveColor: string;
@@ -469,7 +523,7 @@ export default function Navbar(): JSX.Element {
     if (scrolled !== isScrolled) setIsScrolled(scrolled);
   });
 
-  // Click outside handler for mobile menu
+  // Click outside handler for mobile menu (Unchanged)
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -515,6 +569,7 @@ export default function Navbar(): JSX.Element {
           </Link>
 
           <div className="hidden lg:flex space-x-1 items-center">
+            {/* Desktop Nav Links (Unchanged) */}
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
@@ -598,22 +653,22 @@ export default function Navbar(): JSX.Element {
           </div>
 
           <div className="flex items-center space-x-3">
-            <a
+            {/* DESKTOP CONTACT LINKS - MODIFIED TO USE NavActionLink */}
+            <NavActionLink
               href="tel:+256772688639"
-              className="hidden lg:flex items-center p-2 rounded-full hover:bg-surface transition"
-            >
-              <Phone
-                className="h-5 w-5 nav-icon"
-                style={{ color: iconColor }}
-              />
-            </a>
-            <a
+              icon={Phone}
+              iconColor={iconColor}
+              onLinkClick={() => {}} // No need to close nav on desktop click
+            />
+            <NavActionLink
               href="mailto:highroadservicesltd@gmail.com"
-              className="hidden lg:flex items-center p-2 rounded-full hover:bg-surface transition"
-            >
-              <Mail className="h-5 w-5 nav-icon" style={{ color: iconColor }} />
-            </a>
+              icon={Mail}
+              iconColor={iconColor}
+              onLinkClick={() => {}} // No need to close nav on desktop click
+            />
+
             <ThemeSwitcher />
+
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               className="p-3 text-primary rounded-full hover:bg-surface transition nav-icon"

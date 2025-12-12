@@ -3,215 +3,28 @@
 import { ModalProvider, useModal } from "@/components/case-study/ModalProvider";
 import CaseStudyCard from "@/components/CasestudyCard";
 import Link from "next/link";
-import React, { JSX } from "react";
-// 💡 IMPORT FRAMER MOTION
+import React, { useState, useMemo, JSX } from "react";
 import { motion, Variants } from "framer-motion";
-import { FullCaseStudy } from "@/data/case-studies";
+import { ChevronLeft, ChevronRight, ListFilter, RotateCcw } from "lucide-react";
+import { caseStudies, FullCaseStudy } from "@/data/case-studies";
 
-// --- TYPE DEFINITIONS ---
 type CaseStudy = FullCaseStudy;
 
-// --- CASE STUDIES DATA (EXTRACTED & FORMATTED FROM TEAM KEY PROJECTS) ---
-const caseStudies: CaseStudy[] = [
-  {
-    title: "Baseline Surveys and Impact Evaluations for UBOS and USAID",
-    context:
-      "Uganda's development programs required robust baseline data to measure progress and evaluate long-term impacts amid resource constraints.",
-    summary:
-      "Led comprehensive research and consultancy, conducting baseline surveys and impact evaluations to assess program effectiveness and guide adjustments.",
-    impact:
-      "Informed evidence-based policy tweaks, enhancing program reach and efficiency for thousands of beneficiaries.",
-    client: "Uganda Bureau of Statistics (UBOS) & USAID",
-    region: "Uganda",
-    date: "2023",
-    detailedDescription: `
-      Project Scope
-      Focused on key national development initiatives, integrating field data collection with econometric analysis to establish clear metrics.
-
-      Key Methods
-      Employed mixed-methods approach: quantitative surveys of 5,000+ households and qualitative stakeholder interviews.
-
-      Outcomes
-      Delivered actionable reports that directly influenced USAID funding allocations, resulting in a 15% increase in targeted interventions.
-    `,
-  },
-  {
-    title: "Public Investment Appraisal and Policy Analysis with NPA and AERC",
-    context:
-      "National planning bodies needed tools to evaluate investment viability and refine policies for sustainable growth in a volatile economy.",
-    summary:
-      "Collaborated on appraisals using cost-benefit analysis and policy modeling to recommend optimized public spending strategies.",
-    impact:
-      "Shaped national investment frameworks, unlocking $20M+ in efficient funding for infrastructure projects.",
-    client:
-      "National Planning Authority (NPA) & African Economic Research Consortium (AERC)",
-    region: "Uganda",
-    date: "2022",
-    detailedDescription: `
-      Project Scope
-      Analyzed 10+ major public investments across sectors like energy and transport.
-
-      Key Methods
-      Applied Computable General Equilibrium (CGE) models to simulate policy scenarios and economic ripple effects.
-
-      Outcomes
-      Policy briefs adopted by NPA led to revised budgeting guidelines, reducing wasteful spending by 12%.
-    `,
-  },
-  {
-    title:
-      "Capacity Building and Tracer Studies for Kyambogo University and IDRC",
-    context:
-      "Educational institutions and research bodies sought to upskill staff in data analytics amid growing demands for evidence-based education reforms.",
-    summary:
-      "Provided targeted training and tracer studies on AI, data analytics, and econometrics to build institutional capabilities.",
-    impact:
-      "Equipped 200+ stakeholders with practical skills, boosting research output by 25% in participating programs.",
-    client: "Kyambogo University, UBTEB & IDRC",
-    region: "Uganda",
-    date: "2024",
-    detailedDescription: `
-      Project Scope
-      Designed workshops and follow-up tracer studies for educators and policymakers.
-
-      Key Methods
-      Hands-on sessions with tools like Python and Stata, followed by 6-month impact tracking.
-
-      Outcomes
-      Tracer studies revealed sustained application, leading to new curriculum integrations in data-driven decision-making.
-    `,
-  },
-  {
-    title: "Multi-Country Impact Evaluations Across East and Southern Africa",
-    context:
-      "Development programs in multiple nations faced challenges in proving causal effects, hindering scale-up and funding renewal.",
-    summary:
-      "Designed and led evaluations using propensity score matching and difference-in-differences to assess socio-economic outcomes.",
-    impact:
-      "Validated program efficacy, supporting $15M in continued funding and refinements for 50,000+ beneficiaries.",
-    client: "Various (e.g., UNICEF, OPM)",
-    region: "Uganda, Kenya, Rwanda, Zambia, Malawi",
-    date: "2023",
-    detailedDescription: `
-      Project Scope
-      Covered initiatives like DRDIP, NUSAF3, and Cash+ evaluations across five countries.
-
-      Key Methods
-      Quasi-experimental designs with panel data analysis for robust causality.
-
-      Outcomes
-      Reports influenced mid-term adjustments, improving service delivery metrics by 18%.
-    `,
-  },
-  {
-    title: "Uganda Economic Update and PEFA Assessment Contributions",
-    context:
-      "Fiscal policy advisors required updated economic insights and public financial management diagnostics to support reforms.",
-    summary:
-      "Contributed macro-fiscal analysis and advisory on debt toolkits, aiding the 2022 Economic Update and PEFA assessment.",
-    impact:
-      "Enhanced Uganda's PFM scoring, attracting $10M+ in EU/Norway/Denmark aid for reforms.",
-    client: "EU, Norway, Denmark & Government of Uganda",
-    region: "Uganda",
-    date: "2022",
-    detailedDescription: `
-      Project Scope
-      Focused on debt sustainability and expenditure reviews for the annual update.
-
-      Key Methods
-      Panel data econometrics and scenario modeling for fiscal projections.
-
-      Outcomes
-      Technical inputs improved the PEFA score by two points, bolstering international credibility.
-    `,
-  },
-  {
-    title: "SDG Financing Diagnostics and Africa SDG Index",
-    context:
-      "African institutions needed diagnostics to align financing with SDGs, amid gaps in tracking and resource allocation.",
-    summary:
-      "Led diagnostics and authored the Africa SDG Index/Dashboards, developing indicators for multi-country SDG progress.",
-    impact:
-      "Guided $30M+ in targeted SDG investments, improving continental reporting frameworks.",
-    client: "SDG Center for Africa",
-    region: "Africa (Multi-Country)",
-    date: "2024",
-    detailedDescription: `
-      Project Scope
-      Covered 54 countries, focusing on financing gaps in health, education, and climate.
-
-      Key Methods
-      SMART indicator development with mixed-methods data aggregation.
-
-      Outcomes
-      Dashboards adopted by AU, enabling better donor coordination and progress tracking.
-    `,
-  },
-  {
-    title:
-      "Baseline, Midline, and Endline Evaluations for TradeMark East Africa",
-    context:
-      "Trade facilitation programs required ongoing evaluation to ensure benefits reached small traders and farmers.",
-    summary:
-      "Led multi-phase evaluations on trade, agriculture, and health impacts using experimental designs.",
-    impact:
-      "Optimized interventions, increasing cross-border trade volumes by 22% for 8,000+ participants.",
-    client: "TradeMark East Africa, UNDP & USAID",
-    region: "East Africa",
-    date: "2023",
-    detailedDescription: `
-      Project Scope
-      Tracked outcomes across EAC integration initiatives.
-
-      Key Methods
-      Quasi-experimental surveys at baseline, midline, and endline stages.
-
-      Outcomes
-      Evidence-based tweaks reduced bottlenecks, enhancing market access.
-    `,
-  },
-  {
-    title: "AIRTEA Agricultural Technology Transfer Evaluation",
-    context:
-      "Agricultural tech adoption in East Africa lagged due to unproven transfer mechanisms and farmer barriers.",
-    summary:
-      "Led evaluations of tech transfer in Kenya, Rwanda, and Uganda, assessing adoption and sustainability.",
-    impact:
-      "Boosted tech uptake by 30%, benefiting 12,000+ farmers through refined extension models.",
-    client: "AIRTEA & SNV",
-    region: "Kenya, Rwanda, Uganda",
-    date: "2024",
-    detailedDescription: `
-      Project Scope
-      Included SNV Smallholder Dairy Programme evaluations.
-
-      Key Methods
-      Mixed-methods with econometric modeling of adoption determinants.
-
-      Outcomes
-      Recommendations scaled successful pilots, improving yields by 18%.
-    `,
-  },
-];
+const ITEMS_PER_PAGE = 5;
 
 // --- FRAMER MOTION VARIANTS ---
-
-// Container for staggering the cards
 const cardContainerVariants: Variants = {
   visible: {
-    transition: {
-      staggerChildren: 0.15, // Delay between each card's animation
-    },
+    transition: { staggerChildren: 0.15 },
   },
 };
 
-// Item animation for each individual card
 const cardItemVariants: Variants = {
   hidden: { opacity: 0, y: 30 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
 };
 
-// --- WRAPPER COMPONENT TO USE MODAL CONTEXT ---
+// --- COMPONENTS OUTSIDE MAIN RENDER ---
 interface CaseStudyCardWithModalProps {
   study: CaseStudy;
 }
@@ -220,8 +33,6 @@ const CaseStudyCardWithModal: React.FC<CaseStudyCardWithModalProps> = ({
   study,
 }) => {
   const { openModal } = useModal();
-
-  // 💡 APPLY FRAMER MOTION ITEM VARIANT HERE
   return (
     <motion.div variants={cardItemVariants}>
       <CaseStudyCard
@@ -236,17 +47,151 @@ const CaseStudyCardWithModal: React.FC<CaseStudyCardWithModalProps> = ({
   );
 };
 
+// Pagination Controls
+interface PaginationControlsProps {
+  currentPage: number;
+  totalPages: number;
+  onNext: () => void;
+  onPrev: () => void;
+}
+
+const PaginationControls: React.FC<PaginationControlsProps> = ({
+  currentPage,
+  totalPages,
+  onNext,
+  onPrev,
+}) => (
+  <div className="flex justify-center items-center space-x-4 mt-12 pt-6 border-t border-gray-200">
+    <button
+      onClick={onPrev}
+      disabled={currentPage === 1}
+      className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition ${
+        currentPage === 1
+          ? "text-gray-400 bg-gray-100 cursor-not-allowed"
+          : "text-primary bg-white border border-gray-300 hover:bg-gray-50"
+      }`}
+    >
+      <ChevronLeft className="w-4 h-4 mr-1" />
+      Previous
+    </button>
+    <span className="text-gray-700 font-semibold">
+      Page {currentPage} of {totalPages}
+    </span>
+    <button
+      onClick={onNext}
+      disabled={currentPage === totalPages}
+      className={`flex items-center px-4 py-2 text-sm font-medium rounded-lg transition ${
+        currentPage === totalPages
+          ? "text-gray-400 bg-gray-100 cursor-not-allowed"
+          : "text-primary bg-white border border-gray-300 hover:bg-gray-50"
+      }`}
+    >
+      Next
+      <ChevronRight className="w-4 h-4 ml-1" />
+    </button>
+  </div>
+);
+
+// Filter Controls
+interface FilterControlsProps {
+  selectedClient: string;
+  uniqueClients: string[];
+  onChange: (value: string) => void;
+  onReset: () => void;
+}
+
+const FilterControls: React.FC<FilterControlsProps> = ({
+  selectedClient,
+  uniqueClients,
+  onChange,
+  onReset,
+}) => (
+  <div className="flex justify-end items-center gap-4 mb-8">
+    <div className="relative flex items-center">
+      <ListFilter className="w-5 h-5 text-primary absolute left-3 pointer-events-none" />
+      <select
+        onChange={(e) => onChange(e.target.value)}
+        value={selectedClient}
+        className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg shadow-sm text-gray-700 focus:ring-accent-gold focus:border-accent-gold appearance-none bg-white"
+      >
+        <option value="All Clients">All Clients ({caseStudies.length})</option>
+        {uniqueClients
+          .filter((c) => c !== "All Clients")
+          .map((client) => (
+            <option key={client} value={client}>
+              {client} ({caseStudies.filter((s) => s.client === client).length})
+            </option>
+          ))}
+      </select>
+    </div>
+    {selectedClient !== "All Clients" && (
+      <button
+        onClick={onReset}
+        className="flex items-center text-sm text-gray-600 hover:text-primary transition"
+      >
+        <RotateCcw className="w-4 h-4 mr-1" />
+        Reset Filter
+      </button>
+    )}
+  </div>
+);
+
 // --- MAIN PAGE COMPONENT ---
 export default function CaseStudiesPage(): JSX.Element {
+  const [currentPage, setCurrentPage] = useState(1);
+  const [selectedClient, setSelectedClient] = useState("All Clients");
+
+  // --- DERIVED DATA ---
+  const uniqueClients = useMemo(() => {
+    const clients = caseStudies
+      .map((s) => s.client)
+      .filter(Boolean) as string[];
+    return ["All Clients", ...Array.from(new Set(clients))].sort();
+  }, []);
+
+  const filteredCaseStudies = useMemo(() => {
+    if (selectedClient === "All Clients") return caseStudies;
+    return caseStudies.filter((s) => s.client === selectedClient);
+  }, [selectedClient]);
+
+  const totalItems = filteredCaseStudies.length;
+  const totalPages = Math.ceil(totalItems / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const currentProjects = useMemo(
+    () => filteredCaseStudies.slice(startIndex, endIndex),
+    [filteredCaseStudies, startIndex, endIndex]
+  );
+
+  // --- HANDLERS ---
+  const handleNextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages));
+    document
+      .getElementById("case-study-grid")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handlePrevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 1));
+    document
+      .getElementById("case-study-grid")
+      ?.scrollIntoView({ behavior: "smooth" });
+  };
+
+  const handleClientChange = (value: string) => {
+    setSelectedClient(value);
+    if (currentPage !== 1) setCurrentPage(1); // Safe page reset
+  };
+
+  const handleResetFilter = () => setSelectedClient("All Clients");
+
   return (
     <ModalProvider>
-      {/* 💡 APPLY MAIN PAGE FADE-IN */}
       <motion.main
         initial={{ opacity: 0, y: 10 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
       >
-        {/* Case Study Grid – IMMEDIATE ENGAGEMENT */}
         <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
           <div className="text-center mb-12">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
@@ -257,28 +202,52 @@ export default function CaseStudiesPage(): JSX.Element {
             </h3>
             <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
               Dive into real projects where our evidence-based approach turned
-              challenges into measurable wins. Each story highlights the work,
-              the methods, and the lasting difference made.
+              challenges into measurable wins. Use the filter below to narrow
+              the results by client.
             </p>
           </div>
 
-          {/* 💡 APPLY STAGGERED CONTAINER */}
+          {/* FILTER CONTROLS */}
+          <FilterControls
+            selectedClient={selectedClient}
+            uniqueClients={uniqueClients}
+            onChange={handleClientChange}
+            onReset={handleResetFilter}
+          />
+
+          {/* CASE STUDY GRID */}
           <motion.div
+            key={`${selectedClient}-${currentPage}`}
+            id="case-study-grid"
             className="grid grid-cols-1 gap-10"
             variants={cardContainerVariants}
             initial="hidden"
-            whileInView="visible" // Triggers animation when section enters viewport
-            viewport={{ once: true, amount: 0.1 }}
+            animate="visible"
           >
-            {caseStudies.map((study) => (
-              <CaseStudyCardWithModal key={study.title} study={study} />
-            ))}
+            {currentProjects.length > 0 ? (
+              currentProjects.map((study) => (
+                <CaseStudyCardWithModal key={study.title} study={study} />
+              ))
+            ) : (
+              <div className="text-center py-10 text-gray-600">
+                No case studies found for the selected client on this page.
+              </div>
+            )}
           </motion.div>
+
+          {/* PAGINATION */}
+          {totalPages > 1 && (
+            <PaginationControls
+              currentPage={currentPage}
+              totalPages={totalPages}
+              onNext={handleNextPage}
+              onPrev={handlePrevPage}
+            />
+          )}
         </section>
 
-        {/* Final CTA Section */}
+        {/* CTA */}
         <section className="bg-gray-50 py-16 md:py-20 border-t border-gray-200">
-          {/* 💡 APPLY FADE/SLIDE-IN ON SCROLL */}
           <motion.div
             className="max-w-4xl mx-auto text-center px-6"
             initial={{ opacity: 0, y: 50 }}

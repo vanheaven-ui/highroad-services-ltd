@@ -1,15 +1,8 @@
 "use client";
 
-import {
-  Briefcase,
-  GraduationCap,
-  Mail,
-  Link as LinkIcon,
-  Users,
-  ArrowRight,
-} from "lucide-react";
-import Link from "next/link";
+import { Briefcase, GraduationCap, Users, ArrowRight } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 import { useExpertModal } from "./ExpertModalProvider";
 import { FullExpertProfile } from "@/data/team";
 
@@ -44,15 +37,16 @@ const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
     >
       {/* Top Section: Image + Name */}
       <div className="flex items-center mb-4">
-        <div className="w-16 h-16 rounded-full overflow-hidden bg-gray-200 border-2 border-primary flex-shrink-0">
+        <div className="relative w-16 h-16 rounded-full overflow-hidden bg-gray-200 border-2 border-primary flex-shrink-0">
           {member.imageSrc ? (
-            <img
+            <Image
               src={member.imageSrc}
               alt={member.name}
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
             />
           ) : (
-            <Users className="w-full h-full p-2 text-primary/80" />
+            <Users className="absolute inset-0 w-full h-full p-2 text-primary/80" />
           )}
         </div>
 
