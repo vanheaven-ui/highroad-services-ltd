@@ -1,7 +1,8 @@
 import { notFound } from "next/navigation";
-import { Service, services } from "@/data/services"; // Data Fetching happens here (Server)
-import { slugify } from "@/lib/slugify"; // Utility function (Server)
-import ServicePageContent from "./ServicePageContent"; // Client Component Import
+import { Service, services } from "@/data/services";
+import { FullCaseStudy, caseStudies } from "@/data/case-studies";
+import { slugify } from "@/lib/slugify";
+import ServicePageContent from "./ServicePageContent";
 
 interface ServicePageProps {
   params: Promise<{ slug: string }>;
@@ -10,18 +11,25 @@ interface ServicePageProps {
 export default async function ServicePage({ params }: ServicePageProps) {
   const { slug } = await params;
 
-  // 1. Data Fetching and Logic (STAYS ON SERVER)
+  // Find the service by slug
   const service: Service | undefined = services.find(
     (s) => slugify(s.id) === slug
-  );  
+  );
 
   if (!service) return notFound();
 
-  // 2. Rendering (Passes only serializable data to Client Component)
+  // Resolve caseStudyIds to full objects
+  const resolvedCaseStudies: FullCaseStudy[] = service.caseStudyIds
+    .map((id) => caseStudies.find((c) => c.id === id))
+    .filter(Boolean) as FullCaseStudy[];
+
+  // Pass resolved case studies to client
+  const serviceWithCaseStudies = {
+    ...service,
+    caseStudies: resolvedCaseStudies,
+  };
+
   return (
-    <ServicePageContent
-      service={service}
-      services={services} 
-    />
+    <ServicePageContent service={serviceWithCaseStudies} services={services} />
   );
 }

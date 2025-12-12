@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, JSX, useRef, useEffect } from "react";
-import { motion, Variants, AnimatePresence, Transition } from "framer-motion";
+import { useState, useRef, useEffect } from "react";
+import { motion, Variants, AnimatePresence } from "framer-motion";
 import {
   Clock,
   Mail,
@@ -10,9 +10,9 @@ import {
   CheckCircle,
   ChevronRight,
   Send,
-  LucideIcon,
   HardHat,
 } from "lucide-react";
+import UnderConstructionModal from "@/components/UnderContsructionModal";
 
 // -------------------------
 // Types
@@ -25,16 +25,11 @@ interface FormData {
 }
 
 interface ContactDetailProps {
-  icon: LucideIcon;
+  icon: typeof Mail; // Generic type for icons
   label: string;
   value: string;
   href: string;
   target?: string;
-}
-
-interface FormLabelProps {
-  htmlFor: string;
-  children: React.ReactNode;
 }
 
 interface FormInputProps {
@@ -48,7 +43,7 @@ interface FormInputProps {
 }
 
 // -------------------------
-// Framer Motion Variants
+// Variants for Animations
 // -------------------------
 const containerVariants: Variants = {
   initial: { opacity: 0, y: 20 },
@@ -74,25 +69,8 @@ const subscriptionVariants: Variants = {
   animate: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.5 } },
 };
 
-const backdropVariants: Variants = {
-  initial: { opacity: 0 },
-  animate: { opacity: 1 },
-  exit: { opacity: 0, transition: { duration: 0.3 } },
-};
-
-const modalVariants: Variants = {
-  initial: { y: "-100%", opacity: 0, scale: 0.7 },
-  animate: {
-    y: "0",
-    opacity: 1,
-    scale: 1,
-    transition: { type: "spring", stiffness: 150, damping: 15, delay: 0.1 },
-  },
-  exit: { y: "-100%", opacity: 0, scale: 0.7, transition: { duration: 0.3 } },
-};
-
 // -------------------------
-// UI Components
+// Reusable UI Components
 // -------------------------
 const ContactDetail = ({
   icon: Icon,
@@ -100,7 +78,7 @@ const ContactDetail = ({
   value,
   href,
   target,
-}: ContactDetailProps): JSX.Element => (
+}: ContactDetailProps) => (
   <motion.a
     variants={detailItemVariants}
     href={href}
@@ -119,7 +97,13 @@ const ContactDetail = ({
   </motion.a>
 );
 
-const FormLabel = ({ htmlFor, children }: FormLabelProps): JSX.Element => (
+const FormLabel = ({
+  htmlFor,
+  children,
+}: {
+  htmlFor: string;
+  children: React.ReactNode;
+}) => (
   <label
     htmlFor={htmlFor}
     className="block text-sm font-bold text-primary mb-1"
@@ -136,7 +120,7 @@ const FormInput = ({
   onChange,
   required,
   placeholder,
-}: FormInputProps): JSX.Element => (
+}: FormInputProps) => (
   <div>
     <FormLabel htmlFor={name}>{label}</FormLabel>
     <input
@@ -153,68 +137,9 @@ const FormInput = ({
 );
 
 // -------------------------
-// Under Construction Modal
+// Main Contact Page
 // -------------------------
-const UnderConstructionModal = ({
-  onClose,
-}: {
-  onClose: () => void;
-}): JSX.Element => {
-  const waggleTransition: Transition = {
-    duration: 2.5,
-    ease: "easeInOut",
-    repeat: Infinity,
-    repeatType: "reverse",
-  };
-
-  return (
-    <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4"
-      variants={backdropVariants}
-      initial="initial"
-      animate="animate"
-      exit="exit"
-      onClick={onClose}
-    >
-      <motion.div
-        className="bg-white rounded-xl shadow-2xl p-8 max-w-lg w-full text-center border-t-4 border-accent-gold"
-        variants={modalVariants}
-        onClick={(e) => e.stopPropagation()}
-      >
-        <motion.div
-          animate={{ rotate: [0, -3, 3, 0] }}
-          transition={waggleTransition}
-        >
-          <HardHat className="w-12 h-12 mx-auto text-accent-gold mb-4" />
-        </motion.div>
-
-        <h3 className="text-3xl font-heading font-bold text-primary mb-3">
-          Feature Under Construction
-        </h3>
-        <p className="text-gray-700 text-lg font-body mb-6">
-          The <strong>&quot;Subscribe to Research&quot;</strong> feature is
-          currently being finalized. We are integrating our system with our
-          research publication pipeline to deliver the most current insights.
-        </p>
-        <p className="text-gray-700 text-sm mb-6">
-          Please check back soon! In the meantime, feel free to use the contact
-          form above for specific inquiries.
-        </p>
-        <button
-          onClick={onClose}
-          className="inline-flex items-center justify-center px-6 py-2 bg-primary text-white font-bold rounded-lg shadow-lg text-base hover:bg-primary/90 transition"
-        >
-          Got It, Back to Contact
-        </button>
-      </motion.div>
-    </motion.div>
-  );
-};
-
-// -------------------------
-// Main Component
-// -------------------------
-export default function ContactPage(): JSX.Element {
+export default function ContactPage() {
   const [formData, setFormData] = useState<FormData>({
     name: "",
     email: "",
@@ -223,9 +148,9 @@ export default function ContactPage(): JSX.Element {
   });
   const [submitted, setSubmitted] = useState(false);
   const [showConstructionModal, setShowConstructionModal] = useState(false);
-
   const subscribeRef = useRef<HTMLDivElement>(null);
 
+  // Scroll to subscription section if hash exists
   useEffect(() => {
     if (window.location.hash === "#subscribe" && subscribeRef.current) {
       setTimeout(() => {
@@ -239,14 +164,14 @@ export default function ContactPage(): JSX.Element {
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ): void => {
+  ) => {
     const name = e.target.name as keyof FormData;
     setFormData((prev) => ({ ...prev, [name]: e.target.value }));
   };
 
-  const handleSubmit = (e: React.FormEvent): void => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Main Form Data:", formData);
+    console.log("Form Data:", formData);
     setSubmitted(true);
     setFormData({ name: "", email: "", subject: "", message: "" });
   };
@@ -345,7 +270,7 @@ export default function ContactPage(): JSX.Element {
               </ul>
             </motion.div>
 
-            {/* Subscription Modal Trigger */}
+            {/* Subscription Section */}
             <motion.div
               id="subscribe"
               ref={subscribeRef}
@@ -445,9 +370,14 @@ export default function ContactPage(): JSX.Element {
         </div>
       </motion.section>
 
+      {/* Modal */}
       <AnimatePresence>
         {showConstructionModal && (
           <UnderConstructionModal
+            title="Subscribe to Research"
+            description="The 'Subscribe to Research' feature is currently being finalized. We are integrating our system with our research publication pipeline to deliver the most current insights."
+            subDescription="Please check back soon! In the meantime, feel free to use the contact form above for specific inquiries."
+            buttonText="Got It, Back to Contact"
             onClose={() => setShowConstructionModal(false)}
           />
         )}

@@ -9,9 +9,6 @@ import {
   Handshake,
   CornerDownRight,
   LucideIcon,
-  Briefcase,
-  GraduationCap,
-  Users,
 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import TeamCard from "@/components/experts/TeamCard";
