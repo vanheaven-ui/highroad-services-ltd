@@ -13,6 +13,7 @@ import {
   HardHat,
 } from "lucide-react";
 import UnderConstructionModal from "@/components/UnderContsructionModal";
+import ActionModalLink from "@/components/ActionModalLink";
 
 // -------------------------
 // Types
@@ -22,14 +23,6 @@ interface FormData {
   email: string;
   subject: string;
   message: string;
-}
-
-interface ContactDetailProps {
-  icon: typeof Mail; // Generic type for icons
-  label: string;
-  value: string;
-  href: string;
-  target?: string;
 }
 
 interface FormInputProps {
@@ -43,7 +36,7 @@ interface FormInputProps {
 }
 
 // -------------------------
-// Variants for Animations
+// Variants for Animations (FIXED)
 // -------------------------
 const containerVariants: Variants = {
   initial: { opacity: 0, y: 20 },
@@ -51,7 +44,13 @@ const containerVariants: Variants = {
 };
 
 const detailListVariants: Variants = {
-  animate: { transition: { staggerChildren: 0.1 } },
+  initial: {}, // ← Critical: this was missing before!
+  animate: {
+    transition: {
+      staggerChildren: 0.1,
+      delayChildren: 0.2, // Small delay for smoother sequencing
+    },
+  },
 };
 
 const detailItemVariants: Variants = {
@@ -72,31 +71,6 @@ const subscriptionVariants: Variants = {
 // -------------------------
 // Reusable UI Components
 // -------------------------
-const ContactDetail = ({
-  icon: Icon,
-  label,
-  value,
-  href,
-  target,
-}: ContactDetailProps) => (
-  <motion.a
-    variants={detailItemVariants}
-    href={href}
-    target={target}
-    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent-gold/50 hover:border-accent-gold"
-  >
-    <Icon className="w-5 h-5 mr-4 mt-1 text-primary flex-shrink-0" />
-    <div className="flex-1">
-      <span className="text-sm font-semibold uppercase tracking-wider text-accent-gold block">
-        {label}
-      </span>
-      <span className="text-base text-gray-800 font-body break-all">
-        {value}
-      </span>
-    </div>
-  </motion.a>
-);
-
 const FormLabel = ({
   htmlFor,
   children,
@@ -215,25 +189,71 @@ export default function ContactPage() {
                 Connect Directly
               </h2>
               <div className="space-y-4">
-                <ContactDetail
-                  icon={Mail}
-                  label="Email Inquiry"
-                  value="highroadservicesltd@gmail.com"
+                {/* Email */}
+                <ActionModalLink
                   href="mailto:highroadservicesltd@gmail.com"
-                />
-                <ContactDetail
-                  icon={Phone}
-                  label="Talk to a Consultant"
-                  value="+256 772 688 639"
+                  label="highroadservicesltd@gmail.com"
+                >
+                  <motion.a
+                    variants={detailItemVariants}
+                    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent-gold/50 hover:border-accent-gold cursor-pointer"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Mail className="w-5 h-5 mr-4 mt-1 text-primary flex-shrink-0" />
+                    <div className="flex-1">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-accent-gold block">
+                        Email Inquiry
+                      </span>
+                      <span className="text-base text-gray-800 font-body break-all">
+                        highroadservicesltd@gmail.com
+                      </span>
+                    </div>
+                  </motion.a>
+                </ActionModalLink>
+
+                {/* Phone */}
+                <ActionModalLink
                   href="tel:+256772688639"
-                />
-                <ContactDetail
-                  icon={MapPin}
-                  label="Head Office"
-                  value="P.O Box 21446, Plot 4, Ttula, Kawempe, Kampala, Uganda"
-                  href="https://maps.app.goo.gl/..."
-                  target="_blank"
-                />
+                  label="+256 772 688 639"
+                >
+                  <motion.a
+                    variants={detailItemVariants}
+                    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent-gold/50 hover:border-accent-gold cursor-pointer"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <Phone className="w-5 h-5 mr-4 mt-1 text-primary flex-shrink-0" />
+                    <div className="flex-1">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-accent-gold block">
+                        Talk to a Consultant
+                      </span>
+                      <span className="text-base text-gray-800 font-body">
+                        +256 772 688 639
+                      </span>
+                    </div>
+                  </motion.a>
+                </ActionModalLink>
+
+                {/* Google Maps - External Link */}
+                <ActionModalLink
+                  href="https://maps.app.goo.gl/..." // ← Replace with your actual link
+                  label="Google Maps"
+                >
+                  <motion.a
+                    variants={detailItemVariants}
+                    className="flex items-start p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition duration-300 border-l-4 border-accent-gold/50 hover:border-accent-gold cursor-pointer"
+                    onClick={(e) => e.preventDefault()}
+                  >
+                    <MapPin className="w-5 h-5 mr-4 mt-1 text-primary flex-shrink-0" />
+                    <div className="flex-1">
+                      <span className="text-sm font-semibold uppercase tracking-wider text-accent-gold block">
+                        Head Office
+                      </span>
+                      <span className="text-base text-gray-800 font-body">
+                        P.O Box 21446, Plot 4, Ttula, Kawempe, Kampala, Uganda
+                      </span>
+                    </div>
+                  </motion.a>
+                </ActionModalLink>
               </div>
             </motion.div>
 
