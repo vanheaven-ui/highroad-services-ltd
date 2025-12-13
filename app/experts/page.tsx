@@ -10,13 +10,13 @@ import { motion, Variants } from "framer-motion";
 import { teamMembersData } from "@/data/team";
 
 /* ----------------------------------------------
- * FRAMER MOTION VARIANTS (NO CHANGE)
+ * FRAMER MOTION VARIANTS (UPDATED FOR CONSISTENCY)
 ---------------------------------------------- */
 const staggerContainerVariants: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15 },
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 }, // Added small delay for smoother start
   },
 };
 
@@ -30,7 +30,7 @@ const slideUpItemVariants: Variants = {
 };
 
 /* ----------------------------------------------
- * MAIN PAGE CONTENT (NO CHANGE)
+ * MAIN PAGE CONTENT (UPDATED ANIMATION TRIGGERS)
 ---------------------------------------------- */
 function ExpertsPageContent(): JSX.Element {
   return (
@@ -81,8 +81,7 @@ function ExpertsPageContent(): JSX.Element {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           variants={staggerContainerVariants}
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
+          animate="visible" // ← Changed from whileInView to animate for reliable triggering
         >
           {teamMembersData.map((member) => (
             <motion.div key={member.name} variants={slideUpItemVariants}>
@@ -94,8 +93,7 @@ function ExpertsPageContent(): JSX.Element {
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true, amount: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }} // ← Changed from whileInView to animate for consistency
           transition={{ duration: 0.5 }}
         >
           <Link
@@ -127,8 +125,7 @@ function ExpertsPageContent(): JSX.Element {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
             variants={staggerContainerVariants}
             initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            animate="visible" // ← Changed from whileInView to animate for reliable triggering
           >
             {/* Pillar 1 */}
             <motion.div

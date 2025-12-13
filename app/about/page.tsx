@@ -411,14 +411,15 @@ export default function About(): JSX.Element {
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.6 }}
             >
-              <h2 className="text-3xl font-bold text-primary mb-3 flex items-center">
+              <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
                 Our Mission
                 <CornerDownRight className="w-5 h-5 ml-2 text-accent-gold" />
               </h2>
 
-              <p className="text-lg text-gray-700">
-                To empower institutions with evidence-driven insights and
-                actionable recommendations that drive sustainable development.
+              <p className="text-lg leading-relaxed text-gray-700">
+                To equip institutions with evidence-based insights and
+                actionable strategies that enable informed decisions and
+                sustainable development.
               </p>
             </motion.div>
 
@@ -430,14 +431,14 @@ export default function About(): JSX.Element {
               viewport={{ once: true, amount: 0.6 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <h2 className="text-3xl font-bold text-primary mb-3 flex items-center">
+              <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
                 Our Vision
                 <CornerDownRight className="w-5 h-5 ml-2 text-primary" />
               </h2>
 
-              <p className="text-lg text-gray-700">
-                To be the most trusted economic consultancy—delivering
-                high-impact, evidence-based solutions for a prosperous future.
+              <p className="text-lg leading-relaxed text-gray-700">
+                To be a trusted consultancy delivering high-impact, data-driven
+                solutions for inclusive and lasting prosperity.
               </p>
             </motion.div>
           </div>

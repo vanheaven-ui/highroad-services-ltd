@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Phone, Mail, Menu, X, ChevronDown, Palette } from "lucide-react";
+import { Phone, Mail, Menu, X, ChevronDown } from "lucide-react";
 import React, {
   JSX,
   useState,
@@ -116,9 +116,9 @@ const servicesDropdown: ServiceLink[] = services.map((service) => ({
 // --- NEW ACTION LINK FOR NAVBAR UTILITY/MOBILE ---
 interface NavActionLinkProps {
   href: string;
-  icon: React.ElementType; // Icon component (e.g., Phone, Mail)
+  icon: React.ElementType;
   iconColor: string;
-  isMobile?: boolean; // If true, apply mobile styling
+  isMobile?: boolean;
   onLinkClick: () => void;
 }
 
@@ -130,14 +130,11 @@ const NavActionLink: React.FC<NavActionLinkProps> = ({
   onLinkClick,
 }) => {
   const label = useMemo(() => {
-    // Extract the raw value for the modal label
     return href.replace(/^(mailto|tel):/, "");
   }, [href]);
 
   const baseClasses = clsx("flex items-center p-2 rounded-full transition", {
-    // Desktop utility classes
     "hidden lg:flex hover:bg-surface": !isMobile,
-    // Mobile dropdown classes
     "text-primary dark:text-white hover:bg-gray-100 dark:hover:bg-gray-800":
       isMobile,
   });
@@ -151,16 +148,16 @@ const NavActionLink: React.FC<NavActionLinkProps> = ({
       >
         <Icon
           className={clsx("h-5 w-5 nav-icon", {
-            "h-5 w-5": isMobile, // Maintain the size consistency
+            "h-5 w-5": isMobile,
           })}
-          style={{ color: isMobile ? undefined : iconColor }} // Only use iconColor for desktop to handle scroll state
+          style={{ color: isMobile ? undefined : iconColor }}
         />
       </span>
     </ActionModalLink>
   );
 };
 
-// --- Mobile Dropdown (Modified) ---
+// --- Mobile Dropdown (Unchanged) ---
 interface MobileDropdownProps {
   links: NavLink[];
   servicesLinks: ServiceLink[];
@@ -175,7 +172,6 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
     const [servicesOpen, setServicesOpen] = useState(false);
     const dropdownRef = useRef<HTMLDivElement>(null);
 
-    // Click outside handler for submenu (Unchanged)
     useEffect(() => {
       const handleClickOutside = (event: MouseEvent) => {
         if (
@@ -208,7 +204,6 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
                 : pathname.startsWith(link.href);
 
             if (link.hasDropdown) {
-              // Collapsible Services section in mobile (Unchanged)
               return (
                 <motion.div variants={itemVariants} key={link.name}>
                   <button
@@ -286,7 +281,7 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
             );
           })}
 
-          {/* MOBILE CONTACT LINKS - MODIFIED TO USE NavActionLink */}
+          {/* MOBILE CONTACT LINKS */}
           <motion.div
             variants={itemVariants}
             className="pt-2 border-t border-gray-200 dark:border-gray-700 flex justify-center space-x-6"
@@ -294,14 +289,14 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
             <NavActionLink
               href="tel:+256772688639"
               icon={Phone}
-              iconColor="" // Not used in mobile mode, styling is handled by baseClasses
+              iconColor=""
               isMobile={true}
               onLinkClick={onLinkClick}
             />
             <NavActionLink
               href="mailto:highroadservicesltd@gmail.com"
               icon={Mail}
-              iconColor="" // Not used in mobile mode
+              iconColor=""
               isMobile={true}
               onLinkClick={onLinkClick}
             />
@@ -523,7 +518,7 @@ export default function Navbar(): JSX.Element {
     if (scrolled !== isScrolled) setIsScrolled(scrolled);
   });
 
-  // Click outside handler for mobile menu (Unchanged)
+  // Click outside handler for mobile menu
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -552,14 +547,15 @@ export default function Navbar(): JSX.Element {
 
   return (
     <>
-      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-7xl px-6">
+      <header className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-full max-w-7xl px-4 sm:px-6">
         <motion.nav
-          className="shadow-xl rounded-full p-2 border border-gray-100 flex items-center justify-between transition-none"
+          className="shadow-xl rounded-full border border-gray-100 dark:border-gray-700 flex items-center justify-between transition-none px-4 py-2 md:px-6"
           variants={navVariants}
           initial="top"
           animate={isScrolled ? "scrolled" : "top"}
           transition={{ duration: 0.2 }}
         >
+          {/* Logo */}
           <Link href="/" className="p-2">
             <StylisticLogo
               isActive={isLogoActive}
@@ -568,8 +564,8 @@ export default function Navbar(): JSX.Element {
             />
           </Link>
 
+          {/* Desktop Links */}
           <div className="hidden lg:flex space-x-1 items-center">
-            {/* Desktop Nav Links (Unchanged) */}
             {navLinks.map((link) => {
               const isActive =
                 link.href === "/"
@@ -590,7 +586,6 @@ export default function Navbar(): JSX.Element {
                 : { borderBottomWidth: 0, paddingBottom: "8px" };
 
               if (link.hasDropdown) {
-                // Render Services as a standalone aligned item
                 return (
                   <div
                     key={link.name}
@@ -632,46 +627,52 @@ export default function Navbar(): JSX.Element {
             })}
           </div>
 
-          <div className="lg:hidden relative">
-            <button
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="p-3 text-primary rounded-full hover:bg-gray-100 transition nav-icon shadow-inner"
-              aria-label="Toggle main navigation links"
-              style={{ color: iconColor }}
-            >
-              <AnimatedGridIcon isOpen={isMobileMenuOpen} color={iconColor} />
-            </button>
-            <MobileNavDropdown
-              ref={mobileDropdownRef}
-              links={navLinks}
-              servicesLinks={servicesDropdown}
-              isOpen={isMobileMenuOpen}
-              onLinkClick={() => setIsMobileMenuOpen(false)}
-              pathname={pathname}
-              onClose={() => setIsMobileMenuOpen(false)}
-            />
-          </div>
+          {/* Right side controls - unified group for better mobile layout */}
+          <div className="flex items-center space-x-2">
+            {/* Mobile Navigation Hamburger */}
+            <div className="lg:hidden relative">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="p-3 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition shadow-inner"
+                aria-label="Toggle main navigation links"
+                style={{ color: iconColor }}
+              >
+                <AnimatedGridIcon isOpen={isMobileMenuOpen} color={iconColor} />
+              </button>
+              <MobileNavDropdown
+                ref={mobileDropdownRef}
+                links={navLinks}
+                servicesLinks={servicesDropdown}
+                isOpen={isMobileMenuOpen}
+                onLinkClick={() => setIsMobileMenuOpen(false)}
+                pathname={pathname}
+                onClose={() => setIsMobileMenuOpen(false)}
+              />
+            </div>
 
-          <div className="flex items-center space-x-3">
-            {/* DESKTOP CONTACT LINKS - MODIFIED TO USE NavActionLink */}
-            <NavActionLink
-              href="tel:+256772688639"
-              icon={Phone}
-              iconColor={iconColor}
-              onLinkClick={() => {}} // No need to close nav on desktop click
-            />
-            <NavActionLink
-              href="mailto:highroadservicesltd@gmail.com"
-              icon={Mail}
-              iconColor={iconColor}
-              onLinkClick={() => {}} // No need to close nav on desktop click
-            />
+            {/* Contact Icons (hidden on very small screens if needed - currently visible on all) */}
+            <div className="hidden sm:flex items-center space-x-2">
+              <NavActionLink
+                href="tel:+256772688639"
+                icon={Phone}
+                iconColor={iconColor}
+                onLinkClick={() => {}}
+              />
+              <NavActionLink
+                href="mailto:highroadservicesltd@gmail.com"
+                icon={Mail}
+                iconColor={iconColor}
+                onLinkClick={() => {}}
+              />
+            </div>
 
+            {/* Theme Switcher */}
             <ThemeSwitcher />
 
+            {/* Full Menu Drawer Toggle */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="p-3 text-primary rounded-full hover:bg-surface transition nav-icon"
+              className="p-3 rounded-full hover:bg-surface transition"
               style={{ color: iconColor }}
               aria-label="Toggle secondary menu drawer"
             >
