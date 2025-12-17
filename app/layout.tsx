@@ -148,10 +148,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <meta
-          name="google-site-verification"
-          content="vq7I3LuzNhr-ZvsIahUnxWSeUZ1pFFmDCR5oIwr42YI"
-        />
+        <meta name="google-site-verification" content="-a4QcVHzrO2E9qXocvb0rglLvQMN0BfLgaM8FyQRnPU" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#0b2545" />
