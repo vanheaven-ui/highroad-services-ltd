@@ -1,45 +1,56 @@
 "use client";
 
+import Link from "next/link";
+import { motion, Variants } from "framer-motion";
+import { Globe, Cpu, Handshake } from "lucide-react";
+
 import TeamCard from "@/components/experts/TeamCard";
 import { ExpertModalProvider } from "@/components/experts/ExpertModalProvider";
-
-import { Globe, Cpu, Handshake } from "lucide-react";
-import Link from "next/link";
-import { JSX } from "react";
-import { motion, Variants } from "framer-motion";
 import { teamMembersData } from "@/data/team";
 
 /* ----------------------------------------------
- * FRAMER MOTION VARIANTS (UPDATED FOR CONSISTENCY)
+ * FRAMER MOTION VARIANTS
 ---------------------------------------------- */
 const staggerContainerVariants: Variants = {
-  hidden: { opacity: 0 },
+  hidden: { opacity: 1 },
   visible: {
     opacity: 1,
-    transition: { staggerChildren: 0.15, delayChildren: 0.2 }, // Added small delay for smoother start
+    transition: {
+      staggerChildren: 0.12,
+      delayChildren: 0.3,
+    },
   },
 };
 
 const slideUpItemVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.5, ease: "easeOut" },
+    transition: { duration: 0.7, ease: "easeOut" },
+  },
+};
+
+const pillarVariants: Variants = {
+  hidden: { opacity: 0, y: 40 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: "easeOut" },
   },
 };
 
 /* ----------------------------------------------
- * MAIN PAGE CONTENT (UPDATED ANIMATION TRIGGERS)
+ * PAGE CONTENT
 ---------------------------------------------- */
-function ExpertsPageContent(): JSX.Element {
+function ExpertsPageContent() {
   return (
     <motion.main
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.6 }}
     >
-      {/* 1. Narrative Header */}
+      {/* Narrative Header */}
       <section className="bg-white pt-16 pb-16 md:pt-20 md:pb-20 text-center">
         <motion.div
           className="max-w-4xl mx-auto px-6"
@@ -52,8 +63,8 @@ function ExpertsPageContent(): JSX.Element {
           </h1>
 
           <p className="mt-6 text-xl max-w-3xl mx-auto font-body text-gray-700">
-            HighRoad Services Ltd is led by specialist consultants whose{" "}
-            <strong>deep sector experience</strong> and advanced training
+            HighRoad Services Ltd is led by specialist consultants whose
+            <strong> deep sector experience</strong> and advanced training
             directly translate into actionable, high-impact strategy and policy
             recommendations.
           </p>
@@ -62,7 +73,7 @@ function ExpertsPageContent(): JSX.Element {
         </motion.div>
       </section>
 
-      {/* 2. Core Leadership Team */}
+      {/* Core Leadership Team */}
       <section className="max-w-7xl mx-auto px-6 py-16 md:py-24">
         <div className="text-center mb-12">
           <h2 className="text-sm font-subheading font-semibold uppercase tracking-widest text-accent-gold">
@@ -81,7 +92,8 @@ function ExpertsPageContent(): JSX.Element {
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10"
           variants={staggerContainerVariants}
           initial="hidden"
-          animate="visible" // ← Changed from whileInView to animate for reliable triggering
+          whileInView="visible"
+          viewport={{ once: true, amount: 0.2 }}
         >
           {teamMembersData.map((member) => (
             <motion.div key={member.name} variants={slideUpItemVariants}>
@@ -93,8 +105,8 @@ function ExpertsPageContent(): JSX.Element {
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }} // ← Changed from whileInView to animate for consistency
-          transition={{ duration: 0.5 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
         >
           <Link
             href="/careers"
@@ -105,7 +117,7 @@ function ExpertsPageContent(): JSX.Element {
         </motion.div>
       </section>
 
-      {/* 3. Strategic Advantage */}
+      {/* Strategic Advantage */}
       <section className="bg-gray-100 py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center mb-12">
@@ -117,7 +129,7 @@ function ExpertsPageContent(): JSX.Element {
             </h3>
             <p className="mt-4 text-lg text-gray-700 max-w-3xl mx-auto font-body">
               Our expertise is backed by a framework that ensures analytical
-              rigor and reliable, implementable outcomes.
+              depth and reliable, implementable outcomes.
             </p>
           </div>
 
@@ -125,52 +137,50 @@ function ExpertsPageContent(): JSX.Element {
             className="grid grid-cols-1 md:grid-cols-3 gap-8 items-start"
             variants={staggerContainerVariants}
             initial="hidden"
-            animate="visible" // ← Changed from whileInView to animate for reliable triggering
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
           >
-            {/* Pillar 1 */}
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={slideUpItemVariants}
+              variants={pillarVariants}
             >
               <Cpu className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
-                Advanced Analytical Rigor
+                Advanced Analytical Depth
               </h4>
               <p className="text-gray-700 font-body">
-                We utilize{" "}
-                <strong>Ph.D.-level econometrics and data science</strong> to
+                We utilize
+                <strong> Ph.D.-level econometrics and data science</strong> to
                 ensure every finding is statistically robust and validated
                 against global academic standards.
               </p>
             </motion.div>
 
-            {/* Pillar 2 */}
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={slideUpItemVariants}
+              variants={pillarVariants}
             >
               <Globe className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
                 Global Standards, Local Context
               </h4>
               <p className="text-gray-700 font-body">
-                Our team blends international best practice with{" "}
-                <strong>deep regional knowledge</strong> across the continent.
+                Our team blends international best practice with
+                <strong> deep regional knowledge</strong> across the continent.
               </p>
             </motion.div>
 
-            {/* Pillar 3 */}
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={slideUpItemVariants}
+              variants={pillarVariants}
             >
               <Handshake className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
                 Strategy Built for Implementation
               </h4>
               <p className="text-gray-700 font-body">
-                We don’t just deliver reports; we deliver{" "}
-                <strong>clear, funded roadmaps</strong> designed for immediate
+                We don’t just deliver reports; we deliver
+                <strong> clear, funded roadmaps</strong> designed for immediate
                 implementation and measurable success.
               </p>
             </motion.div>
@@ -182,7 +192,7 @@ function ExpertsPageContent(): JSX.Element {
 }
 
 /* ----------------------------------------------
- * EXPORT WITH PROVIDER WRAPPER (NO CHANGE)
+ * EXPORT WITH PROVIDER
 ---------------------------------------------- */
 export default function ExpertsPage() {
   return (
