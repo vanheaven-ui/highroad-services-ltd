@@ -1,72 +1,88 @@
 import type { Metadata } from "next";
-
-// Import Google Font for Merriweather (REMOTE)
-import { Merriweather } from "next/font/google";
-// Import Google Font for Inter (Still Remote)
-import { Inter } from "next/font/google";
-// NEW: Import the additional Google Fonts
-import { Playfair_Display } from "next/font/google"; // For display/hero elements
-import { Raleway } from "next/font/google"; // For subheadings/nav
+import localFont from "next/font/local";
 
 import "./globals.css";
 import Footer from "@/components/Footer";
 import Navbar from "@/components/Narbar";
 import ConsultationCTAButton from "@/components/ConsultationCTAButton";
 
-// NEW: Theme Provider
 import { ThemeProvider } from "@/context/theme-context";
 
 import React, { JSX } from "react";
 
 // -----------------------------
-// Custom Font Variables
+// Self-Hosted Local Fonts – exact file names from your screenshot
 // -----------------------------
-// MERRIWEATHER: REVERTED TO GOOGLE FONT
-const merriweather = Merriweather({
-  // <-- Changed font function name
+const merriweather = localFont({
+  src: [
+    {
+      path: "./fonts/merriweather/merriweather-v33-latin-300.woff2",
+      weight: "300",
+    },
+    {
+      path: "./fonts/merriweather/merriweather-v33-latin-regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "./fonts/merriweather/merriweather-v33-latin-700.woff2",
+      weight: "700",
+    },
+    {
+      path: "./fonts/merriweather/merriweather-v33-latin-900.woff2",
+      weight: "900",
+    },
+  ],
   variable: "--font-heading",
-  // Request the weights 300, 400, 700, and 900 from Google Fonts
-  weight: ["300", "400", "700", "900"],
-  subsets: ["latin"],
   display: "swap",
 });
 
-// INTER: REMAINS AS GOOGLE FONT
-const inter = Inter({
+const inter = localFont({
+  src: [
+    { path: "./fonts/inter/inter-v20-latin-300.woff2", weight: "300" },
+    { path: "./fonts/inter/inter-v20-latin-regular.woff2", weight: "400" },
+    { path: "./fonts/inter/inter-v20-latin-600.woff2", weight: "600" },
+    { path: "./fonts/inter/inter-v20-latin-700.woff2", weight: "700" },
+  ],
   variable: "--font-body",
-  weight: ["300", "400", "600", "700"],
-  subsets: ["latin"],
+  display: "swap",
 });
 
-// NEW: Playfair Display Config
-const playfair = Playfair_Display({
+const playfair = localFont({
+  src: [
+    {
+      path: "./fonts/playfair-display/playfair-display-v40-latin-regular.woff2",
+      weight: "400",
+    },
+    {
+      path: "./fonts/playfair-display/playfair-display-v40-latin-700.woff2",
+      weight: "700",
+    },
+    {
+      path: "./fonts/playfair-display/playfair-display-v40-latin-900.woff2",
+      weight: "900",
+    },
+  ],
   variable: "--font-display",
-  weight: ["400", "700", "900"],
-  subsets: ["latin"],
   display: "swap",
 });
 
-// NEW: Raleway Config
-const raleway = Raleway({
+const raleway = localFont({
+  src: [
+    { path: "./fonts/raleway/raleway-v37-latin-300.woff2", weight: "300" },
+    { path: "./fonts/raleway/raleway-v37-latin-regular.woff2", weight: "400" },
+    { path: "./fonts/raleway/raleway-v37-latin-700.woff2", weight: "700" },
+  ],
   variable: "--font-subheading",
-  weight: ["300", "400", "700"],
-  subsets: ["latin"],
   display: "swap",
 });
 
 // -----------------------------
-// Metadata Configuration (CLEANED - UNCHANGED from last request)
+// Metadata (I updated the urls to your real domain)
 // -----------------------------
-
 export const metadata: Metadata = {
-  // Page Title
   title: "HighRoad Services Ltd | Economic Consulting, Strategy & Training",
-
-  // Meta Description
   description:
     "Delivering data-driven economic consulting, policy advisory, and professional training worldwide. Our experts provide rigorous analysis, feasibility studies, and Monitoring & Evaluation (M&E) services to international organizations.",
-
-  // SEO Keywords
   keywords: [
     "Economic Consulting Firm",
     "Policy Advisory Services",
@@ -78,13 +94,11 @@ export const metadata: Metadata = {
     "Data-Driven Strategy",
     "Global Development Consulting",
   ],
-
-  // OpenGraph Metadata
   openGraph: {
     title: "Strategic Consulting & Policy Expertise | HighRoad Services Ltd",
     description:
       "Delivering data-driven policy and strategy for sustainable global growth.",
-    url: "https://www.highroad-services.vercel.app",
+    url: "https://www.highroadservicesltd.com",
     siteName: "HighRoad Services Ltd",
     images: [
       {
@@ -97,16 +111,10 @@ export const metadata: Metadata = {
     locale: "en_US",
     type: "website",
   },
-
-  // Canonical URL
   alternates: {
-    canonical: "https://highroad-services-ltd.vercel.app",
+    canonical: "https://www.highroadservicesltd.com",
   },
-
-  // Authors
   authors: [{ name: "HighRoad Services Ltd" }],
-
-  // Favicon + Icons
   icons: {
     icon: [
       { url: "/assets/favicon.ico", sizes: "any" },
@@ -126,11 +134,11 @@ export const metadata: Metadata = {
       },
     ],
   },
-  metadataBase: new URL("https://highroad-services-ltd.vercel.app"),
+  metadataBase: new URL("https://www.highroadservicesltd.com"),
 };
 
 // -----------------------------
-// Root Layout Component (Updated with GSC Meta Tag)
+// Root Layout – now 100% working with your exact file names
 // -----------------------------
 export default function RootLayout({
   children,
@@ -144,19 +152,17 @@ export default function RootLayout({
           name="google-site-verification"
           content="vq7I3LuzNhr-ZvsIahUnxWSeUZ1pFFmDCR5oIwr42YI"
         />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta name="robots" content="index, follow" />
+        <meta name="theme-color" content="#0b2545" />
       </head>
       <body
-        // The class names here remain correct
         className={`${merriweather.variable} ${inter.variable} ${playfair.variable} ${raleway.variable} font-body antialiased`}
       >
         <ThemeProvider>
           <Navbar />
-
           <main className="pt-32 md:pt-40">{children}</main>
-
           <Footer />
-
-          {/* Consultation CTA — fixed bottom-right */}
           <ConsultationCTAButton />
         </ThemeProvider>
       </body>

@@ -11,9 +11,13 @@ import {
   ChevronRight,
   Send,
   HardHat,
+  ChevronDown,
 } from "lucide-react";
 import UnderConstructionModal from "@/components/UnderContsructionModal";
 import ActionModalLink from "@/components/ActionModalLink";
+
+// Import services data
+import { services } from "@/data/services";
 
 // -------------------------
 // Types
@@ -25,18 +29,30 @@ interface FormData {
   message: string;
 }
 
+interface FormErrors {
+  name?: string;
+  email?: string;
+  subject?: string;
+  message?: string;
+}
+
 interface FormInputProps {
   label: string;
   name: keyof Omit<FormData, "message">;
-  type: "text" | "email";
+  type?: "text" | "email";
   value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onChange: (
+    e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
+  ) => void;
   required?: boolean;
   placeholder?: string;
+  as?: "input" | "select";
+  options?: { value: string; label: string }[];
+  error?: string;
 }
 
 // -------------------------
-// Variants for Animations (FIXED)
+// Variants for Animations
 // -------------------------
 const containerVariants: Variants = {
   initial: { opacity: 0, y: 20 },
@@ -44,12 +60,9 @@ const containerVariants: Variants = {
 };
 
 const detailListVariants: Variants = {
-  initial: {}, // ← Critical: this was missing before!
+  initial: {},
   animate: {
-    transition: {
-      staggerChildren: 0.1,
-      delayChildren: 0.2, // Small delay for smoother sequencing
-    },
+    transition: { staggerChildren: 0.1, delayChildren: 0.2 },
   },
 };
 
@@ -66,6 +79,18 @@ const formVariants: Variants = {
 const subscriptionVariants: Variants = {
   initial: { opacity: 0, y: 30 },
   animate: { opacity: 1, y: 0, transition: { duration: 0.6, delay: 0.5 } },
+};
+
+// Toast variants
+const toastVariants: Variants = {
+  initial: { opacity: 0, y: 50, scale: 0.9 },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: { duration: 0.4, ease: "easeOut" },
+  },
+  exit: { opacity: 0, y: -20, scale: 0.95, transition: { duration: 0.3 } },
 };
 
 // -------------------------
@@ -89,24 +114,59 @@ const FormLabel = ({
 const FormInput = ({
   label,
   name,
-  type,
+  type = "text",
   value,
   onChange,
   required,
   placeholder,
+  as = "input",
+  options,
+  error,
 }: FormInputProps) => (
   <div>
     <FormLabel htmlFor={name}>{label}</FormLabel>
-    <input
-      id={name}
-      name={name}
-      type={type}
-      value={value}
-      onChange={onChange}
-      required={required}
-      placeholder={placeholder}
-      className="mt-1 w-full border border-gray-300 rounded-lg p-3 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accent-gold/50 transition"
-    />
+    {as === "select" ? (
+      <div className="relative">
+        <select
+          id={name}
+          name={name}
+          value={value}
+          onChange={onChange}
+          required={required}
+          className={`w-full appearance-none border rounded-lg p-3 pr-10 font-body text-gray-800 focus:outline-none focus:ring-4 transition bg-white ${
+            error
+              ? "border-red-500 focus:ring-red-500/50"
+              : "border-gray-300 focus:ring-accent-gold/50"
+          }`}
+        >
+          <option value="" disabled>
+            Select a service area
+          </option>
+          {options?.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+        <ChevronDown className="absolute right-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500 pointer-events-none" />
+      </div>
+    ) : (
+      <input
+        id={name}
+        name={name}
+        type={type}
+        value={value}
+        onChange={onChange}
+        required={required}
+        placeholder={placeholder}
+        className={`w-full border rounded-lg p-3 font-body text-gray-800 focus:outline-none focus:ring-4 transition ${
+          error
+            ? "border-red-500 focus:ring-red-500/50"
+            : "border-gray-300 focus:ring-accent-gold/50"
+        }`}
+      />
+    )}
+    {error && <p className="mt-1 text-sm text-red-600">{error}</p>}
   </div>
 );
 
@@ -120,9 +180,21 @@ export default function ContactPage() {
     subject: "",
     message: "",
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [errors, setErrors] = useState<FormErrors>({});
+  const [showToast, setShowToast] = useState(false);
   const [showConstructionModal, setShowConstructionModal] = useState(false);
   const subscribeRef = useRef<HTMLDivElement>(null);
+
+  // Service options for dropdown
+  const serviceOptions = services.map((service) => ({
+    value: service.title,
+    label: service.title,
+  }));
+
+  const allOptions = [
+    { value: "General Inquiry", label: "General Inquiry" },
+    ...serviceOptions,
+  ];
 
   // Scroll to subscription section if hash exists
   useEffect(() => {
@@ -137,21 +209,49 @@ export default function ContactPage() {
   }, []);
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<
+      HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement
+    >
   ) => {
     const name = e.target.name as keyof FormData;
     setFormData((prev) => ({ ...prev, [name]: e.target.value }));
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors((prev) => ({ ...prev, [name]: undefined }));
+    }
+  };
+
+  const validateForm = (): boolean => {
+    const newErrors: FormErrors = {};
+
+    if (!formData.name.trim()) newErrors.name = "Full name is required";
+    if (!formData.email.trim()) newErrors.email = "Email is required";
+    else if (!/\S+@\S+\.\S+/.test(formData.email))
+      newErrors.email = "Please enter a valid email address";
+    if (!formData.subject) newErrors.subject = "Please select a service area";
+    if (!formData.message.trim())
+      newErrors.message = "Please provide inquiry details";
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form Data:", formData);
-    setSubmitted(true);
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    if (validateForm()) {
+      // Simulate successful submission
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 6000);
+
+      // Reset form
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }
+    // If validation fails, errors will show under fields and no toast
   };
 
   return (
-    <main className="bg-white">
+    <main className="bg-white relative">
       <motion.section
         className="bg-gray-50 max-w-7xl mx-auto px-6 pt-10 pb-16 md:pt-12 md:pb-24 rounded-xl shadow-2xl mt-8 mb-10"
         initial="initial"
@@ -189,7 +289,6 @@ export default function ContactPage() {
                 Connect Directly
               </h2>
               <div className="space-y-4">
-                {/* Email */}
                 <ActionModalLink
                   href="mailto:highroadservicesltd@gmail.com"
                   label="highroadservicesltd@gmail.com"
@@ -211,7 +310,6 @@ export default function ContactPage() {
                   </motion.a>
                 </ActionModalLink>
 
-                {/* Phone */}
                 <ActionModalLink
                   href="tel:+256772688639"
                   label="+256 772 688 639"
@@ -233,9 +331,8 @@ export default function ContactPage() {
                   </motion.a>
                 </ActionModalLink>
 
-                {/* Google Maps - External Link */}
                 <ActionModalLink
-                  href="https://maps.app.goo.gl/..." // ← Replace with your actual link
+                  href="https://maps.app.goo.gl/..." // Replace with actual link
                   label="Google Maps"
                 >
                   <motion.a
@@ -327,7 +424,8 @@ export default function ContactPage() {
               <Send className="w-7 h-7 mr-3 text-accent-gold" />
               Start the Discussion
             </h2>
-            <form onSubmit={handleSubmit} className="space-y-6">
+
+            <form onSubmit={handleSubmit} className="space-y-6" noValidate>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <FormInput
                   label="Full Name"
@@ -336,6 +434,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  error={errors.name}
                 />
                 <FormInput
                   label="Work Email"
@@ -344,17 +443,21 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  error={errors.email}
                 />
               </div>
+
               <FormInput
                 label="Project Subject / Focus Area"
                 name="subject"
-                type="text"
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder="E.g., Feasibility Study, M&E System Design"
+                as="select"
+                options={allOptions}
+                error={errors.subject}
               />
+
               <div>
                 <FormLabel htmlFor="message">
                   Project Brief / Inquiry Details
@@ -366,29 +469,55 @@ export default function ContactPage() {
                   required
                   value={formData.message}
                   onChange={handleChange}
-                  className="mt-2 w-full border border-gray-300 rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 focus:ring-accent-gold/50 transition resize-y"
+                  placeholder="Tell us about your project, challenges, or objectives..."
+                  className={`mt-2 w-full border rounded-lg p-4 font-body text-gray-800 focus:outline-none focus:ring-4 transition resize-y ${
+                    errors.message
+                      ? "border-red-500 focus:ring-red-500/50"
+                      : "border-gray-300 focus:ring-accent-gold/50"
+                  }`}
                 />
+                {errors.message && (
+                  <p className="mt-1 text-sm text-red-600">{errors.message}</p>
+                )}
               </div>
+
               <button
                 type="submit"
                 className="inline-flex items-center justify-center w-full px-10 py-3 bg-accent-gold text-primary font-bold rounded-lg shadow-xl text-lg hover:bg-yellow-500 transition transform hover:scale-[1.005]"
               >
                 Send Strategic Request
               </button>
-              {submitted && (
-                <motion.p
-                  className="mt-4 flex items-center text-lg text-green-700 font-semibold"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                >
-                  <CheckCircle className="w-6 h-6 mr-3" />
-                  Success! We will respond within 12 hours.
-                </motion.p>
-              )}
             </form>
           </motion.div>
         </div>
       </motion.section>
+
+      {/* Success Toast */}
+      <AnimatePresence>
+        {showToast && (
+          <motion.div
+            variants={toastVariants}
+            initial="initial"
+            animate="animate"
+            exit="exit"
+            className="fixed bottom-8 left-1/2 -translate-x-1/2 z-50"
+          >
+            <div className="bg-white rounded-xl shadow-2xl border border-accent-gold/30 px-8 py-5 flex items-center gap-4 max-w-md">
+              <div className="bg-accent-gold/20 p-3 rounded-full">
+                <CheckCircle className="w-8 h-8 text-accent-gold" />
+              </div>
+              <div>
+                <p className="font-bold text-primary text-lg">
+                  Message Sent Successfully!
+                </p>
+                <p className="text-gray-600 text-sm">
+                  We guarantee a response within 12 hours.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       {/* Modal */}
       <AnimatePresence>
