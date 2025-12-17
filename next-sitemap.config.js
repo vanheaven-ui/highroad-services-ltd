@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: "https://highroad-services-ltd.vercel.app",
+  siteUrl: "https://www.highroad-services-ltd.com",
   generateRobotsTxt: true,
   sitemapSize: 5000, // Smaller for 7 pages
   changefreq: "monthly", // Less frequent for evergreen content
