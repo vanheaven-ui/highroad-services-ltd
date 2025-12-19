@@ -12,6 +12,7 @@ import {
   Users,
   Briefcase,
   Building,
+  GraduationCap,
 } from "lucide-react";
 import { motion, Variants } from "framer-motion";
 import { Service } from "@/data/services";
@@ -20,7 +21,6 @@ import { SVGProps } from "react";
 import { slugify } from "@/lib/slugify";
 import CaseStudyModal from "@/components/case-study/CaseStudyModal";
 
-// Icon mapping
 const iconMap: Record<string, React.ComponentType<SVGProps<SVGSVGElement>>> = {
   "bar-chart-3": BarChart3,
   users: Users,
@@ -31,7 +31,6 @@ const iconMap: Record<string, React.ComponentType<SVGProps<SVGSVGElement>>> = {
   default: CheckCircle,
 };
 
-// Animation variants
 const itemVariants: Variants = {
   hidden: { opacity: 0, y: 50 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } },
@@ -86,7 +85,6 @@ export default function ServicePageContent({
 
   return (
     <motion.main initial="hidden" animate="visible">
-      {/* 1. Service Header */}
       <motion.section
         className={`pt-20 pb-12 md:pt-28 md:pb-16 ${service.color} text-white border-b-4 border-white/50 shadow-inner relative`}
         initial={{ y: -20, opacity: 0 }}
@@ -95,8 +93,9 @@ export default function ServicePageContent({
       >
         <div className="max-w-6xl mx-auto px-6 relative text-center">
           <p className="text-sm font-semibold uppercase tracking-widest text-white/75 mb-3">
-            Quality for measurable{" "}
-            {service.title.includes("Consulting") ? "Outcomes" : "Impact"}
+            {`Quality for measurable ${
+              service.title.includes("Consulting") ? "Outcomes" : "Impact"
+            }`}
           </p>
 
           <div className="flex justify-center mb-4">
@@ -127,6 +126,7 @@ export default function ServicePageContent({
                 </div>
               ))}
             </div>
+
             <motion.div
               className="text-center"
               initial={{ opacity: 0, y: 10 }}
@@ -148,7 +148,63 @@ export default function ServicePageContent({
         </div>
       </motion.section>
 
-      {/* 2. Overview & Callout */}
+      {service.id.includes("human-capacity-development") && (
+        <section className="relative bg-gradient-to-r from-accent-gold/10 via-amber-50 to-accent-gold/5 py-12 md:py-16 overflow-hidden">
+          <div className="absolute inset-0 bg-accent-gold/5" />
+          <div className="max-w-6xl mx-auto px-6 relative z-10 text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="inline-block"
+            >
+              <div className="flex flex-col items-center gap-6 md:flex-row md:justify-center md:gap-10">
+                <div className="p-4 bg-white rounded-full shadow-xl">
+                  <GraduationCap className="w-12 h-12 text-accent-gold" />
+                </div>
+
+                <div className="max-w-2xl text-center md:text-left">
+                  <h2 className="text-3xl md:text-4xl font-heading font-black text-primary mb-3">
+                    Welcome to HighRoad Academy
+                  </h2>
+
+                  <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                    Our specialised training in impact evaluation and advanced
+                    economic modelling is now proudly delivered through 
+                    <strong><span className="ml-1">HighRoad Academy</span></strong>, a dedicated platform
+                    offering in-depth programmes, modern tools, and focused
+                    learning pathways.
+                  </p>
+
+                  <Link
+                    href="/highroad-academy"
+                    className="inline-flex items-center px-8 py-4 bg-accent-gold text-primary font-bold text-lg rounded-full shadow-2xl hover:bg-yellow-500 hover:shadow-3xl transition transform hover:scale-105"
+                  >
+                    Explore HighRoad Academy
+                    <ArrowRight className="ml-3 w-6 h-6" />
+                  </Link>
+                </div>
+              </div>
+            </motion.div>
+          </div>
+
+          <div className="absolute bottom-0 left-0 right-0">
+            <svg
+              viewBox="0 0 1440 100"
+              preserveAspectRatio="none"
+              className="w-full h-12 text-white"
+            >
+              <path
+                d="M0,100 C360,0 1080,100 1440,20 L1440,100 Z"
+                fill="currentColor"
+                opacity="0.8"
+              />
+            </svg>
+          </div>
+        </section>
+      )}
+
       <motion.div
         className="bg-white"
         initial="hidden"
@@ -157,7 +213,6 @@ export default function ServicePageContent({
         variants={itemVariants}
       >
         <section className="py-16 md:py-24 max-w-6xl mx-auto px-6 grid lg:grid-cols-3 gap-12">
-          {/* Overview */}
           <div className="lg:col-span-2">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold mb-2">
               The Analytical Edge
@@ -170,7 +225,6 @@ export default function ServicePageContent({
             </p>
           </div>
 
-          {/* Callout */}
           <div className="lg:col-span-1 p-6 bg-surface border-l-4 border-accent-gold rounded-xl shadow-lg h-fit">
             <Lightbulb className="w-8 h-8 text-accent-gold mb-4" />
             <p className="text-xl font-heading font-semibold text-primary mb-3">
@@ -192,7 +246,6 @@ export default function ServicePageContent({
 
       <hr className="border-t border-gray-200" />
 
-      {/* 3. Highlights */}
       <section className="py-16 md:py-24 bg-surface">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center">
@@ -227,7 +280,6 @@ export default function ServicePageContent({
 
       <hr className="border-t border-gray-200" />
 
-      {/* 4. Methodology */}
       <section className="py-16 md:py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold text-center">
@@ -274,7 +326,6 @@ export default function ServicePageContent({
 
       <hr className="border-t border-gray-200" />
 
-      {/* 5. Case Studies */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-6xl mx-auto px-6">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-primary text-center">
@@ -311,7 +362,6 @@ export default function ServicePageContent({
                   </p>
                 </div>
 
-                {/* Slide-Up Overlay */}
                 <motion.div
                   className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-primary/95 via-primary/80 to-transparent p-8 text-white z-20"
                   variants={overlayVariants}
@@ -332,7 +382,6 @@ export default function ServicePageContent({
         </div>
       </section>
 
-      {/* 6. Related Services */}
       {service.relatedServices.length > 0 && (
         <section className="py-16 md:py-24 bg-white">
           <div className="max-w-6xl mx-auto px-6">
@@ -375,7 +424,6 @@ export default function ServicePageContent({
         </section>
       )}
 
-      {/* 7. Final CTA */}
       <motion.section
         className="py-20 bg-primary/95 text-center text-white"
         initial={{ y: 50, opacity: 0 }}
@@ -399,7 +447,6 @@ export default function ServicePageContent({
         </div>
       </motion.section>
 
-      {/* Modal */}
       <CaseStudyModal
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
