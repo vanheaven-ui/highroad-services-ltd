@@ -3,22 +3,22 @@ import { Database, TrendingUp, Users } from "lucide-react";
 
 const approachPillars = [
   {
-    icon: Database, // Represents data integrity and collection
-    title: "1. Data Integrity & Validation",
+    icon: Database,
+    title: "1. Data Integrity & Contextualization",
     description:
-      "We prioritize primary field data collection and rigorous validation processes to ensure all inputs are localized, reliable, and trustworthy.",
+      "We prioritize primary and administrative data, rigorous validation, and contextual grounding to ensure all inputs are locally relevant, reliable, and decision-ready.",
   },
   {
-    icon: TrendingUp, // Represents analysis, modeling, and forecasting
-    title: "2. Advanced Econometric Modeling",
+    icon: TrendingUp,
+    title: "2. Advanced Analytical & Policy Modelling",
     description:
-      "Our expert consultants utilize Stata/R and advanced causal inference to develop predictive and evidence-based models tailored to specific market dynamics.",
+      "We apply impact evaluation methods, general equilibrium frameworks, and advanced quantitative analysis to generate robust, policy-relevant evidence for decision-making.",
   },
   {
-    icon: Users, // Represents implementation and capacity building/training
-    title: "3. Strategy Translation & Training",
+    icon: Users,
+    title: "3. Policy Translation & Capacity Development",
     description:
-      "We translate complex insights into clear, implementable policy roadmaps and deliver custom training to build lasting capacity within your teams.",
+      "We translate complex analytical results into actionable policy insights and deliver structured, practice-oriented capacity development to strengthen institutional effectiveness.",
   },
 ];
 

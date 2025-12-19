@@ -15,6 +15,7 @@ import React, { JSX } from "react";
 import { motion, Variants } from "framer-motion";
 
 // --- DATA STRUCTURES ---
+// Updated Four Pillars to reflect HighRoad Academy offerings
 
 const fourPillars = [
   {
@@ -35,18 +36,19 @@ const fourPillars = [
     icon: TrendingUp,
     title: "3. Analyze with Precision",
     description:
-      "Application of advanced econometric modeling, causal inference techniques such as DiD and RCTs, and statistical software like Stata or R to turn complex data into verifiable evidence.",
+      "Application of rigorous impact evaluation methods and economy-wide modeling frameworks (CGE and DSGE) to assess policy effectiveness and macroeconomic dynamics.",
     color: "bg-red-500/10 text-red-700",
   },
   {
     icon: Send,
     title: "4. Deliver Actionable Strategy",
     description:
-      "Translating technical findings into clear, implementable policy recommendations, strategic plans, and investment roadmaps for immediate client action.",
+      "Translating analytical results into clear, implementable policy recommendations, simulations, and practical learning outcomes for decision-makers and practitioners.",
     color: "bg-yellow-500/10 text-yellow-700",
   },
 ];
 
+// Updated methodology highlights to emphasize training and capacity building
 const methodologyHighlights = [
   {
     icon: CheckCircle,
@@ -56,20 +58,19 @@ const methodologyHighlights = [
   },
   {
     icon: Brain,
-    title: "Econometric Modeling",
+    title: "Impact & Macroeconomic Modeling",
     description:
-      "Advanced model construction and statistical analysis are built into every engagement, ensuring forecasts and projections can withstand scrutiny.",
+      "Practical training in Impact Evaluation, CGE modeling using GAMS, and DSGE modeling, equipping stakeholders with actionable analytical skills for policy and investment decisions.",
   },
   {
     icon: Target,
     title: "Adaptive Learning Loops",
     description:
-      "Our monitoring and evaluation systems use real-time feedback, allowing clients to adjust strategies mid-stream for optimal impact.",
+      "Our monitoring and evaluation systems incorporate real-time feedback and hands-on learning, allowing clients to adjust strategies mid-stream for optimal impact.",
   },
 ];
 
 // --- FRAMER MOTION VARIANTS ---
-
 const staggerContainer: Variants = {
   visible: {
     transition: { staggerChildren: 0.1 },
@@ -96,7 +97,6 @@ const pillarCardVariants: Variants = {
 };
 
 // --- MAIN PAGE COMPONENT ---
-
 export default function ApproachPage(): JSX.Element {
   return (
     <motion.main
@@ -118,8 +118,9 @@ export default function ApproachPage(): JSX.Element {
             </h1>
 
             <p className="mt-4 text-xl text-gray-700 font-body">
-              Every HighRoad project follows a clear, four-step process grounded in
-              solid evidence and shaped around what you need for practical, real-world results.
+              Every HighRoad project follows a structured, evidence-based
+              process, integrating research, policy analysis, and hands-on
+              capacity building to deliver practical, real-world outcomes.
             </p>
           </motion.div>
 
@@ -150,7 +151,9 @@ export default function ApproachPage(): JSX.Element {
                     <div
                       className={`w-12 h-12 ${pillar.color} rounded-full flex items-center justify-center`}
                     >
-                      <Icon className={`w-6 h-6 ${pillar.color.split(" ")[1]}`} />
+                      <Icon
+                        className={`w-6 h-6 ${pillar.color.split(" ")[1]}`}
+                      />
                     </div>
 
                     <h4 className="text-2xl font-heading font-black text-primary">
@@ -200,7 +203,9 @@ export default function ApproachPage(): JSX.Element {
               <p className="text-gray-700 font-body leading-relaxed border-l-4 border-accent-gold pl-4 italic">
                 We use transparent and reliable methods that make our insights
                 trustworthy, easy to follow, and ready to support your most
-                important decisions.
+                important decisions. Our capacity-building programs equip teams
+                with advanced analytical skills in impact evaluation and
+                macroeconomic modeling.
               </p>
 
               <Link
@@ -257,7 +262,8 @@ export default function ApproachPage(): JSX.Element {
 
           <p className="text-lg text-white/80 mb-8 font-body">
             Our collaborative model ensures full transparency, continuous client
-            connection, and outputs tailored to your specific needs.
+            connection, and outputs tailored to your specific needs, with
+            optional training and capacity building.
           </p>
 
           <Link
