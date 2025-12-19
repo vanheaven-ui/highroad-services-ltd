@@ -149,14 +149,15 @@ export const services: Service[] = [
   },
 
   {
-    id: "human-capacity-development-advanced-policy-training",
-    title: "Human Capacity Development & Advanced Policy Training",
+    id: "human-capacity-development-advanced-policy-training-highroad-academy",
+    title:
+      "Human Capacity Development & Advanced Policy Training (HighRoad Academy)",
     description:
-      "Specialised, practice-oriented training in impact evaluation and advanced macroeconomic modelling.",
+      "Specialised, practice-oriented training in impact evaluation and advanced macroeconomic modelling, conducted under HighRoad Academy.",
     icon: "users",
     color: "bg-green-600",
     detailedOverview:
-      "Through its training arm, HighRoad Academy, Highroad Services Ltd delivers specialised programmes in Impact Evaluation, Computable General Equilibrium (CGE) modelling, and Dynamic Stochastic General Equilibrium (DSGE) modelling.\n\nThe training responds to critical analytical capacity gaps across Africa by combining rigorous theoretical foundations with hands-on application. Participants gain practical skills to design, estimate, simulate, and interpret policy-relevant models for evidence-based decision-making.\n\nTarget participants include economists, policy analysts, researchers, postgraduate students (MSc/PhD), government technical staff, central bank economists, and development practitioners involved in policy analysis, planning, and macroeconomic modelling.",
+      "Through its training arm, HighRoad Academy, Highroad Services Ltd delivers specialised programmes in Impact Evaluation, Computable General Equilibrium (CGE) modelling, and Dynamic Stochastic General Equilibrium (DSGE) modelling.\n\nAll capacity building is conducted under HighRoad Academy. The training responds to critical analytical capacity gaps across Africa by combining rigorous theoretical foundations with hands-on application. Participants gain practical skills to design, estimate, simulate, and interpret policy-relevant models for evidence-based decision-making.\n\nTarget participants include economists, policy analysts, researchers, postgraduate students (MSc/PhD), government technical staff, central bank economists, and development practitioners involved in policy analysis, planning, and macroeconomic modelling.",
     highlights: [
       "Impact Evaluation training using experimental and quasi-experimental methods (RCTs, DiD, PSM, RDD, IV)",
       "Hands-on CGE modelling for policy analysis using GAMS and SAMs",
@@ -165,7 +166,7 @@ export const services: Service[] = [
       "Strengthened capacity to commission, interpret, and use analytical evidence in decision-making",
     ],
     methodology: {
-      title: "Our Training & Capacity Development Approach",
+      title: "Our Training & Capacity Development Approach (HighRoad Academy)",
       steps: [
         "Skills gap assessment and participant profiling",
         "Curriculum design combining theory and applied policy relevance",
