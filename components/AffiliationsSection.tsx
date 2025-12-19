@@ -19,9 +19,9 @@ export default function AffiliationsSection(): JSX.Element {
       color: "text-primary bg-primary/5 border-primary/20",
     },
     {
-      title: "Training & Capacity Development",
+      title: "Training & Capacity Development (HighRoad Academy)",
       description:
-        "Specialised, practice-oriented training in impact evaluation, CGE, and DSGE modelling for policymakers, analysts, and development practitioners.",
+        "All capacity building is conducted under HighRoad Academy. Specialised, practice-oriented training in impact evaluation, CGE, and DSGE modelling for policymakers, analysts, and development practitioners.",
       icon: GraduationCap,
       color: "text-accent-gold-darker bg-yellow-50 border-yellow-200",
     },
