@@ -61,7 +61,10 @@ const menuContent = [
     links: [
       { name: "Sectoral Assessments", href: "/services/assessments" },
       { name: "Econometric Modeling", href: "/services/modeling" },
-      { name: "M&E and Impact Evaluation", href: "/services/monitoring-evaluation" },
+      {
+        name: "M&E and Impact Evaluation",
+        href: "/services/monitoring-evaluation",
+      }, // Kept
     ],
   },
   {
@@ -71,17 +74,18 @@ const menuContent = [
     links: [
       { name: "Development Finance", href: "/studies/finance" },
       { name: "Government Policy", href: "/studies/policy" },
-      { name: "NGO Strategy", href: "/studies/ngo" },
+      { name: "HighRoad Academy", href: "/highroad-academy" }, // Replaced NGO Strategy
     ],
   },
   {
     title: "Firm & Team",
     href: "/experts",
-    description: "Meet our PhD scholars and academic affiliations.",
+    // Description updated to remove PhD/Academic mentions
+    description: "Meet our specialist consultants and strategic leadership.",
     links: [
       { name: "Our Methodology", href: "/approach" },
       { name: "Partnerships", href: "/experts/partners" },
-      { name: "Careers", href: "/careers" },
+      { name: "Careers", href: "/careers" }, // Kept
     ],
   },
 ];
