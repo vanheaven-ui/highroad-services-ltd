@@ -152,6 +152,26 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index, follow" />
         <meta name="theme-color" content="#0b2545" />
+        <link rel="icon" href="/assets/favicon.ico" sizes="any" />
+        <link
+          rel="icon"
+          href="/assets/favicon-32x32.png"
+          type="image/png"
+          sizes="32x32"
+        />
+        <link
+          rel="icon"
+          href="/assets/favicon-16x16.png"
+          type="image/png"
+          sizes="16x16"
+        />
+        <link rel="apple-touch-icon" href="/assets/apple-touch-icon.png" />
+        <link
+          rel="mask-icon"
+          href="/assets/safari-pinned-tab.svg"
+          color="#0b2545"
+        />
+        <link rel="shortcut icon" href="/assets/favicon.ico" />
       </head>
       <body
         className={`${merriweather.variable} ${inter.variable} ${playfair.variable} ${raleway.variable} font-body antialiased`}

@@ -1,8 +1,3 @@
-// services.ts
-
-import { FullCaseStudy } from "./case-studies";
-import { caseStudies } from "./case-studies";
-
 export type ServiceIcon =
   | "bar-chart-3"
   | "users"
@@ -25,7 +20,7 @@ export interface Service {
     title: string;
     steps: string[];
   };
-  caseStudyIds: string[]; // references to FullCaseStudy.id
+  caseStudyIds: string[];
   relatedServices: string[];
 }
 
@@ -63,6 +58,7 @@ export const services: Service[] = [
     ],
     relatedServices: ["monitoring-evaluation", "human-capacity-development"],
   },
+
   {
     id: "feasibility-studies",
     title: "Feasibility Studies",
@@ -71,7 +67,7 @@ export const services: Service[] = [
     icon: "globe",
     color: "bg-red-600",
     detailedOverview:
-      "Our feasibility studies provide investors and organizations with reliable insights into market dynamics, operational requirements, and financial viability. We assess risks and opportunities to guide informed decision-making and minimize investment risks.",
+      "Our feasibility studies provide investors and organizations with reliable insights into market dynamics, operational requirements, and financial viability.",
     highlights: [
       "Market and competitive analysis",
       "Financial modeling and projections",
@@ -88,9 +84,10 @@ export const services: Service[] = [
         "Strategic recommendations for implementation",
       ],
     },
-    caseStudyIds: ["potato-factory-feasibility-2025", "nta-policy-2025"],
+    caseStudyIds: ["potato-factory-feasibility-2025"],
     relatedServices: ["strategy-development", "policy-analysis-development"],
   },
+
   {
     id: "strategy-development",
     title: "Strategy Development",
@@ -99,26 +96,26 @@ export const services: Service[] = [
     icon: "briefcase",
     color: "bg-indigo-600",
     detailedOverview:
-      "We work with clients to develop strategic frameworks and actionable roadmaps that align with their vision, mission, and goals. Our process ensures that strategies are evidence-based, stakeholder-informed, and implementable.",
+      "We work with clients to develop strategic frameworks and actionable roadmaps aligned with their vision and goals.",
     highlights: [
       "Organizational strategy and planning",
-      "Programmatic and sector-specific strategies",
       "Stakeholder engagement and alignment",
       "Scenario planning and risk mitigation",
     ],
     methodology: {
       title: "Our Strategy Development Process",
       steps: [
-        "Stakeholder consultations and needs assessment",
-        "Environmental and situational analysis",
-        "Strategy formulation and scenario modeling",
-        "Validation workshops and feedback incorporation",
-        "Implementation planning and monitoring framework",
+        "Stakeholder consultations",
+        "Situational analysis",
+        "Strategy formulation",
+        "Validation workshops",
+        "Implementation planning",
       ],
     },
     caseStudyIds: ["nta-policy-2025", "kyambogo-donor-mapping-2025"],
     relatedServices: ["policy-analysis-development", "monitoring-evaluation"],
   },
+
   {
     id: "monitoring-evaluation",
     title: "Monitoring & Evaluation",
@@ -127,122 +124,96 @@ export const services: Service[] = [
     icon: "building",
     color: "bg-purple-600",
     detailedOverview:
-      "Our M&E services help organizations systematically track their progress, measure outcomes, and learn from experience. We design user-friendly dashboards, reports, and feedback mechanisms to support adaptive management and evidence-based decision-making.",
+      "Our M&E services help organizations measure outcomes, learn from evidence, and improve program effectiveness.",
     highlights: [
-      "Development of MEL frameworks and indicators",
-      "Real-time dashboards and performance tracking",
-      "Evaluation studies (baseline, midline, endline)",
-      "Learning integration for program improvement",
+      "Impact evaluation design and analysis",
+      "Quasi-experimental and experimental methods",
+      "Learning-oriented MEL systems",
     ],
     methodology: {
       title: "Our MEL Process",
       steps: [
         "Defining outcomes and indicators",
-        "Designing MEL tools and data collection methods",
-        "Data collection, cleaning, and analysis",
-        "Synthesizing findings and lessons learned",
-        "Reporting and adaptive management support",
-      ],
-    },
-    caseStudyIds: [
-      "uvtab-tracer-2025",
-      "ubteb-business-tracer-2025",
-      "ubteb-engineering-tracer-2024",
-      "sscs-baseline-2020",
-    ],
-    relatedServices: ["baseline-surveys", "human-capacity-development"],
-  },
-  {
-    id: "human-capacity-development",
-    title: "Human Capacity Development",
-    description:
-      "Strengthening organizational and individual capabilities through tailored training and mentorship.",
-    icon: "users",
-    color: "bg-green-600",
-    detailedOverview:
-      "We provide targeted capacity development programs designed to enhance skills, knowledge, and operational effectiveness. Our approach is hands-on and practical, ensuring immediate application and measurable improvements.",
-    highlights: [
-      "Skills assessments and gap analysis",
-      "Customized training programs",
-      "Workshops, coaching, and mentorship",
-      "Performance tracking and feedback mechanisms",
-    ],
-    methodology: {
-      title: "Our Capacity Development Approach",
-      steps: [
-        "Assessment of learning needs",
-        "Curriculum design tailored to context",
-        "Interactive training delivery",
-        "Evaluation and feedback integration",
-        "Ongoing mentorship and skills application",
+        "Designing evaluation tools",
+        "Data collection and analysis",
+        "Learning synthesis",
+        "Reporting and adaptive management",
       ],
     },
     caseStudyIds: [
       "uwep-midterm-2019",
-      "uvtab-tracer-2025",
-      "ubteb-business-tracer-2025",
+      "innovative-savings-2018",
+      "lpg-adoption-2022",
     ],
-    relatedServices: ["strategy-development", "monitoring-evaluation"],
+    relatedServices: ["baseline-surveys", "human-capacity-development"],
   },
+
+  {
+    id: "human-capacity-development-advanced-policy-training-highroad-academy",
+    title:
+      "Human Capacity Development & Advanced Policy Training (HighRoad Academy)",
+    description:
+      "Specialised, practice-oriented training in impact evaluation and advanced macroeconomic modelling, conducted under HighRoad Academy.",
+    icon: "users",
+    color: "bg-green-600",
+    detailedOverview:
+      "Through its training arm, HighRoad Academy, Highroad Services Ltd delivers specialised programmes in Impact Evaluation, Computable General Equilibrium (CGE) modelling, and Dynamic Stochastic General Equilibrium (DSGE) modelling.\n\nAll capacity building is conducted under HighRoad Academy. The training responds to critical analytical capacity gaps across Africa by combining rigorous theoretical foundations with hands-on application. Participants gain practical skills to design, estimate, simulate, and interpret policy-relevant models for evidence-based decision-making.\n\nTarget participants include economists, policy analysts, researchers, postgraduate students (MSc/PhD), government technical staff, central bank economists, and development practitioners involved in policy analysis, planning, and macroeconomic modelling.",
+    highlights: [
+      "Impact Evaluation training using experimental and quasi-experimental methods (RCTs, DiD, PSM, RDD, IV)",
+      "Hands-on CGE modelling for policy analysis using GAMS and SAMs",
+      "Advanced DSGE modelling for macroeconomic policy analysis under uncertainty",
+      "Practice-oriented learning with simulations, case studies, and real policy applications",
+      "Strengthened capacity to commission, interpret, and use analytical evidence in decision-making",
+    ],
+    methodology: {
+      title: "Our Training & Capacity Development Approach (HighRoad Academy)",
+      steps: [
+        "Skills gap assessment and participant profiling",
+        "Curriculum design combining theory and applied policy relevance",
+        "Interactive delivery with hands-on modelling and empirical exercises",
+        "Policy simulations and real-world case studies",
+        "Evaluation of learning outcomes and competencies",
+        "Post-training mentorship and application support",
+      ],
+    },
+    caseStudyIds: [
+      "nta-policy-2025",
+      "uwep-midterm-2019",
+      "innovative-savings-2018",
+      "uvtab-tracer-2025",
+    ],
+    relatedServices: [
+      "policy-analysis-development",
+      "monitoring-evaluation",
+      "strategy-development",
+    ],
+  },
+
   {
     id: "policy-analysis-development",
     title: "Policy Analysis & Development",
     description:
-      "Supporting evidence-based policy formulation and strategic recommendations for institutions.",
+      "Supporting evidence-based policy formulation and strategic recommendations.",
     icon: "bar-chart-3",
     color: "bg-amber-600",
     detailedOverview:
-      "We analyze policy environments and provide actionable recommendations to guide strategic decisions. Our work involves data-driven insights, stakeholder engagement, and practical policy instruments to facilitate effective implementation.",
+      "We provide rigorous policy analysis grounded in data, stakeholder engagement, and practical implementation pathways.",
     highlights: [
       "Policy research and evaluation",
-      "Regulatory and institutional analysis",
-      "Stakeholder consultation and engagement",
-      "Drafting policy instruments and guidance",
+      "Scenario modelling and risk analysis",
+      "Stakeholder consultation",
     ],
     methodology: {
       title: "Our Policy Development Approach",
       steps: [
-        "Research and situational analysis",
+        "Situational analysis",
         "Stakeholder engagement",
-        "Drafting and consultation of policy documents",
-        "Scenario modeling and risk assessment",
-        "Implementation guidance and monitoring",
+        "Drafting policy instruments",
+        "Scenario modelling",
+        "Implementation guidance",
       ],
     },
-    caseStudyIds: ["nta-policy-2025", "kyambogo-donor-mapping-2025"],
-    relatedServices: ["strategy-development", "feasibility-studies"],
-  },
-  {
-    id: "environmental-social-impact",
-    title: "Environmental & Social Impact Assessment",
-    description:
-      "Assessing potential environmental and social effects of projects and programs to ensure sustainability and compliance.",
-    icon: "leaf",
-    color: "bg-teal-600",
-    detailedOverview:
-      "We conduct Environmental and Social Impact Assessments (ESIA) to help organizations anticipate risks, comply with regulations, and design sustainable interventions that benefit communities and ecosystems.",
-    highlights: [
-      "Environmental baseline studies",
-      "Social and community impact assessments",
-      "Mitigation planning and recommendations",
-      "Compliance with national and international standards",
-    ],
-    methodology: {
-      title: "Our ESIA Methodology",
-      steps: [
-        "Scoping and stakeholder engagement",
-        "Baseline environmental and social data collection",
-        "Impact prediction and analysis",
-        "Mitigation and management planning",
-        "Reporting and monitoring recommendations",
-      ],
-    },
-    caseStudyIds: [
-      "lpg-adoption-2022",
-      "covid-livelihoods-2022",
-      "covid-women-urban-2020",
-      "entrepreneurship-needs-2020",
-    ],
-    relatedServices: ["feasibility-studies", "policy-analysis-development"],
+    caseStudyIds: ["nta-policy-2025"],
+    relatedServices: ["strategy-development", "human-capacity-development"],
   },
 ];

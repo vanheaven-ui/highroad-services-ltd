@@ -7,23 +7,22 @@ export default function AffiliationsSection(): JSX.Element {
     {
       title: "Research & Analysis",
       description:
-        "In-depth analysis to uncover actionable insights for informed decision-making.",
-      icon: BarChart3, // Research/Data icon
-      // Color used for background and text
+        "In-depth analytical research to generate rigorous, policy-relevant evidence for decision-making.",
+      icon: BarChart3,
       color: "text-blue-700 bg-blue-50 border-blue-200",
     },
     {
       title: "Consultancy & Strategy",
       description:
-        "Tailored strategies and guidance to navigate complex challenges with confidence.",
-      icon: Users, // People/Guidance icon
+        "Evidence-based advisory and strategic support to navigate complex policy and development challenges.",
+      icon: Users,
       color: "text-primary bg-primary/5 border-primary/20",
     },
     {
-      title: "Training & Capacity Building",
+      title: "Training & Capacity Development (HighRoad Academy)",
       description:
-        "Custom programs in AI, data analytics, and leadership to build skills and empower your team for lasting success.",
-      icon: GraduationCap, // Learning/Education icon
+        "All capacity building is conducted under HighRoad Academy. Specialised, practice-oriented training in impact evaluation, CGE, and DSGE modelling for policymakers, analysts, and development practitioners.",
+      icon: GraduationCap,
       color: "text-accent-gold-darker bg-yellow-50 border-yellow-200",
     },
   ];

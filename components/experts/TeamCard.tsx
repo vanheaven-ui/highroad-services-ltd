@@ -53,11 +53,8 @@ const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
   return (
     <>
       <motion.div
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        transition={{ duration: 0.6, ease: "easeOut" }}
         whileHover={{ scale: 1.03 }}
+        transition={{ duration: 0.3 }}
         className="group bg-white p-6 rounded-xl shadow-xl border-t-4 border-primary/20 hover:border-accent-gold transition duration-300 cursor-pointer flex flex-col h-full relative"
         onClick={() => openExpertModal(member)}
       >
@@ -83,7 +80,7 @@ const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
             <p className="text-sm font-medium text-gray-600">{member.title}</p>
           </div>
 
-          {/* External Links Icons (right side) */}
+          {/* External Links Icons */}
           <div className="flex gap-2">
             {hasEmail && (
               <button
@@ -146,7 +143,6 @@ const TeamCard: React.FC<TeamCardProps> = ({ member }) => {
         </div>
       </motion.div>
 
-      {/* Custom Alert Dialog for External Links */}
       <CustomAlertDialog
         isOpen={!!alertConfig?.isOpen}
         onClose={cancelOpen}

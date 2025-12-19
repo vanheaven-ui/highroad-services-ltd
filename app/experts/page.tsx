@@ -10,39 +10,27 @@ import { teamMembersData } from "@/data/team";
 
 /* ----------------------------------------------
  * FRAMER MOTION VARIANTS
----------------------------------------------- */
+ ---------------------------------------------- */
 const staggerContainerVariants: Variants = {
-  hidden: { opacity: 1 },
+  hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.12,
-      delayChildren: 0.3,
+      staggerChildren: 0.1,
+      delayChildren: 0.2,
     },
   },
 };
 
 const slideUpItemVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 0, y: 20 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
+    transition: { duration: 0.5, ease: "easeOut" },
   },
 };
 
-const pillarVariants: Variants = {
-  hidden: { opacity: 0, y: 40 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: { duration: 0.7, ease: "easeOut" },
-  },
-};
-
-/* ----------------------------------------------
- * PAGE CONTENT
----------------------------------------------- */
 function ExpertsPageContent() {
   return (
     <motion.main
@@ -93,7 +81,7 @@ function ExpertsPageContent() {
           variants={staggerContainerVariants}
           initial="hidden"
           whileInView="visible"
-          viewport={{ once: true, amount: 0.2 }}
+          viewport={{ once: true, amount: 0.1 }}
         >
           {teamMembersData.map((member) => (
             <motion.div key={member.name} variants={slideUpItemVariants}>
@@ -105,8 +93,9 @@ function ExpertsPageContent() {
         <motion.div
           className="text-center mt-16"
           initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
         >
           <Link
             href="/careers"
@@ -138,11 +127,11 @@ function ExpertsPageContent() {
             variants={staggerContainerVariants}
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
+            viewport={{ once: true, amount: 0.2 }}
           >
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={pillarVariants}
+              variants={slideUpItemVariants}
             >
               <Cpu className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
@@ -158,7 +147,7 @@ function ExpertsPageContent() {
 
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={pillarVariants}
+              variants={slideUpItemVariants}
             >
               <Globe className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
@@ -172,7 +161,7 @@ function ExpertsPageContent() {
 
             <motion.div
               className="p-8 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/70"
-              variants={pillarVariants}
+              variants={slideUpItemVariants}
             >
               <Handshake className="w-8 h-8 text-accent-gold mb-4" />
               <h4 className="text-xl font-heading font-bold text-primary mb-3">
@@ -191,9 +180,6 @@ function ExpertsPageContent() {
   );
 }
 
-/* ----------------------------------------------
- * EXPORT WITH PROVIDER
----------------------------------------------- */
 export default function ExpertsPage() {
   return (
     <ExpertModalProvider>
