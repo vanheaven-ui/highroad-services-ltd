@@ -2,7 +2,8 @@
 
 import { motion, Variants } from "framer-motion";
 import ServiceCard from "@/components/ServiceCard";
-import { services } from "@/data/services"; 
+import { services } from "@/data/services";
+import Link from "next/link"; 
 
 // Data for the 'Our Process' steps
 const processSteps = [
@@ -10,36 +11,35 @@ const processSteps = [
     step: 1,
     title: "Define",
     description:
-      "Clear definition of the problem, scope, and objectives using proven analytical rigor.",
+      "Clear definition of policy questions, analytical scope, and learning objectives grounded in institutional and macroeconomic context.",
   },
   {
     step: 2,
     title: "Gather",
     description:
-      "Multi-modal data collection (surveys, public data, interviews) with strict quality control.",
+      "Structured data compilation and preparation, including survey, administrative, and macroeconomic datasets aligned to analytical needs.",
   },
   {
     step: 3,
     title: "Analyze",
     description:
-      "Application of advanced econometric models and causal inference techniques.",
+      "Application of rigorous impact evaluation methods and economy-wide modelling frameworks to assess policy effectiveness and macroeconomic dynamics.",
   },
   {
     step: 4,
-    title: "Action",
+    title: "Apply",
     description:
-      "Delivering clear, actionable policy recommendations and implementation plans.",
+      "Translation of analytical results into policy insights, simulations, and practical learning outcomes for decision-makers and practitioners.",
   },
 ];
 
 // --- Animation Variants ---
-
 const staggerContainer: Variants = {
   hidden: { opacity: 0 },
   visible: {
     opacity: 1,
     transition: {
-      staggerChildren: 0.1, // Delay between each child item
+      staggerChildren: 0.1,
       when: "beforeChildren",
     },
   },
@@ -65,7 +65,7 @@ export default function ServicesPageContent() {
         visible: { opacity: 1, transition: { duration: 0.5 } },
       }}
     >
-      {/* 📊 1. Direct Entry: Services Grid with Narrative Intro - Staggered Fade-in on scroll */}
+      {/* 📊 1. Services Grid */}
       <motion.section
         className="max-w-7xl mx-auto px-6 py-16 md:py-24"
         initial="hidden"
@@ -82,8 +82,8 @@ export default function ServicesPageContent() {
           </h3>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto font-body leading-relaxed">
             We turn complex data into actionable policy and investment strategy,
-            providing the analytical rigor required for sustainable development
-            and measurable success in East Africa.
+            providing the analytical depth required for sustainable development
+            and measurable success.
           </p>
         </div>
 
@@ -101,18 +101,18 @@ export default function ServicesPageContent() {
         </motion.div>
 
         <div className="mt-16 text-center">
-          <a
+          <Link
             href="/approach"
             className="text-lg font-semibold text-primary hover:text-accent-gold transition border-b-2 border-primary/20 hover:border-accent-gold/50 pb-1"
           >
             View Our Detailed Research Methodology →
-          </a>
+          </Link>
         </div>
       </motion.section>
 
       <hr />
 
-      {/* ⚙️ 2. Unique "Our Process" Section - Staggered Fade-in on scroll */}
+      {/* ⚙️ 2. Our Process */}
       <motion.section
         className="bg-gray-50 py-16 md:py-24"
         initial="hidden"
@@ -134,7 +134,7 @@ export default function ServicesPageContent() {
             {processSteps.map((item) => (
               <motion.div
                 key={item.step}
-                variants={cardItem} // Use the same staggered variant for these cards
+                variants={cardItem}
                 className="text-center p-6 bg-white rounded-xl shadow-lg border-t-4 border-accent-gold/50 hover:shadow-xl transition duration-300"
               >
                 <p className="text-5xl font-heading font-black text-accent-gold/50 mb-4">
@@ -154,7 +154,7 @@ export default function ServicesPageContent() {
 
       <hr />
 
-      {/* 📞 3. Final Conversion CTA Block - Simple slide-up on scroll */}
+      {/* 📞 3. Final CTA */}
       <motion.section
         className="bg-primary/95 py-16 md:py-20"
         initial="hidden"
@@ -170,12 +170,13 @@ export default function ServicesPageContent() {
             Our team is ready to provide the evidence required for your next
             major policy or investment decision.
           </p>
-          <a
+          {/* ✅ Replace <a> with Link */}
+          <Link
             href="/contact"
             className="mt-8 inline-flex items-center px-8 py-3 bg-accent-gold text-white font-bold rounded-lg shadow-2xl border-2 border-white text-lg hover:bg-yellow-500 transition transform hover:scale-[1.02]"
           >
             Schedule a Discovery Call
-          </a>
+          </Link>
         </div>
       </motion.section>
     </motion.main>
