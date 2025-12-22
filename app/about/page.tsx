@@ -269,7 +269,7 @@ export default function About(): JSX.Element {
                   While holding key advisory roles, Dr. Tumwine witnessed a
                   recurring flaw:
                   <strong> high-stakes decisions</strong> were often based on
-                  weak data—leading to stalled development and misallocated
+                  weak data, leading to stalled development and misallocated
                   resources.
                 </p>
               </motion.div>
@@ -294,8 +294,8 @@ export default function About(): JSX.Element {
 
                 <p className="text-gray-700 leading-relaxed">
                   HighRoad Services Ltd was founded to redefine evidence-based
-                  consulting through advanced{" "}
-                  <strong>econometric modeling</strong> and a commitment to
+                  consulting through advanced
+                  <strong><span>econometric modeling</span></strong> and a commitment to
                   <strong> uncompromising quality</strong>.
                 </p>
               </motion.div>

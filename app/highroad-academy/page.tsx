@@ -221,7 +221,7 @@ export default function HighRoadAcademyPage() {
           >
             HighRoad Academy delivers specialised, practice-oriented training in
             impact evaluation and advanced economic modelling, now enhanced
-            with modern AI tools  to strengthen evidence-based policymaking and
+            with modern AI tools  to strengthen evidence-based policy making and
             development practice.
           </motion.p>
 

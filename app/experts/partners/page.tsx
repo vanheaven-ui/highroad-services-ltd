@@ -2,7 +2,7 @@
 
 import { JSX } from "react";
 import { motion, Variants } from "framer-motion";
-import { Briefcase, Mail, ChevronDown } from "lucide-react";
+import { Handshake, Mail, ChevronDown } from "lucide-react";
 import Link from "next/link";
 
 /* -------------------------------------------------------------------------- */
@@ -40,12 +40,11 @@ const backgroundVariants: Variants = {
   },
 };
 
-const pulseVariants: Variants = {
+const floatVariants: Variants = {
   animate: {
-    scale: [1, 1.05, 1],
-    opacity: [0.6, 0.8, 0.6],
+    y: [0, -15, 0],
     transition: {
-      duration: 4,
+      duration: 6,
       repeat: Infinity,
       ease: "easeInOut",
     },
@@ -66,13 +65,13 @@ const scrollIndicatorVariants: Variants = {
 };
 
 /* -------------------------------------------------------------------------- */
-/*                             Careers Page Component                         */
+/*                           Partnerships Page Component                      */
 /* -------------------------------------------------------------------------- */
 
-export default function CareersPage(): JSX.Element {
+export default function PartnershipsPage(): JSX.Element {
   return (
     <section className="relative overflow-hidden bg-primary text-white py-24 md:py-32">
-      {/* Abstract Background - Unique geometric wave + floating orbs */}
+      {/* Abstract Background - Interconnected nodes with subtle floating motion */}
       <motion.div
         className="absolute inset-0 z-0"
         variants={backgroundVariants}
@@ -85,41 +84,90 @@ export default function CareersPage(): JSX.Element {
           preserveAspectRatio="xMidYMid slice"
           xmlns="http://www.w3.org/2000/svg"
         >
-          {/* Soft wave layer */}
+          {/* Soft interconnected wave */}
           <path
-            d="M0 300 Q 360 100, 720 200 T 1440 150 L 1440 900 L 0 900 Z"
+            d="M0 400 Q 480 200, 960 300 T 1440 250 L 1440 900 L 0 900 Z"
             fill="currentColor"
-            className="text-accent-gold/8"
+            className="text-accent-gold/7"
           />
 
-          {/* Floating accent orbs with subtle pulse */}
-          <motion.circle
-            cx="200"
-            cy="180"
-            r="80"
-            fill="currentColor"
-            className="text-accent-gold/10"
-            variants={pulseVariants}
-            animate="animate"
-          />
-          <motion.circle
-            cx="1100"
-            cy="600"
-            r="120"
-            fill="currentColor"
-            className="text-white/8"
-            variants={pulseVariants}
-            animate="animate"
-          />
-          <motion.circle
-            cx="800"
-            cy="300"
-            r="60"
-            fill="currentColor"
-            className="text-accent-gold/6"
-            variants={pulseVariants}
-            animate="animate"
-          />
+          {/* Floating connection nodes (representing partnerships) */}
+          <g>
+            <motion.circle
+              cx="320"
+              cy="220"
+              r="12"
+              fill="currentColor"
+              className="text-accent-gold/40"
+              variants={floatVariants}
+              animate="animate"
+            />
+            <motion.circle
+              cx="720"
+              cy="380"
+              r="16"
+              fill="currentColor"
+              className="text-white/30"
+              variants={floatVariants}
+              animate="animate"
+            />
+            <motion.circle
+              cx="1100"
+              cy="180"
+              r="10"
+              fill="currentColor"
+              className="text-accent-gold/50"
+              variants={floatVariants}
+              animate="animate"
+            />
+            <motion.circle
+              cx="500"
+              cy="600"
+              r="14"
+              fill="currentColor"
+              className="text-white/20"
+              variants={floatVariants}
+              animate="animate"
+            />
+            <motion.circle
+              cx="900"
+              cy="550"
+              r="18"
+              fill="currentColor"
+              className="text-accent-gold/30"
+              variants={floatVariants}
+              animate="animate"
+            />
+
+            {/* Subtle connecting lines */}
+            <line
+              x1="320"
+              y1="220"
+              x2="720"
+              y2="380"
+              stroke="currentColor"
+              strokeWidth="1"
+              className="text-white/10"
+            />
+            <line
+              x1="720"
+              y1="380"
+              x2="1100"
+              y2="180"
+              stroke="currentColor"
+              strokeWidth="1"
+              className="text-white/10"
+            />
+            <line
+              x1="500"
+              y1="600"
+              x2="900"
+              y2="550"
+              stroke="currentColor"
+              strokeWidth="1"
+              className="text-white/10"
+            />
+          </g>
         </svg>
       </motion.div>
 
@@ -135,9 +183,9 @@ export default function CareersPage(): JSX.Element {
           variants={fadeUpVariants}
           className="inline-flex items-center gap-4 mb-10"
         >
-          <Briefcase className="w-10 h-10 text-accent-gold" />
+          <Handshake className="w-10 h-10 text-accent-gold" />
           <span className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
-            Careers at HighRoad Academy
+            Partnerships & Collaborations
           </span>
         </motion.div>
 
@@ -146,54 +194,57 @@ export default function CareersPage(): JSX.Element {
           variants={fadeUpVariants}
           className="text-4xl md:text-5xl lg:text-6xl font-display font-extrabold leading-tight mb-8"
         >
-          We are Not Hiring
+          Building Strategic
           <br />
-          <span className="text-accent-gold">Right Now</span>
+          <span className="text-accent-gold">Alliances</span>
         </motion.h1>
 
-        {/* Supporting Text */}
+        {/* Supporting Text - Reframed for broader appeal */}
         <motion.p
           variants={fadeUpVariants}
           className="text-lg md:text-xl text-white/90 max-w-3xl mx-auto leading-relaxed mb-12"
         >
-          HighRoad Academy is a small, focused team dedicated to delivering
-          world-class training in policy and economic analysis across Africa. We
-          do not have any open positions at the moment, but we are always
-          interested in hearing from exceptional talent.
+          HighRoad Academy is actively exploring partnerships with organisations
+          that value high-quality, practice-oriented training in policy and
+          economic analysis. We welcome collaborations with any entity, public,
+          private, or non-profit, committed to strengthening evidence-based
+          decision-making across Africa.
         </motion.p>
 
-        {/* Call to Action - Stay in Touch */}
+        {/* Call to Action Card - Updated to be more inclusive */}
         <motion.div
           variants={fadeUpVariants}
           className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-10 max-w-2xl mx-auto"
         >
           <h2 className="text-2xl md:text-3xl font-display font-bold mb-4">
-            Want to work with us in the future?
+            Interested in partnering with us?
           </h2>
           <p className="text-white/80 mb-8">
-            Drop us a note telling us about yourself and what excites you about
-            evidence-based policy and economic analysis.
+            If your organisation believes in the power of rigorous training to
+            drive better policy outcomes, we would love to hear from you. Let us
+            discuss how our specialised programmes can complement or enhance
+            your initiatives.
           </p>
 
           <Link
-            href="mailto:careers@highroadacademy.org"
+            href="/contact"
             className="inline-flex items-center gap-3 px-8 py-4 bg-accent-gold text-primary font-bold rounded-xl shadow-xl hover:bg-yellow-500 transition transform hover:-translate-y-1"
           >
             <Mail className="w-6 h-6" />
-            Send Us Your Profile
+            Get in Touch
           </Link>
         </motion.div>
 
-        {/* Subtle footer note */}
+        {/* Subtle closing note */}
         <motion.p
           variants={fadeUpVariants}
           className="mt-16 text-sm opacity-70 italic"
         >
-          We review all submissions and reach out when suitable opportunities
-          arise.
+          All partnership inquiries are reviewed personally by our leadership
+          team.
         </motion.p>
 
-        {/* Scroll indicator (if there's more content below on the site) */}
+        {/* Scroll indicator */}
         <motion.div
           className="hidden md:block absolute -bottom-10 left-1/2 -translate-x-1/2"
           variants={scrollIndicatorVariants}
