@@ -176,7 +176,7 @@ export default function CareersPage(): JSX.Element {
           </p>
 
           <Link
-            href="mailto:careers@highroadacademy.org"
+            href="/contact"
             className="inline-flex items-center gap-3 px-8 py-4 bg-accent-gold text-primary font-bold rounded-xl shadow-xl hover:bg-yellow-500 transition transform hover:-translate-y-1"
           >
             <Mail className="w-6 h-6" />
