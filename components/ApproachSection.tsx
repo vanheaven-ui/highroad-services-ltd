@@ -24,11 +24,11 @@ const approachPillars = [
 
 export default function ApproachSection(): JSX.Element {
   return (
-    <section className="max-w-6xl mx-auto px-6 py-20">
+    <section className="max-w-6xl mx-auto px-6 py-14 md:py-16">
       <h2 className="text-4xl font-heading font-bold text-primary text-center mb-4">
         The HighRoad Differentiator: Our Unique Methodology
       </h2>
-      <p className="text-xl text-center text-gray-600 mb-12 max-w-3xl mx-auto">
+      <p className="text-xl text-center text-gray-600 mb-10 max-w-3xl mx-auto">
         We bridge the gap between rigorous data analysis and practical,
         on-the-ground implementation to guarantee measurable impact.
       </p>

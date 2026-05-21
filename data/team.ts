@@ -24,7 +24,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of Dar es Salaam; MA in Economics & BSc in Economics and Mathematics, Makerere University",
     bioSummary:
       "Dr. Tumwine is an economist with extensive experience in teaching, research and consultancy. His expertise spans impact evaluation, feasibility studies, cost benefit analysis, econometric modelling, Computable General Equilibrium (CGE) and Dynamic Stochastic General Equilibrium (DSGE) modelling, Social Accounting Matrix (SAM) and National Transfer Accounts (NTA).",
-    email: "highroadservicesltd@gmail.com",
+    email: "info@highroadservicesltd.com",
     linkedinUrl: "",
     imageSrc: "/images/norman.webp",
     fullBio:
@@ -44,7 +44,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of South Africa; MA in Economics, University of Dar es Salaam; BA in Economics, Makerere University",
     bioSummary:
       "Dr. Enock Twinoburyo Nyorekwa is a distinguished Economist with extensive regional experience in public policy analysis, macroeconomic research, impact evaluations, public financial management, public investment appraisal, and development advisory services.",
-    email: "highroadservicesltd@gmail.com",
+    email: "info@highroadservicesltd.com",
     linkedinUrl: "",
     imageSrc: "/images/enok.webp",
     fullBio:
@@ -63,7 +63,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Applied Economics, University of Agder; MSc in Quantitative Economics & BA in Economics with Education, Makerere University",
     bioSummary:
       "Dr. Richard Sebaggala is an applied economist, researcher and academic with extensive experience in policy-oriented research, impact evaluation and quantitative economic analysis.",
-    email: "highroadservicesltd@gmail.com",
+    email: "info@highroadservicesltd.com",
     linkedinUrl: "",
     imageSrc: "/images/richard.webp",
     fullBio:
@@ -82,7 +82,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "PhD in Economics, University of Dar es Salaam; MA & BA in Economics, Makerere University",
     bioSummary:
       "Dr. Ambrose Rwaheru Aheisibwe is a Development Economist with over 15 years of experience in economic analysis, applied research, project management and socio-economic impact evaluation across East and Southern Africa.",
-    email: "highroadservicesltd@gmail.com",
+    email: "info@highroadservicesltd.com",
     linkedinUrl: "",
     imageSrc: "/images/ambrose.webp",
     fullBio:
@@ -122,7 +122,7 @@ export const teamMembersData: FullExpertProfile[] = [
       "Master of Science in Geo-Information Science and Technology, Makerere University; Master of Science in Information Systems, Uganda Martyrs University",
     bioSummary:
       "Kuteesa David Mansen is a Data Systems and GIS Specialist with over 15 years of experience in designing information systems, geospatial databases, and automated data quality assurance tools for large-scale development programmes in the energy, health and education sectors. His expertise lies at the intersection of database management, geospatial analytics, mobile data collection, and monitoring and evaluation (M&E), with a strong focus on dashboards and quality-assured data flows for evidence-based decision-making.",
-    email: "highroadservicesltd@gmail.com",
+    email: "info@highroadservicesltd.com",
     linkedinUrl: "",
     imageSrc: "/images/david.webp",
     fullBio:

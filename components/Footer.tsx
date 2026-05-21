@@ -81,7 +81,7 @@ export default function Footer() {
 
   return (
     <>
-      <footer className="bg-primary text-white mt-20">
+      <footer className="bg-primary text-white mt-0">
         <div className="max-w-6xl mx-auto px-6 pt-16 pb-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-white/20 pb-12">
             {/* Column 1: Logo and Mission (Unchanged) */}
@@ -190,10 +190,10 @@ export default function Footer() {
                   <Mail className="h-5 w-5 mr-3 text-accent-gold" />
                   {/* Replaced SimpleHoverLink with InterceptedContactLink for Mail */}
                   <InterceptedContactLink
-                    href="mailto:highroadservicesltd@gmail.com"
-                    label="highroadservicesltd@gmail.com"
+                    href="mailto:info@highroadservicesltd.com"
+                    label="info@highroadservicesltd.com"
                   >
-                    highroadservicesltd@gmail.com
+                    info@highroadservicesltd.com
                   </InterceptedContactLink>
                 </li>
 

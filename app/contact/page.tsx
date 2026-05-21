@@ -253,14 +253,14 @@ export default function ContactPage() {
   return (
     <main className="bg-white relative">
       <motion.section
-        className="bg-gray-50 max-w-7xl mx-auto px-6 pt-10 pb-16 md:pt-12 md:pb-24 rounded-xl shadow-2xl mt-8 mb-10"
+        className="bg-gray-50 max-w-7xl mx-auto px-6 pt-10 pb-12 md:pt-12 md:pb-16 rounded-xl shadow-2xl mt-8 mb-8"
         initial="initial"
         animate="animate"
         variants={containerVariants}
       >
         {/* Title */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-10"
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.1 }}
@@ -290,8 +290,8 @@ export default function ContactPage() {
               </h2>
               <div className="space-y-4">
                 <ActionModalLink
-                  href="mailto:highroadservicesltd@gmail.com"
-                  label="highroadservicesltd@gmail.com"
+                  href="mailto:info@highroadservicesltd.com"
+                  label="info@highroadservicesltd.com"
                 >
                   <motion.a
                     variants={detailItemVariants}
@@ -304,7 +304,7 @@ export default function ContactPage() {
                         Email Inquiry
                       </span>
                       <span className="text-base text-gray-800 font-body break-all">
-                        highroadservicesltd@gmail.com
+                        info@highroadservicesltd.com
                       </span>
                     </div>
                   </motion.a>

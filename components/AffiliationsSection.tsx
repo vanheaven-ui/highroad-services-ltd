@@ -29,17 +29,16 @@ export default function AffiliationsSection(): JSX.Element {
 
   return (
     // Section remains clean (no background color)
-    <section className="py-20 md:py-32">
+    <section className="py-14 md:py-20">
       <div className="max-w-6xl mx-auto px-6">
-        {/* 💡 REVISED: Focused on 'Value' and 'Pillars' */}
         <h3 className="text-sm font-semibold text-gray-700 uppercase tracking-widest mb-2 text-center">
           What We Do
         </h3>
-        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-12 text-center">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-primary mb-6 text-center">
           Our Core Pillars of Value
         </h2>
 
-        <hr className="w-1/3 mx-auto border-t-2 border-accent-gold mb-16" />
+        <hr className="w-1/3 mx-auto border-t-2 border-accent-gold mb-10" />
 
         {/* Service-Tiled Flow Layout (content unchanged) */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

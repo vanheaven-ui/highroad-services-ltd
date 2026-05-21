@@ -67,13 +67,13 @@ export default function ServicesPageContent() {
     >
       {/* 📊 1. Services Grid */}
       <motion.section
-        className="max-w-7xl mx-auto px-6 py-16 md:py-24"
+        className="max-w-7xl mx-auto px-6 py-12 md:py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerContainer}
       >
-        <div className="text-center mb-12">
+        <div className="text-center mb-10">
           <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
             Core Competencies
           </h2>
@@ -114,14 +114,14 @@ export default function ServicesPageContent() {
 
       {/* ⚙️ 2. Our Process */}
       <motion.section
-        className="bg-gray-50 py-16 md:py-24"
+        className="bg-gray-50 py-12 md:py-16"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.2 }}
         variants={staggerContainer}
       >
         <div className="max-w-6xl mx-auto px-6">
-          <div className="text-center mb-12">
+          <div className="text-center mb-10">
             <h2 className="text-sm font-semibold uppercase tracking-widest text-accent-gold">
               Our Professional Approach
             </h2>
@@ -156,7 +156,7 @@ export default function ServicesPageContent() {
 
       {/* 📞 3. Final CTA */}
       <motion.section
-        className="bg-primary/95 py-16 md:py-20"
+        className="bg-primary/95 py-10 md:py-14"
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.4 }}
