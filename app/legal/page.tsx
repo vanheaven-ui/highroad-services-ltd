@@ -8,7 +8,7 @@ import Link from "next/link";
 // --- CUSTOMIZATION REQUIRED ---
 const COMPANY_NAME = "HighRoad Services LTD";
 const JURISDICTION = "The Republic of Uganda";
-const COMPANY_EMAIL = "highroadservicesltd@gmail.com";
+const COMPANY_EMAIL = "info@highroadservicesltd.com";
 const RESUME_RETENTION_DURATION = "2 years";
 // ------------------------------
 

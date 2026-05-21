@@ -104,7 +104,7 @@ export default function Home(): JSX.Element {
         </motion.div>
 
         <motion.section
-          className="bg-primary py-10"
+          className="bg-primary py-12"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true, amount: 0.5 }}
@@ -129,9 +129,9 @@ export default function Home(): JSX.Element {
         </motion.section>
 
         {/* Services Section */}
-        <section className="max-w-6xl mx-auto px-6 py-16">
+        <section className="max-w-6xl mx-auto px-6 py-12 md:py-16">
           <motion.h2
-            className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1"
+            className="text-4xl font-heading font-bold text-primary mb-10 border-b-4 border-accent-gold inline-block pb-1"
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.5 }}
@@ -161,10 +161,10 @@ export default function Home(): JSX.Element {
         </section>
 
         {/* Case Studies Section */}
-        <section className="bg-gray-50 py-16">
+        <section className="bg-gray-50 py-12 md:py-16">
           <div className="max-w-6xl mx-auto px-6">
             <motion.h2
-              className="text-4xl font-heading font-bold text-primary mb-12 border-b-4 border-accent-gold inline-block pb-1"
+              className="text-4xl font-heading font-bold text-primary mb-10 border-b-4 border-accent-gold inline-block pb-1"
               initial={{ opacity: 0, x: -50 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, amount: 0.5 }}
@@ -189,7 +189,7 @@ export default function Home(): JSX.Element {
           </div>
 
           <motion.div
-            className="max-w-6xl mx-auto text-center mt-12 px-6"
+            className="max-w-6xl mx-auto text-center mt-10 px-6"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true, amount: 0.5 }}

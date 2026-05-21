@@ -294,7 +294,7 @@ const MobileNavDropdown = forwardRef<HTMLDivElement, MobileDropdownProps>(
               onLinkClick={onLinkClick}
             />
             <NavActionLink
-              href="mailto:highroadservicesltd@gmail.com"
+              href="mailto:info@highroadservicesltd.com"
               icon={Mail}
               iconColor=""
               isMobile={true}
@@ -659,7 +659,7 @@ export default function Navbar(): JSX.Element {
                 onLinkClick={() => {}}
               />
               <NavActionLink
-                href="mailto:highroadservicesltd@gmail.com"
+                href="mailto:info@highroadservicesltd.com"
                 icon={Mail}
                 iconColor={iconColor}
                 onLinkClick={() => {}}

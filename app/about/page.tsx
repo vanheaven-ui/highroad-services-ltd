@@ -148,7 +148,7 @@ export default function About(): JSX.Element {
             1. ORIGINAL STORY HEADER (CTA REMOVED)
         ============================= */}
 
-        <section className="bg-white pt-10 pb-16 md:pt-16 md:pb-20">
+        <section className="bg-white pt-10 pb-12 md:pt-14 md:pb-16">
           <div className="max-w-6xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-5 gap-10">
             {/* Left */}
             <motion.div
@@ -212,7 +212,7 @@ export default function About(): JSX.Element {
             2. FOUNDER STORY + TIMELINE
         ============================= */}
 
-        <section className="max-w-6xl mx-auto px-6 py-16 md:py-24 relative">
+        <section className="max-w-6xl mx-auto px-6 py-12 md:py-16 relative">
           {/* Timeline Line */}
           <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/10 hidden lg:block" />
 
@@ -307,11 +307,11 @@ export default function About(): JSX.Element {
             3. CORE STRENGTHS
         ============================= */}
 
-        <section className="bg-gray-100 py-16 md:py-24 relative">
+        <section className="bg-gray-100 py-12 md:py-16 relative">
           <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 h-full w-0.5 bg-primary/10 hidden lg:block" />
 
           <div className="max-w-6xl mx-auto px-6 space-y-12">
-            <h2 className="text-3xl font-bold text-primary text-center mb-10">
+            <h2 className="text-3xl font-bold text-primary text-center mb-8">
               The High Road Standard: Our Pillars of Value
             </h2>
 
@@ -353,7 +353,7 @@ export default function About(): JSX.Element {
             4. NEW TEAM SECTION – Minimalist Grid with Subtle Connections
         ============================= */}
 
-        <section className="max-w-6xl mx-auto px-6 py-16 md:py-24 bg-white">
+        <section className="max-w-6xl mx-auto px-6 py-12 md:py-16 bg-white">
           {/* Subtle connecting lines for uniqueness – faint horizontal threads */}
           <div
             className="absolute inset-0 bg-gradient-to-r from-accent-gold/2 to-transparent h-0.5 top-1/2 -translate-y-1/2 hidden lg:block pointer-events-none"
@@ -361,7 +361,7 @@ export default function About(): JSX.Element {
           />
 
           <motion.div
-            className="text-center mb-12 relative z-10"
+            className="text-center mb-10 relative z-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.3 }}
@@ -399,7 +399,7 @@ export default function About(): JSX.Element {
             5. MISSION & VISION
         ============================= */}
 
-        <section className="max-w-6xl mx-auto px-6 py-16 md:py-24 relative">
+        <section className="max-w-6xl mx-auto px-6 py-12 md:py-16 relative">
           <div className="absolute left-6 lg:left-1/2 transform -translate-x-1/2 top-2 h-4 w-4 rounded-full bg-accent-gold ring-8 ring-white/50 hidden lg:block" />
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 pt-10">
@@ -449,7 +449,7 @@ export default function About(): JSX.Element {
         ============================= */}
 
         <motion.section
-          className="bg-primary/95 py-16 md:py-20 text-center"
+          className="bg-primary/95 py-12 md:py-16 text-center"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.5 }}
